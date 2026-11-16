@@ -22,7 +22,7 @@
       <nav aria-label="Main menu">
         <a href="#over">About us</a>
         <a href="#werkwijze">Approach</a>
-        <a class="nav-cta" href="mailto:info@matchacloud.nl">Contact</a>
+        <a class="nav-cta" href="#contact" data-mail>Contact</a>
       </nav>
     </div>
   </header>
@@ -34,7 +34,7 @@
         <h1>Professional. Clear.<br>Reliable.</h1>
         <p class="lead">We work with attention to quality and clear agreements, so you always know where you stand.</p>
         <div class="actions">
-          <a class="button" href="mailto:info@matchacloud.nl">Get in touch</a>
+          <a class="button" href="#contact" data-mail>Get in touch</a>
           <a class="button ghost" href="#over">Learn more</a>
         </div>
       </div>
@@ -86,7 +86,7 @@
       <div class="container cta">
         <h2>Let's get acquainted</h2>
         <p class="section-lead">Have a question or want to talk things through without obligation? Send us an email.</p>
-        <a class="button" href="mailto:info@matchacloud.nl">info@matchacloud.nl</a>
+        <a class="button" href="#contact" data-mail>Send us an email</a>
       </div>
     </section>
   </main>
@@ -97,9 +97,13 @@
         <img src="assets/mark.svg" alt="" height="28" width="28">
         <span class="wordmark"><b>Matcha</b>cloud</span>
       </span>
-      <p>&copy; <span id="year">2026</span> Matchacloud &middot; <a href="mailto:info@matchacloud.nl">info@matchacloud.nl</a></p>
+      <p>&copy; <span id="year">2026</span> Matchacloud &middot; <a href="#contact" data-mail>info [at] matchacloud.nl</a></p>
     </div>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    var addr = ['info', 'matchacloud.nl'].join('@');
+    document.querySelectorAll('[data-mail]').forEach(function (a) { a.href = 'mailto:' + addr; });
+  </script>
 </body>
 </html>
