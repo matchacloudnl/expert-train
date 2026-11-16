@@ -20,7 +20,7 @@
         <span class="wordmark"><b>Matcha</b>cloud</span>
       </a>
       <nav aria-label="Main menu">
-        <a href="#about">About us</a>
+        <a href="#tools">Tools</a>
         <a href="#approach">Approach</a>
         <a class="nav-cta" href="#contact" data-mail>Contact</a>
       </nav>
@@ -29,43 +29,49 @@
 
   <main>
     <section class="hero">
-      <div class="container">
+      <div class="container hero-grid">
+        <div class="hero-text">
         <p class="eyebrow">Matchacloud</p>
         <h1>Professional. Clear.<br>Reliable.</h1>
         <p class="lead">We work with attention to quality and clear agreements, so you always know where you stand.</p>
         <div class="actions">
           <a class="button" href="#contact" data-mail>Get in touch</a>
-          <a class="button ghost" href="#about">Learn more</a>
+          <a class="button ghost" href="#tools">Learn more</a>
         </div>
+        </div>
+        <img class="hero-img" src="assets/iced-matcha.png" alt="Iced matcha latte" width="595" height="1000" onerror="this.remove()">
       </div>
     </section>
 
-    <section id="about" class="section">
+    <section id="tools" class="section">
       <div class="container">
-        <h2>About Matchacloud</h2>
-        <p class="section-lead">A calm, careful way of working. No noise, just results.</p>
+        <h2>Tools</h2>
+        <p class="section-lead">Handy, free tools from Matchacloud. They run in your browser.</p>
         <div class="cards">
-          <article class="card">
+          <a class="card card-link" href="passwd/">
             <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.500-3 8-7 10-4-2-7-5.500-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg>
             </span>
-            <h3>Reliable</h3>
-            <p>We keep our agreements and communicate openly and honestly.</p>
-          </article>
-          <article class="card">
+            <h3>passwd</h3>
+            <p>Generate secure passwords, passphrases, PIN codes, PSKs and WiFi credentials.</p>
+            <span class="card-more">Open tool &rarr;</span>
+          </a>
+          <a class="card card-link" href="spf-flattener/">
             <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 3l2.500 5.500L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.500-.5z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>
             </span>
-            <h3>Quality</h3>
-            <p>Careful work we stand behind, from first idea to delivery.</p>
-          </article>
-          <article class="card">
+            <h3>SPF Flattener</h3>
+            <p>Flatten your SPF record to stay under the limit of 10 DNS lookups.</p>
+            <span class="card-more">Open tool &rarr;</span>
+          </a>
+          <a class="card card-link" href="whatsmyip/">
             <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.500"/><path d="M3 19c0-3.500 3-5.500 6-5.500s6 2 6 5.500M15 14c3 0 6 1.500 6 5"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
             </span>
-            <h3>Personal</h3>
-            <p>Short lines and direct contact: you always speak to the same person.</p>
-          </article>
+            <h3>What's my IP</h3>
+            <p>See your public IP address and basic browser details.</p>
+            <span class="card-more">Open tool &rarr;</span>
+          </a>
         </div>
       </div>
     </section>
@@ -100,10 +106,6 @@
       <p>&copy; <span id="year">2026</span> Matchacloud &middot; <a href="#contact" data-mail>info [at] matchacloud.nl</a></p>
     </div>
   </footer>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    var addr = ['info', 'matchacloud.nl'].join('@');
-    document.querySelectorAll('[data-mail]').forEach(function (a) { a.href = 'mailto:' + addr; });
-  </script>
+  <script src="js/site.js"></script>
 </body>
 </html>

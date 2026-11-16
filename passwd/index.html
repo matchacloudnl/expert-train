@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>passwd – Password generator | Matchacloud</title>
+  <meta name="description" content="Generate secure passwords, passphrases, PIN codes, IPSec PSKs and WiFi credentials in your browser. Nothing is stored or sent.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/tools.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container bar">
+      <a class="logo" href="../" aria-label="Matchacloud home">
+        <img src="../assets/mark.svg" alt="" height="40" width="40">
+        <span class="wordmark"><b>Matcha</b>cloud</span>
+      </a>
+      <nav aria-label="Main menu">
+        <a href="../#tools">Tools</a>
+        <a class="nav-cta" href="../#contact" data-mail>Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container tool-page">
+    <h1>passwd</h1>
+    <p class="lead">Generate secure passwords, PIN codes, PSKs and WiFi credentials.</p>
+
+  <nav class="tabs" aria-label="Generators">
+    <button class="tab-btn active" data-tab="overzicht">Passwords</button>
+    <button class="tab-btn" data-tab="aangepast">Custom</button>
+    <button class="tab-btn" data-tab="psk">IPSec PSK</button>
+    <button class="tab-btn" data-tab="wifi">WiFi &amp; SSID</button>
+  </nav>
+
+  <!-- OVERZICHT (reset.nl-stijl: alles direct zichtbaar, telkens 10 stuks) -->
+  <section class="panel active" id="panel-overzicht">
+    <button class="btn-primary btn-full" id="overzicht-refresh">🔄 Refresh all</button>
+
+    <div class="lijst-sectie">
+      <div class="lijst-header">
+        <h2>PIN codes</h2>
+      </div>
+      <p class="mini-hint">4 digits</p>
+      <div class="chip-grid" id="pin4-lijst"></div>
+      <p class="mini-hint">6 digits</p>
+      <div class="chip-grid" id="pin6-lijst"></div>
+    </div>
+
+    <div class="lijst-sectie">
+      <div class="lijst-header">
+        <h2>Memorable passwords</h2>
+      </div>
+      <p class="mini-hint">Pronounceable sounds with a capital, symbol and year</p>
+      <div class="lijst" id="onthoudbaar-lijst"></div>
+    </div>
+
+    <div class="lijst-sectie">
+      <div class="lijst-header">
+        <h2>Memorable passphrases</h2>
+      </div>
+      <p class="mini-hint">Dutch words with a capital, number and symbol</p>
+      <div class="lijst" id="onthoudbaarzin-lijst"></div>
+    </div>
+
+    <div class="lijst-sectie">
+      <div class="lijst-header">
+        <h2>Strong passwords</h2>
+      </div>
+      <p class="mini-hint">Random letters and numbers</p>
+      <div class="lijst" id="moeilijk-lijst"></div>
+    </div>
+
+    <div class="lijst-sectie">
+      <div class="lijst-header">
+        <h2>Extra strong passwords</h2>
+      </div>
+      <p class="mini-hint">Random, including symbols</p>
+      <div class="lijst" id="zwaar-lijst"></div>
+    </div>
+  </section>
+
+  <!-- AANGEPAST -->
+  <section class="panel" id="panel-aangepast">
+
+    <h2 class="panel-title">Custom password</h2>
+    <div class="result-box">
+      <input type="text" id="wachtwoord-output" readonly>
+      <button class="copy-btn" data-copy="wachtwoord-output" title="Copy">📋</button>
+      <button class="refresh-btn" id="wachtwoord-refresh" title="New password">🔄</button>
+    </div>
+    <div class="strength" id="wachtwoord-strength"><div class="strength-bar"></div></div>
+
+    <div class="options">
+      <label class="range-row">
+        <span>Length: <strong id="lengte-label">16</strong></span>
+        <input type="range" id="lengte" min="6" max="64" value="16">
+      </label>
+
+      <label class="check-row">
+        <input type="checkbox" id="opt-hoofdletters" checked>
+        Uppercase (A-Z)
+      </label>
+      <label class="check-row">
+        <input type="checkbox" id="opt-kleine" checked>
+        Lowercase (a-z)
+      </label>
+      <label class="check-row">
+        <input type="checkbox" id="opt-cijfers" checked>
+        Digits (0-9)
+      </label>
+      <label class="check-row">
+        <input type="checkbox" id="opt-symbolen" checked>
+        Symbols (!@#$%...)
+      </label>
+      <label class="check-row">
+        <input type="checkbox" id="opt-leesbaar">
+        Avoid ambiguous characters (0, O, l, 1)
+      </label>
+    </div>
+
+    <h2 class="panel-title panel-title-spaced">Custom passphrase</h2>
+    <div class="result-box">
+      <input type="text" id="zin-output" readonly>
+      <button class="copy-btn" data-copy="zin-output" title="Copy">📋</button>
+      <button class="refresh-btn" id="zin-refresh" title="New passphrase">🔄</button>
+    </div>
+    <div class="strength" id="zin-strength"><div class="strength-bar"></div></div>
+
+    <div class="options">
+      <label class="range-row">
+        <span>Number of words: <strong id="aantal-woorden-label">3</strong></span>
+        <input type="range" id="aantal-woorden" min="3" max="4" value="3">
+      </label>
+      <label class="check-row">
+        <input type="checkbox" id="zin-scheidingsteken" checked>
+        Use hyphens between words
+      </label>
+    </div>
+  </section>
+
+  <!-- IPSEC PSK -->
+  <section class="panel" id="panel-psk">
+    <p class="hint">Pre-shared keys for IPSec/VPN connections. 32 characters by default.</p>
+
+    <div class="options options-inline">
+      <label class="range-row">
+        <span>Length: <strong id="psk-lengte-label">32</strong></span>
+        <input type="range" id="psk-lengte" min="16" max="64" value="32">
+      </label>
+      <label class="check-row">
+        <input type="checkbox" id="psk-symbolen">
+        Include symbols (may cause problems on some routers)
+      </label>
+    </div>
+
+    <button class="btn-primary btn-full" id="psk-refresh">🔄 Generate new PSKs</button>
+    <div class="lijst" id="psk-lijst"></div>
+  </section>
+
+  <!-- WIFI & SSID -->
+  <section class="panel" id="panel-wifi">
+    <p class="hint">Generate a network name and a strong password, including a QR code to scan. You can also edit the fields yourself — the QR code updates automatically.</p>
+
+    <button class="btn-primary btn-full" id="wifi-refresh">🔄 New combination</button>
+
+    <div class="wifi-card" id="wifi-card">
+      <div class="wifi-row">
+        <span class="wifi-label">Network name (SSID)</span>
+        <div class="result-box">
+          <input type="text" id="wifi-ssid" maxlength="32">
+          <button class="copy-btn" data-copy="wifi-ssid" title="Copy">📋</button>
+        </div>
+      </div>
+      <div class="wifi-row">
+        <span class="wifi-label">Password</span>
+        <div class="result-box">
+          <input type="text" id="wifi-wachtwoord" maxlength="63">
+          <button class="copy-btn" data-copy="wifi-wachtwoord" title="Copy">📋</button>
+        </div>
+      </div>
+      <div class="wifi-qr-wrap">
+        <div id="wifi-qr"></div>
+        <p class="mini-hint">Scan to connect automatically</p>
+      </div>
+    </div>
+
+    <div class="wifi-export-buttons">
+      <button class="btn-secondary" id="wifi-download-png">⬇️ Download as image</button>
+      <button class="btn-secondary" id="wifi-print">🖨️ Print / PDF</button>
+    </div>
+  </section>
+
+  <p class="tool-note">All passwords and passphrases are generated locally in your browser — nothing is stored or sent.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container bar">
+      <span class="logo small">
+        <img src="../assets/mark.svg" alt="" height="28" width="28">
+        <span class="wordmark"><b>Matcha</b>cloud</span>
+      </span>
+      <p>&copy; <span id="year">2026</span> Matchacloud &middot; <a href="../#contact" data-mail>info [at] matchacloud.nl</a></p>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+  <script src="woorden.js"></script>
+  <script src="qrcode.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

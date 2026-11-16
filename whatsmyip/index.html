@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What's my IP | Matchacloud</title>
+  <meta name="description" content="See your public IP address and basic browser details.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/tools.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container bar">
+      <a class="logo" href="../" aria-label="Matchacloud home">
+        <img src="../assets/mark.svg" alt="" height="40" width="40">
+        <span class="wordmark"><b>Matcha</b>cloud</span>
+      </a>
+      <nav aria-label="Main menu">
+        <a href="../#tools">Tools</a>
+        <a class="nav-cta" href="../#contact" data-mail>Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container tool-page">
+    <h1>What's my IP</h1>
+    <p class="lead">The public IP address websites see when you connect.</p>
+
+    <section class="panel always ip-box">
+      <p class="ip-label">Your IP address</p>
+      <div class="ip-display" id="ip-main">Loading…</div>
+      <div id="ip4-wrap" hidden>
+        <p class="ip-label">IPv4</p>
+        <div class="ip-display" id="ip-v4"></div>
+      </div>
+      <dl class="ip-meta">
+        <dt>Browser</dt><dd id="meta-ua"></dd>
+        <dt>Language</dt><dd id="meta-lang"></dd>
+        <dt>Time zone</dt><dd id="meta-tz"></dd>
+      </dl>
+      <button class="refresh-btn" id="ip-refresh">🔄 Refresh</button>
+    </section>
+    <p class="tool-note">Your address is looked up through a request to ipify.org, because a static site has no server to read it from.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container bar">
+      <span class="logo small">
+        <img src="../assets/mark.svg" alt="" height="28" width="28">
+        <span class="wordmark"><b>Matcha</b>cloud</span>
+      </span>
+      <p>&copy; <span id="year">2026</span> Matchacloud &middot; <a href="../#contact" data-mail>info [at] matchacloud.nl</a></p>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

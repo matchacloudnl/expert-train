@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPF Flattener | Matchacloud</title>
+  <meta name="description" content="Flatten an SPF record: replace include, a and mx lookups with plain IP addresses to stay under the 10 DNS lookup limit.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/tools.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container bar">
+      <a class="logo" href="../" aria-label="Matchacloud home">
+        <img src="../assets/mark.svg" alt="" height="40" width="40">
+        <span class="wordmark"><b>Matcha</b>cloud</span>
+      </a>
+      <nav aria-label="Main menu">
+        <a href="../#tools">Tools</a>
+        <a class="nav-cta" href="../#contact" data-mail>Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container tool-page">
+    <h1>SPF Flattener</h1>
+    <p class="lead">Replace <code>include</code>, <code>a</code> and <code>mx</code> lookups with plain IP addresses, so your SPF record stays under the limit of 10 DNS lookups.</p>
+
+    <section class="panel always">
+      <form class="form-row" id="spf-form">
+        <input class="field" id="domain" type="text" placeholder="example.com" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-label="Domain">
+        <button class="btn-primary" id="go" type="submit">Flatten</button>
+      </form>
+      <p class="status" id="status" role="status"></p>
+
+      <div id="result" hidden>
+        <div class="stats">
+          <div class="stat"><strong id="st-before">0</strong><span>DNS lookups before</span></div>
+          <div class="stat"><strong id="st-after">0</strong><span>DNS lookups after</span></div>
+          <div class="stat"><strong id="st-len">0</strong><span>Record length (chars)</span></div>
+        </div>
+        <label class="wifi-label" for="out">Flattened SPF record (TXT)</label>
+        <textarea class="field" id="out" rows="6" readonly></textarea>
+        <div class="panel-actions">
+          <button class="btn-secondary" id="copy" type="button">📋 Copy</button>
+        </div>
+        <ul class="warnings" id="warnings" hidden></ul>
+        <div class="sources" id="sources"></div>
+      </div>
+    </section>
+
+    <p class="tool-note">DNS lookups are done from your browser through Cloudflare DNS over HTTPS (cloudflare-dns.com); the domain you enter is sent there. A flattened record is a snapshot: if a provider changes its IP addresses, your record becomes outdated, so re-run this regularly.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container bar">
+      <span class="logo small">
+        <img src="../assets/mark.svg" alt="" height="28" width="28">
+        <span class="wordmark"><b>Matcha</b>cloud</span>
+      </span>
+      <p>&copy; <span id="year">2026</span> Matchacloud &middot; <a href="../#contact" data-mail>info [at] matchacloud.nl</a></p>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
