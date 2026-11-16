@@ -7,4 +7,21 @@
   document.querySelectorAll('[data-mail]').forEach(function (a) {
     a.href = 'mailto:' + addr;
   });
+
+  // Hero image: tilts, drifts and shrinks slightly while scrolling
+  var img = document.querySelector('.hero-img');
+  if (img && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var ticking = false;
+    var update = function () {
+      var p = Math.min(Math.max(window.scrollY / 650, 0), 1);
+      img.style.setProperty('--ty', (p * 90).toFixed(1) + 'px');
+      img.style.setProperty('--rot', (p * 14).toFixed(1) + 'deg');
+      img.style.setProperty('--ds', (p * 0.2).toFixed(3));
+      ticking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }
 })();
