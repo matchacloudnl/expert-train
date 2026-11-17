@@ -130,6 +130,15 @@ textarea.field { width: 100%; font-family: "SF Mono", Menlo, Consolas, monospace
 .ip-meta dd { margin: 0; word-break: break-word; }
 .ip-box .refresh-btn { width: 100%; padding: 12px; margin-top: 20px; font: inherit; font-size: .9rem; font-weight: 600; }
 
+/* DNS dig */
+.tool-page.wide { max-width: 960px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; max-height: 520px; overflow-y: auto; }
+.dig-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.dig-table th { position: sticky; top: 0; background: var(--bg-alt); text-align: left; padding: 10px 12px; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.dig-table td { padding: 8px 12px; border-top: 1px solid var(--line); font-family: "SF Mono", Menlo, Consolas, monospace; word-break: break-all; vertical-align: top; }
+.dig-table td:nth-child(2), .dig-table td:nth-child(4) { white-space: nowrap; }
+#types { gap: 16px; margin-bottom: 4px; }
+
 @media (max-width: 600px) { .stats { grid-template-columns: 1fr; } }
 
 @media print {

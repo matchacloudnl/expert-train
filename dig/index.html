@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DNS Dig &amp; Subdomain Finder | Matchacloud</title>
+  <meta name="description" content="Find subdomains of a domain, look up their DNS records and export the result to CSV.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/tools.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container bar">
+      <a class="logo" href="../" aria-label="Matchacloud home">
+        <img src="../assets/mark.svg" alt="" height="40" width="40">
+        <span class="wordmark"><b>Matcha</b>cloud</span>
+      </a>
+      <nav aria-label="Main menu">
+        <a href="../#tools">Tools</a>
+        <a class="nav-cta" href="../#contact" data-mail>Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container tool-page wide">
+    <h1>DNS Dig &amp; Subdomain Finder</h1>
+    <p class="lead">Find subdomains of a domain, look up their DNS records and download the result as CSV.</p>
+
+    <section class="panel always">
+      <form id="dig-form" class="form-row">
+        <input class="field" id="domain" type="text" placeholder="example.com" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+        <button class="btn-primary" id="go" type="submit">Search</button>
+      </form>
+
+      <div class="options options-inline">
+        <div class="chip-grid" id="types">
+          <label class="check-row"><input type="checkbox" value="A" checked> A</label>
+          <label class="check-row"><input type="checkbox" value="AAAA" checked> AAAA</label>
+          <label class="check-row"><input type="checkbox" value="CNAME" checked> CNAME</label>
+          <label class="check-row"><input type="checkbox" value="MX"> MX</label>
+          <label class="check-row"><input type="checkbox" value="TXT"> TXT</label>
+          <label class="check-row"><input type="checkbox" value="NS"> NS</label>
+        </div>
+        <label class="check-row"><input type="checkbox" id="use-ct" checked> Search certificate transparency logs</label>
+        <label class="check-row"><input type="checkbox" id="use-words" checked> Try common names (www, mail, vpn, ...)</label>
+      </div>
+
+      <p class="status" id="status" aria-live="polite"></p>
+      <div class="stats" id="stats" hidden>
+        <div class="stat"><strong id="n-names">0</strong><span>Subdomains</span></div>
+        <div class="stat"><strong id="n-records">0</strong><span>Records</span></div>
+        <div class="stat"><strong id="n-checked">0</strong><span>Names checked</span></div>
+      </div>
+
+      <div class="table-wrap" id="table-wrap" hidden>
+        <table class="dig-table">
+          <thead><tr><th>Name</th><th>Type</th><th>Value</th><th>Source</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="panel-actions">
+        <button class="btn-secondary" id="csv" type="button" hidden>⬇ Download CSV</button>
+      </div>
+    </section>
+    <p class="tool-note">Everything runs in your browser. Names come from public certificate logs (crt.sh, Cert Spotter) and a short wordlist, and are resolved through Cloudflare DNS over HTTPS. Subdomains that have no certificate and are not in the wordlist cannot be found, so the list may be incomplete. Only scan domains you own or have permission to test.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container bar">
+      <span class="logo small">
+        <img src="../assets/mark.svg" alt="" height="28" width="28">
+        <span class="wordmark"><b>Matcha</b>cloud</span>
+      </span>
+      <p>&copy; <span id="year">2026</span> Matchacloud &middot; Daan Zuiderwijk</p>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
