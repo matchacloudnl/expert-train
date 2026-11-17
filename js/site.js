@@ -8,6 +8,19 @@
     a.href = 'mailto:' + addr;
   });
 
+  // Recipe window
+  var recipe = document.getElementById('recipe');
+  if (recipe && recipe.showModal) {
+    document.querySelectorAll('[data-open-recipe]').forEach(function (b) {
+      b.addEventListener('click', function () { recipe.showModal(); });
+    });
+    recipe.querySelectorAll('[data-close-recipe]').forEach(function (b) {
+      b.addEventListener('click', function () { recipe.close(); });
+    });
+    // click on the backdrop closes it
+    recipe.addEventListener('click', function (e) { if (e.target === recipe) recipe.close(); });
+  }
+
   // Hero image: tilts, drifts and shrinks slightly while scrolling
   var img = document.querySelector('.hero-img');
   if (img && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

@@ -79,9 +79,47 @@
             <p>Find subdomains, look up their DNS records and export to CSV.</p>
             <span class="card-more">Open tool &rarr;</span>
           </a>
+          <button type="button" class="card card-link card-button" data-open-recipe>
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 8h14l-1.5 12h-11z"/><path d="M12 8l3-5"/><path d="M8 13h8"/></svg>
+            </span>
+            <h3>Recipe</h3>
+            <p>Iced strawberry matcha, step by step.</p>
+            <span class="card-more">Open recipe &rarr;</span>
+          </button>
         </div>
       </div>
     </section>
+
+    <dialog id="recipe" class="recipe" aria-labelledby="recipe-title">
+      <button type="button" class="recipe-close" data-close-recipe aria-label="Close">&times;</button>
+      <h2 id="recipe-title">Iced strawberry matcha</h2>
+      <p class="recipe-meta">Makes 1 glass &middot; 5 minutes</p>
+      <div class="recipe-cols">
+        <div>
+          <h3>Ingredients</h3>
+          <ul>
+            <li>2 tsp (3&ndash;4 g) ceremonial matcha</li>
+            <li>60 ml hot water (about 80&nbsp;&deg;C)</li>
+            <li>5 fresh strawberries</li>
+            <li>1&ndash;2 tbsp maple syrup or honey</li>
+            <li>180 ml cold milk (or oat milk)</li>
+            <li>Ice cubes</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Steps</h3>
+          <ol>
+            <li>Mash the strawberries with the syrup until jammy.</li>
+            <li>Spoon the strawberry mix into the bottom of a tall glass and fill with ice.</li>
+            <li>Pour the cold milk over the ice.</li>
+            <li>Sift the matcha into a bowl, add the hot water and whisk in a zigzag until frothy.</li>
+            <li>Slowly pour the matcha on top for the layered look.</li>
+            <li>Stir before drinking and enjoy.</li>
+          </ol>
+        </div>
+      </div>
+    </dialog>
 
 
     <section id="contact" class="section alt">
