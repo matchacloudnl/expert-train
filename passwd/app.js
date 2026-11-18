@@ -357,7 +357,8 @@ function genereerWifi() {
 // --- Username + memorable password ---
 function genereerUsername() {
   const woord = pickRandom(WOORDEN).replace(/^./, (c) => c.toUpperCase());
-  return `${pickRandom(ADJECTIEVEN)}${woord}${randInt(90) + 10}`.replace(/\s+/g, "");
+  const naam = `${pickRandom(ADJECTIEVEN)}${woord}${randInt(90) + 10}`.replace(/\s+/g, "");
+  return document.getElementById("username-lower").checked ? naam.toLowerCase() : naam;
 }
 
 function genereerUsernames() {
@@ -378,6 +379,7 @@ function genereerUsernames() {
 }
 
 document.getElementById("username-refresh").addEventListener("click", genereerUsernames);
+document.getElementById("username-lower").addEventListener("change", genereerUsernames);
 genereerUsernames();
 
 document.getElementById("wifi-refresh").addEventListener("click", genereerWifi);

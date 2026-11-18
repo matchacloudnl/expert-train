@@ -16,6 +16,9 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from software import EXCLUDE, SOFTWARE  # noqa: E402
+
 OUT = Path(__file__).resolve().parent.parent / "data" / "cves.json"
 KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
 NVD_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
@@ -28,8 +31,6 @@ NVD_PLATFORMS = {
     "windows": (["cpe:2.3:o:microsoft:windows"], ["CRITICAL"]),
     "macos": (["cpe:2.3:o:apple:macos"], ["CRITICAL"]),
     "linux": (["cpe:2.3:o:linux:linux_kernel"], ["CRITICAL"]),
-    "nginx": (["cpe:2.3:a:f5:nginx", "cpe:2.3:a:nginx:nginx"], ["CRITICAL", "HIGH"]),
-    "java": (["cpe:2.3:a:oracle:jdk", "cpe:2.3:a:oracle:jre", "cpe:2.3:a:oracle:openjdk"], ["CRITICAL", "HIGH"]),
 }
 
 
@@ -37,13 +38,14 @@ NVD_PLATFORMS = {
 # the newest ones. This keyword search covers the last KEYWORD_DAYS days instead.
 # platform -> (search keywords, regex the description must match, minimum CVSS score)
 KEYWORD_DAYS = 14
+MAX_PER_SOFTWARE = 10  # newest NVD-only CVEs kept per software (CISA KEV entries are always kept)
 KEYWORDS = {
     "windows": (["windows"], r"microsoft windows|windows (server|\d+|kernel)", 9.0),
     "macos": (["macos"], r"\bmac ?os\b", 9.0),
     "linux": (["linux kernel"], r"linux kernel", 9.0),
-    "nginx": (["nginx"], r"\bnginx\b", 7.0),
-    "java": (["java"], r"\bjava\b|\bopenjdk\b|\bjdk\b|\bjre\b", 7.0),
 }
+for _name, _cfg in SOFTWARE.items():
+    KEYWORDS[_name] = (_cfg["search"], _cfg["pattern"], _cfg["min"])
 
 
 def best_score(cve):
@@ -74,10 +76,10 @@ def kev_platform(vendor, product):
         return "macos"
     if "linux" in p or "linux" in v:
         return "linux"
-    if "nginx" in p:
-        return "nginx"
-    if re.search(r"java|jdk|jre|openjdk", p):
-        return "java"
+    text = f"{v} {p}"
+    for name, cfg in SOFTWARE.items():
+        if re.search(cfg["kev"], text):
+            return name
     return None
 
 
@@ -100,7 +102,9 @@ def main():
     # keep previous entries
     if OUT.exists():
         for e in json.loads(OUT.read_text(encoding="utf-8")).get("cves", []):
-            entries[e["id"]] = e
+            # software entries are rebuilt every run so changed filters take effect
+            if set(e["platforms"]) & set(NVD_PLATFORMS):
+                entries[e["id"]] = e
 
     # --- CISA KEV ---
     print("Fetching CISA KEV")
@@ -177,6 +181,8 @@ def main():
                     score = best_score(c)
                     if score is None or score < min_score or not re.search(pattern, desc, re.I):
                         continue
+                    if plat in SOFTWARE and EXCLUDE.search(desc):
+                        continue
                     merge(
                         entries, c["id"],
                         platforms=[plat], sources=["NVD"],
@@ -188,6 +194,13 @@ def main():
                     break
                 time.sleep(7)
             time.sleep(7)
+
+    # --- cap NVD-only entries per software so busy products do not flood the page ---
+    for plat in SOFTWARE:
+        extra = [e for e in entries.values() if e["platforms"] == [plat] and not e.get("kev")]
+        extra.sort(key=lambda e: (e.get("published", ""), e.get("score") or 0), reverse=True)
+        for e in extra[MAX_PER_SOFTWARE:]:
+            del entries[e["id"]]
 
     # --- prune, sort, write ---
     keep_from = (now - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")

@@ -3,14 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="10; url=/">
   <title>Page not found – Matchacloud</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .nf { min-height: 100vh; display: flex; align-items: center; }
+    .nf .container { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .nf img { width: min(320px, 70vw); height: auto; mix-blend-mode: multiply; margin-bottom: 1rem; }
+    .nf h1 { margin: 0 0 .75rem; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; letter-spacing: -.02em; }
+    .nf p { margin: 0 0 1.5rem; color: var(--muted); }
+  </style>
 </head>
 <body>
-  <main class="hero">
-    <h1>This page does not exist.</h1>
-    <p>The link may be outdated.</p>
-    <a class="button" href="/">Back to home</a>
+  <main class="hero nf">
+    <div class="container">
+      <img src="/assets/matcha-glass.png" alt="A glass of iced matcha" width="591" height="422">
+      <h1>These are not the iced matchas you're looking for.</h1>
+      <p>This page does not exist. You will be sent back to the homepage in <strong id="count">10</strong> seconds.</p>
+      <a class="button" href="/">Take me home now</a>
+    </div>
   </main>
+  <script>
+    (function () {
+      var n = 10, el = document.getElementById('count');
+      var t = setInterval(function () {
+        n--;
+        if (el) el.textContent = n;
+        if (n <= 0) { clearInterval(t); location.href = '/'; }
+      }, 1000);
+    })();
+  </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const LABEL = { windows: 'Windows', macos: 'macOS', linux: 'Linux', nginx: 'nginx', java: 'Java' };
+const LABEL = { windows: 'Windows', macos: 'macOS', linux: 'Linux', php: 'PHP', nginx: 'nginx', java: 'Java', apache: 'Apache', openssl: 'OpenSSL', openssh: 'OpenSSH', mysql: 'MySQL / MariaDB', postgresql: 'PostgreSQL', docker: 'Docker', chrome: 'Chrome', firefox: 'Firefox' };
 const OS = ['windows', 'macos', 'linux']; // everything else (nginx, Java, ...) is shown under "Software"
 let data ={ cves: [] };
 let platform = 'all';
