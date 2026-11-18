@@ -1,5 +1,6 @@
 const LABEL = { windows: 'Windows', macos: 'macOS', linux: 'Linux', nginx: 'nginx', java: 'Java' };
-let data = { cves: [] };
+const OS = ['windows', 'macos', 'linux']; // everything else (nginx, Java, ...) is shown under "Software"
+let data ={ cves: [] };
 let platform = 'all';
 
 const $ = (id) => document.getElementById(id);
@@ -14,7 +15,8 @@ function el(tag, cls, text) {
 function render() {
   const onlyKev = $('only-kev').checked;
   const items = data.cves.filter((c) =>
-    (platform === 'all' || c.platforms.includes(platform)) && (!onlyKev || c.kev));
+    (platform === 'all' || c.platforms.some((p) => (OS.includes(p) ? p : 'software') === platform)) &&
+    (!onlyKev || c.kev));
   const list = $('list');
   list.textContent = '';
   for (const c of items) {
