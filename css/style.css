@@ -84,29 +84,14 @@ h2 { margin: 0 0 .75rem; font-size: clamp(1.7rem, 3.5vw, 2.3rem); letter-spacing
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; }
 .card-link { display: block; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
 .card-link:hover { border-color: var(--accent); transform: translateY(-2px); }
-#tools .cards { grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+#tools .cards { grid-template-columns: repeat(5, 1fr); gap: 1rem; }
 #tools .card { padding: 1.25rem; display: flex; flex-direction: column; align-items: flex-start; }
 #tools .card p { margin-bottom: 1rem; }
 #tools .card .card-more { margin-top: auto; }
 #tools .card h3 { font-size: 1.05rem; }
 #tools .card p { font-size: .9rem; }
-.card-button { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; font: inherit; text-align: left; width: 100%; cursor: pointer; }
 
-.recipe { border: 1px solid var(--line); border-radius: var(--radius); padding: 2rem; max-width: 640px; width: calc(100% - 2rem); background: var(--surface); color: var(--fg); position: relative; }
-.recipe::backdrop { background: rgba(31, 45, 26, .55); }
-.recipe[open] { animation: recipe-in .25s ease-out; }
-@keyframes recipe-in { from { opacity: 0; transform: translateY(16px) scale(.97); } }
-.recipe h2 { margin: 0; }
-.recipe h3 { margin: 1.25rem 0 .5rem; font-size: 1rem; }
-.recipe-meta { margin: .25rem 0 0; color: var(--muted); font-size: .9rem; }
-.recipe-cols { display: grid; grid-template-columns: 1fr 1.3fr; gap: 1.5rem; }
-.recipe ul, .recipe ol { margin: 0; padding-left: 1.2rem; font-size: .95rem; }
-.recipe li { margin-bottom: .35rem; }
-.recipe-close { position: absolute; top: .75rem; right: .75rem; width: 36px; height: 36px; border: none; border-radius: 50%; background: var(--bg-alt); color: var(--fg); font-size: 1.4rem; line-height: 1; cursor: pointer; }
-.recipe-close:hover { background: var(--accent); color: #fff; }
-@media (prefers-reduced-motion: reduce) { .recipe[open] { animation: none; } }
-@media (max-width: 600px) { .recipe-cols { grid-template-columns: 1fr; gap: 0; } }
-
+@media (prefers-reduced-motion: reduce) { @media (max-width: 600px) { 
 .card-more { display: inline-block; margin-top: 1rem; color: var(--accent-dark); font-weight: 600; font-size: .95rem; }
 .card h3 { margin: 1rem 0 .4rem; font-size: 1.15rem; }
 .card p { margin: 0; color: var(--muted); font-size: .97rem; }
