@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CVE Watch | Matchacloud</title>
+  <meta name="description" content="Impactful vulnerabilities for Windows, macOS and Linux, updated daily.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/tools.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container bar">
+      <a class="logo" href="../" aria-label="Matchacloud home">
+        <img src="../assets/mark.svg" alt="" height="40" width="40">
+        <span class="wordmark"><b>Matcha</b>cloud</span>
+      </a>
+      <nav aria-label="Main menu">
+        <a href="../#tools">Tools</a>
+        <a class="nav-cta" href="../#contact" data-mail>Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container tool-page wide">
+    <h1>CVE Watch</h1>
+    <p class="lead">Impactful vulnerabilities for Windows, macOS and Linux, updated every day.</p>
+
+    <section class="panel always">
+      <div class="tabs" id="platforms" role="tablist">
+        <button class="tab-btn active" data-p="all" type="button">All</button>
+        <button class="tab-btn" data-p="windows" type="button">Windows</button>
+        <button class="tab-btn" data-p="macos" type="button">macOS</button>
+        <button class="tab-btn" data-p="linux" type="button">Linux</button>
+      </div>
+      <label class="check-row cve-filter"><input type="checkbox" id="only-kev"> Only actively exploited (CISA KEV)</label>
+      <p class="status" id="status" aria-live="polite">Loading…</p>
+      <div id="list" class="cve-list"></div>
+    </section>
+    <p class="tool-note">Shown are CVEs that are actively exploited according to the CISA Known Exploited Vulnerabilities catalog, plus newly published CVEs with a CRITICAL CVSS rating in the NVD. The list is refreshed daily by an automated job and keeps the last 90 days. It is not a complete vulnerability database, so always check your vendor's advisories as well.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container bar">
+      <p>&copy; <span id="year">2026</span> Matchacloud &middot; Daan Zuiderwijk</p>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

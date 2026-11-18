@@ -139,6 +139,21 @@ textarea.field { width: 100%; font-family: "SF Mono", Menlo, Consolas, monospace
 .dig-table td:nth-child(2), .dig-table td:nth-child(4) { white-space: nowrap; }
 #types { gap: 16px; margin-bottom: 4px; }
 
+/* CVE watch */
+.cve-filter { margin-bottom: 14px; }
+.cve-list { display: flex; flex-direction: column; gap: 10px; }
+.cve { background: var(--bg-input); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.cve-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cve-id { font-weight: 700; color: var(--accent-dark); text-decoration: none; }
+.cve-id:hover { text-decoration: underline; }
+.cve-date { margin-left: auto; color: var(--muted); font-size: .8rem; }
+.badge { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; font-size: .75rem; font-weight: 600; }
+.badge-kev { background: var(--weak); border-color: var(--weak); color: #fff; }
+.badge-score { background: var(--medium); border-color: var(--medium); color: #fff; }
+.cve-title { font-size: .95rem; }
+.cve-product { color: var(--muted); font-size: .82rem; }
+.cve-desc { margin: 0; font-size: .88rem; color: var(--muted); }
+
 @media (max-width: 600px) { .stats { grid-template-columns: 1fr; } }
 
 @media print {
