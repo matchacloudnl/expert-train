@@ -32,6 +32,7 @@
     <button class="tab-btn" data-tab="aangepast">Custom</button>
     <button class="tab-btn" data-tab="psk">IPSec PSK</button>
     <button class="tab-btn" data-tab="wifi">WiFi &amp; SSID</button>
+    <button class="tab-btn" data-tab="username">Username</button>
   </nav>
 
   <!-- OVERZICHT (reset.nl-stijl: alles direct zichtbaar, telkens 10 stuks) -->
@@ -190,6 +191,14 @@
       <button class="btn-secondary" id="wifi-download-png">⬇️ Download as image</button>
       <button class="btn-secondary" id="wifi-print">🖨️ Print / PDF</button>
     </div>
+  </section>
+
+  <!-- USERNAME -->
+  <section class="panel" id="panel-username">
+    <p class="hint">Usernames built like the WiFi network names, but without spaces, each with a memorable password. Click a value to copy it.</p>
+    <button class="btn-primary btn-full" id="username-refresh">🔄 Generate new usernames</button>
+    <div class="lijst-header"><h2>Username &amp; password</h2></div>
+    <div class="lijst" id="username-lijst"></div>
   </section>
 
   <p class="tool-note">All passwords and passphrases are generated locally in your browser — nothing is stored or sent.</p>

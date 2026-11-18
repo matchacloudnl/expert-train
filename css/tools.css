@@ -139,6 +139,12 @@ textarea.field { width: 100%; font-family: "SF Mono", Menlo, Consolas, monospace
 .dig-table td:nth-child(2), .dig-table td:nth-child(4) { white-space: nowrap; }
 #types { gap: 16px; margin-bottom: 4px; }
 
+/* Username generator */
+.username-rij { cursor: default; justify-content: flex-start; gap: 16px; flex-wrap: wrap; }
+.username-cel { flex: 1 1 200px; cursor: pointer; padding: 2px 0; }
+.username-cel:hover { color: var(--accent-dark); }
+.username-cel:first-child { font-weight: 700; }
+
 /* CVE watch */
 .cve-filter { margin-bottom: 14px; }
 .cve-list { display: flex; flex-direction: column; gap: 10px; }

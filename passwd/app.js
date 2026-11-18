@@ -354,6 +354,32 @@ function genereerWifi() {
   bijwerkenWifiQr();
 }
 
+// --- Username + memorable password ---
+function genereerUsername() {
+  const woord = pickRandom(WOORDEN).replace(/^./, (c) => c.toUpperCase());
+  return `${pickRandom(ADJECTIEVEN)}${woord}${randInt(90) + 10}`.replace(/\s+/g, "");
+}
+
+function genereerUsernames() {
+  const container = document.getElementById("username-lijst");
+  container.innerHTML = "";
+  for (let i = 0; i < 10; i++) {
+    const rij = document.createElement("div");
+    rij.className = "lijst-item username-rij";
+    [genereerUsername(), genereerOnthoudbaarResetWaarde(8 + i)].forEach((waarde) => {
+      const cel = document.createElement("span");
+      cel.className = "username-cel";
+      cel.textContent = waarde;
+      cel.addEventListener("click", () => copyText(waarde));
+      rij.appendChild(cel);
+    });
+    container.appendChild(rij);
+  }
+}
+
+document.getElementById("username-refresh").addEventListener("click", genereerUsernames);
+genereerUsernames();
+
 document.getElementById("wifi-refresh").addEventListener("click", genereerWifi);
 document.getElementById("wifi-ssid").addEventListener("input", bijwerkenWifiQr);
 document.getElementById("wifi-wachtwoord").addEventListener("input", bijwerkenWifiQr);

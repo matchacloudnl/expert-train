@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch impactful CVEs for Windows, macOS and Linux and write data/cves.json.
+"""Fetch impactful CVEs for Windows, macOS, Linux, nginx and Java and write data/cves.json.
 
 Sources (no API key needed):
   * CISA Known Exploited Vulnerabilities (KEV): CVEs that are exploited in the wild.
@@ -22,11 +22,36 @@ NVD_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 KEEP_DAYS = 90
 NVD_WINDOW_DAYS = 30
 
+# platform -> (CPE prefixes, CVSS v3 severities to include)
+# To watch more software, add an entry here and a matching tab in cve/index.html.
 NVD_PLATFORMS = {
-    "windows": "cpe:2.3:o:microsoft:windows",
-    "macos": "cpe:2.3:o:apple:macos",
-    "linux": "cpe:2.3:o:linux:linux_kernel",
+    "windows": (["cpe:2.3:o:microsoft:windows"], ["CRITICAL"]),
+    "macos": (["cpe:2.3:o:apple:macos"], ["CRITICAL"]),
+    "linux": (["cpe:2.3:o:linux:linux_kernel"], ["CRITICAL"]),
+    "nginx": (["cpe:2.3:a:f5:nginx", "cpe:2.3:a:nginx:nginx"], ["CRITICAL", "HIGH"]),
+    "java": (["cpe:2.3:a:oracle:jdk", "cpe:2.3:a:oracle:jre", "cpe:2.3:a:oracle:openjdk"], ["CRITICAL", "HIGH"]),
 }
+
+
+# Fresh CVEs have no CPE data in the NVD until they are analysed, so the CPE search above misses
+# the newest ones. This keyword search covers the last KEYWORD_DAYS days instead.
+# platform -> (search keywords, regex the description must match, minimum CVSS score)
+KEYWORD_DAYS = 14
+KEYWORDS = {
+    "windows": (["windows"], r"microsoft windows|windows (server|\d+|kernel)", 9.0),
+    "macos": (["macos"], r"\bmac ?os\b", 9.0),
+    "linux": (["linux kernel"], r"linux kernel", 9.0),
+    "nginx": (["nginx"], r"\bnginx\b", 7.0),
+    "java": (["java"], r"\bjava\b|\bopenjdk\b|\bjdk\b|\bjre\b", 7.0),
+}
+
+
+def best_score(cve):
+    for key in ("cvssMetricV40", "cvssMetricV31", "cvssMetricV30"):
+        for m in cve.get("metrics", {}).get(key, []):
+            if "cvssData" in m:
+                return m["cvssData"]["baseScore"]
+    return None
 
 
 def get_json(url, tries=4):
@@ -49,6 +74,10 @@ def kev_platform(vendor, product):
         return "macos"
     if "linux" in p or "linux" in v:
         return "linux"
+    if "nginx" in p:
+        return "nginx"
+    if re.search(r"java|jdk|jre|openjdk", p):
+        return "java"
     return None
 
 
@@ -96,38 +125,69 @@ def main():
     # --- NVD critical ---
     start = (now - timedelta(days=NVD_WINDOW_DAYS)).strftime("%Y-%m-%dT00:00:00.000")
     end = now.strftime("%Y-%m-%dT%H:%M:%S.000")
-    for plat, cpe in NVD_PLATFORMS.items():
-        print("Fetching NVD for", plat)
-        index = 0
-        while True:
-            q = urllib.parse.urlencode({
-                "virtualMatchString": cpe,
-                "cvssV3Severity": "CRITICAL",
-                "pubStartDate": start,
-                "pubEndDate": end,
-                "resultsPerPage": 200,
-                "startIndex": index,
-            })
-            data = get_json(f"{NVD_URL}?{q}")
-            for item in data.get("vulnerabilities", []):
-                c = item["cve"]
-                desc = next((d["value"] for d in c.get("descriptions", []) if d["lang"] == "en"), "")
-                score = None
-                for key in ("cvssMetricV40", "cvssMetricV31", "cvssMetricV30"):
-                    if c.get("metrics", {}).get(key):
-                        score = c["metrics"][key][0]["cvssData"]["baseScore"]
+    for plat, (cpes, severities) in NVD_PLATFORMS.items():
+        for cpe in cpes:
+            for severity in severities:
+                print("Fetching NVD for", plat, cpe, severity)
+                index = 0
+                while True:
+                    q = urllib.parse.urlencode({
+                        "virtualMatchString": cpe,
+                        "cvssV3Severity": severity,
+                        "pubStartDate": start,
+                        "pubEndDate": end,
+                        "resultsPerPage": 200,
+                        "startIndex": index,
+                    })
+                    data = get_json(f"{NVD_URL}?{q}")
+                    for item in data.get("vulnerabilities", []):
+                        c = item["cve"]
+                        desc = next((d["value"] for d in c.get("descriptions", []) if d["lang"] == "en"), "")
+                        score = best_score(c)
+                        merge(
+                            entries, c["id"],
+                            platforms=[plat], sources=["NVD"],
+                            description=desc, score=score,
+                            published=c.get("published", "")[:10],
+                        )
+                    index += data.get("resultsPerPage", 0)
+                    if index >= data.get("totalResults", 0) or not data.get("resultsPerPage"):
                         break
-                merge(
-                    entries, c["id"],
-                    platforms=[plat], sources=["NVD"],
-                    description=desc, score=score,
-                    published=c.get("published", "")[:10],
-                )
-            index += data.get("resultsPerPage", 0)
-            if index >= data.get("totalResults", 0) or not data.get("resultsPerPage"):
-                break
+                    time.sleep(7)
+                time.sleep(7)  # NVD rate limit without API key: 5 requests / 30 s
+
+    # --- NVD keyword search for the newest CVEs ---
+    kstart = (now - timedelta(days=KEYWORD_DAYS)).strftime("%Y-%m-%dT00:00:00.000")
+    for plat, (words, pattern, min_score) in KEYWORDS.items():
+        for word in words:
+            print("Keyword search for", word)
+            index = 0
+            while True:
+                q = urllib.parse.urlencode({
+                    "keywordSearch": word,
+                    "pubStartDate": kstart,
+                    "pubEndDate": end,
+                    "resultsPerPage": 200,
+                    "startIndex": index,
+                })
+                data = get_json(f"{NVD_URL}?{q}")
+                for item in data.get("vulnerabilities", []):
+                    c = item["cve"]
+                    desc = next((d["value"] for d in c.get("descriptions", []) if d["lang"] == "en"), "")
+                    score = best_score(c)
+                    if score is None or score < min_score or not re.search(pattern, desc, re.I):
+                        continue
+                    merge(
+                        entries, c["id"],
+                        platforms=[plat], sources=["NVD"],
+                        description=desc, score=score,
+                        published=c.get("published", "")[:10],
+                    )
+                index += data.get("resultsPerPage", 0)
+                if index >= data.get("totalResults", 0) or not data.get("resultsPerPage"):
+                    break
+                time.sleep(7)
             time.sleep(7)
-        time.sleep(7)  # NVD rate limit without API key: 5 requests / 30 s
 
     # --- prune, sort, write ---
     keep_from = (now - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")

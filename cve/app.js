@@ -1,4 +1,4 @@
-const LABEL = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
+const LABEL = { windows: 'Windows', macos: 'macOS', linux: 'Linux', nginx: 'nginx', java: 'Java' };
 let data = { cves: [] };
 let platform = 'all';
 

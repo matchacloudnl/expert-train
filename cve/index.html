@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CVE Watch | Matchacloud</title>
-  <meta name="description" content="Impactful vulnerabilities for Windows, macOS and Linux, updated daily.">
+  <title>CVE Watcher | Matchacloud</title>
+  <meta name="description" content="Impactful vulnerabilities for Windows, macOS, Linux, nginx and Java, updated daily.">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/tools.css">
@@ -24,8 +24,8 @@
   </header>
 
   <main class="container tool-page wide">
-    <h1>CVE Watch</h1>
-    <p class="lead">Impactful vulnerabilities for Windows, macOS and Linux, updated every day.</p>
+    <h1>CVE Watcher</h1>
+    <p class="lead">Impactful vulnerabilities for Windows, macOS, Linux, nginx and Java, updated every day.</p>
 
     <section class="panel always">
       <div class="tabs" id="platforms" role="tablist">
@@ -33,12 +33,14 @@
         <button class="tab-btn" data-p="windows" type="button">Windows</button>
         <button class="tab-btn" data-p="macos" type="button">macOS</button>
         <button class="tab-btn" data-p="linux" type="button">Linux</button>
+        <button class="tab-btn" data-p="nginx" type="button">nginx</button>
+        <button class="tab-btn" data-p="java" type="button">Java</button>
       </div>
       <label class="check-row cve-filter"><input type="checkbox" id="only-kev"> Only actively exploited (CISA KEV)</label>
       <p class="status" id="status" aria-live="polite">Loading…</p>
       <div id="list" class="cve-list"></div>
     </section>
-    <p class="tool-note">Shown are CVEs that are actively exploited according to the CISA Known Exploited Vulnerabilities catalog, plus newly published CVEs with a CRITICAL CVSS rating in the NVD. The list is refreshed daily by an automated job and keeps the last 90 days. It is not a complete vulnerability database, so always check your vendor's advisories as well.</p>
+    <p class="tool-note">Shown are CVEs that are actively exploited according to the CISA Known Exploited Vulnerabilities catalog, plus newly published CVEs in the NVD with a CRITICAL CVSS rating (Windows, macOS, Linux) or a HIGH or CRITICAL rating (nginx, Java). The list is refreshed daily by an automated job and keeps the last 90 days. It is not a complete vulnerability database, so always check your vendor's advisories as well.</p>
   </main>
 
   <footer class="site-footer">
