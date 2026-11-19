@@ -1,485 +1,382 @@
 {
- "updated": "2026-11-18T20:59:25Z",
+ "updated": "2026-11-19T09:48:48Z",
  "cves": [
   {
-   "id": "CVE-2026-113425",
+   "id": "CVE-2026-132748",
    "platforms": [
-    "nginx"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "When NGINX Plus or NGINX Open Source is configured as a mail proxy, undisclosed traffic can cause a use-after-free in an nginx worker process. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.\n\nImpact:\nA remote unauthenticated attacker may crash an nginx worker process or corrupt its memory, disrupting service. Remote code execution is a potential impact. There is no control plane exposure; this is a data plane issue only.\n\n\n\nNote: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
-   "score": 9.2,
+   "software": "PHP",
+   "description": "Vtiger CRM through 8.4.0 contains a PHP code injection vulnerability that allows authenticated administrators to inject code via the updatedFields parameter into config.inc.php. Attackers can supply a crafted HELPDESK_SUPPORT_EMAIL_ID value that passes email validation but closes the PHP string literal to execute arbitrary operating system commands.",
+   "score": 8.6,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-109555",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "PHP",
+   "description": "The WP STAGING and WP STAGING Pro plugins for WordPress are vulnerable to PHP Object Injection in all versions up to, and including, 4.17.0 and 6.17.0, respectively, via deserialization of untrusted input during database restore and staging reset. This is due to the database importer treating attacker-controlled text beginning with {WPSTG_BINARY} as trusted internal binary data and decoding its hexadecimal suffix into serialized bytes. This makes it possible for authenticated attackers, with Subscriber-level access and above, to plant a malicious serialized object in their own profile. When an Administrator later performs an ordinary database-including restore or staging reset containing that value, and the restored profile metadata is loaded, either during the restore or in a later request, a built-in POP chain can be used to execute arbitrary code on the server. Additional built-in gadget chains allow arbitrary local file read in both WP STAGING and WP STAGING Pro and arbitrary file deletion in WP STAGING Pro. The attacker does not require Administrator credentials or a copy of a backup, but exploitation does require the later privileged restore or reset.",
+   "score": 8.0,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-128851",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Apache",
+   "description": "The Probono Form Basic WordPress plugin before 1.3.3 does not validate the real type of files uploaded through its public form, trusting the client-declared MIME type instead, which could allow unauthenticated attackers to upload PHP files to a public directory and execute them before they are deleted, on servers that do not honour the Probono Form Basic WordPress plugin before 1.3.3's Apache-only access restriction.",
+   "score": 9.8,
    "published": "2026-11-18",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-121810",
+   "id": "CVE-2026-129961",
    "platforms": [
-    "nginx"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Description:\nThis issue affects NGINX Plus and NGINX Open Source configurations that use HTTP/3. A remote, unauthenticated attacker can cause a use-after-free condition in the NGINX worker process, leading to a restart. Exploitation also depends on conditions beyond the attacker’s control. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.\n\nImpact:\nThis vulnerability may allow remote attackers to cause a denial-of-service (DoS) on the NGINX system or to possibly trigger a code execution. There is no control plane exposure; this is a data plane issue only.\n\n\n\nNote: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
-   "score": 9.2,
+   "software": "Apache",
+   "description": "LMS (Lan Management System) is vulnerable to Remote Code Execution in its e-mail-based Helpdesk ticket intake. The mail parser does not reject Apache .htaccess configuration files or PHP-executable files when saving ticket attachments. A remote unauthenticated attacker can e-mail a Helpdesk ticket with such an attachment; in the default configuration, anyone can request the uploaded file's URL which executes attacker-supplied code with the privileges of the web server process. No operator interaction or LMS client session is required.\n\n\nThe issue was fixed in commit d5059b1.",
+   "score": 9.5,
    "published": "2026-11-18",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-123007",
+   "id": "CVE-2026-63413",
    "platforms": [
-    "nginx"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "This issue affects NGINX Plus or NGINX Open Source configurations that use HTTP/2. When NGINX processes undisclosed traffic, the flow control window can exceed the allowed threshold, potentially resulting in a heap buffer overflow typically followed by an NGINX worker segmentation fault. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.\n\nImpact: An attacker could leverage this vulnerability to crash the NGINX worker process, corrupt its memory, or potentially execute code remotely. There is no control plane exposure; this is a data plane issue only.\n\n\n\nNote: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
-   "score": 9.2,
+   "software": "PHP",
+   "description": "Jane is a set of PHP libraries that generates models and API clients from JSON Schema and OpenAPI specifications. Prior to 7.12.0, the Jane open-api-3 generator emits an OpenAPI header parameter name verbatim as an array key in generated Client/Endpoint method docblocks. A header parameter name containing a PHPDoc closing delimiter can terminate the comment early and place attacker-controlled PHP in class-body position, including an __construct method that runs when the generated Client is instantiated. Exploitation requires generating a client from an attacker-influenced OpenAPI document and then using the generated SDK, and can execute arbitrary PHP with the consuming application's privileges. This issue is fixed in version 7.12.0.",
+   "score": 9.3,
    "published": "2026-11-18",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-123633",
+   "id": "CVE-2026-63412",
    "platforms": [
-    "nginx"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "When NGINX Plus or NGINX Open Source is configured to use HTTP/2 for client connections and proxy client requests to a backend, a specially crafted request can result in use-after-free in the worker process, if this process is running low on worker_connections. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.\n\n\n\n\nImpact:\n\n\n\nThis vulnerability may allow remote attackers to cause a denial-of-service (DoS) on the NGINX system or may allow a code execution. There is no control plane exposure; this is a data plane issue only.\n\n\n\nNote: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
-   "score": 9.2,
+   "software": "PHP",
+   "description": "Jane is a set of PHP libraries that generates models and API clients from JSON Schema and OpenAPI specifications. Prior to 7.12.0, the Jane open-api-3 generator emits an OpenAPI query parameter name verbatim as an array key in generated Client/Endpoint method docblocks. A query parameter name containing a PHPDoc closing delimiter can terminate the comment early and place attacker-controlled PHP in class-body position, including an __construct method that runs when the generated Client is instantiated. Exploitation requires generating a client from an attacker-influenced OpenAPI document and then using the generated SDK, and can execute arbitrary PHP with the consuming application's privileges. This issue is fixed in version 7.12.0.",
+   "score": 9.3,
    "published": "2026-11-18",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-123634",
+   "id": "CVE-2026-61583",
    "platforms": [
-    "nginx"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "This issue occurs when NGINX Plus or NGINX Open Source is configured as a proxy, the proxied server name includes variables, and a Server Side Includes (SSI) or mirror directive sends a subrequest to a location that resolves the same server name. Under these conditions, a specially crafted HTTP request may cause a use-after-free condition in a worker process. An attacker may also be able to execute code if Address Space Layout Randomization (ASLR) is disabled or the attacker can bypass ASLR.\n\nImpact: \nAn attacker could leverage this vulnerability to crash the NGINX worker process, corrupt its memory, or perform remote code execution (RCE)\n\n\n\nNote: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
-   "score": 9.2,
-   "published": "2026-11-18",
-   "date": "2026-11-18"
-  },
-  {
-   "id": "CVE-2026-118899",
-   "platforms": [
-    "nginx"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "When using the listen directive with the ssl parameter in the http block with TLSv1.3 enabled, an attacker can use a specially crafted TLS connection to cause an infinite loop in the NGINX worker process while reading the HTTP request body. As a result, the worker process stops accepting new connections and processing existing connections. Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.\n\nImpact: This vulnerability allows a remote, unauthenticated attacker to cause a denial-of-service (DoS) of NGINX. There is no control plane exposure; this is a data plane issue only.\n\n\n\nNote: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
+   "software": "Apache",
+   "description": "Chamilo LMS is an open-source learning management system. Prior to 1.11.40, main/dropbox/dropbox_functions.inc.php accepts a literal .htaccess filename in the course dropbox and stores it in a directory served by Apache, where the file can alter handler behavior under the required AllowOverride All configuration. Any authenticated course participant can upload .htaccess and then upload a PHP payload disguised as a .gif, resulting in code execution as the web-server user when the dropbox tool is enabled. This can expose or modify the Chamilo installation, course content, and database credentials. This issue is fixed in version 1.11.40.",
    "score": 8.7,
    "published": "2026-11-18",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-109858",
+   "id": "CVE-2026-130746",
    "platforms": [
-    "postgresql"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "CAST Imaging has multiple path traversal vulnerabilities in various endpoints. The application does not properly validate the path parameters, allowing an authenticated attacker to use \"../\" sequences to escape the intended directory and read arbitrary files.\n\n\nCritically, by reading \"/proc/self/environ\", the attacker can obtain environment variables containing sensitive credentials such as Keycloak and PostgreSQL passwords, leading to full server compromise and administrative access.\n\n\nThe vulnerability has only been confirmed in version 3.6.2 but may also affect other versions. The vendor did not provide the affected version range, but assured that the vulnerability is fixed \"in newer versions\".",
-   "score": 8.3,
+   "software": "Apache",
+   "description": "Grav before 1.7.53.7 and 2.x before 2.2.18 serves page media files, and rendered pages when lazy sessions are enabled, with the visitor's session cookie and a shared-cacheable Cache-Control header. When a shared cache such as Apache mod_cache stores Set-Cookie responses, an attacker can lure a user signed in through the front-end login to open a media URL with a unique query string, then request that URL to receive the cached session cookie and take over the session.",
+   "score": 7.7,
    "published": "2026-11-18",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-61581",
+   "id": "CVE-2026-63415",
    "platforms": [
-    "java"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "The Datadog Agent collects events and metrics from hosts and sends them to Datadog. Prior to datadog-apm-inject 0.66.0, the Datadog Single Step Instrumentation injector stores helper tooling in a predictable host directory. On Linux or Kubernetes systems with SSI enabled and at least one Java service instrumented through SSI, a local unprivileged attacker with shell access to the same host can influence that tooling and execute code with the privileges of the instrumented Java service. Services that use dd-java-agent without SSI and non-Java language runtimes are not affected. This issue is fixed in datadog-apm-inject 0.66.0.",
-   "score": 7.4,
+   "software": "PHP",
+   "description": "Jane is a set of PHP libraries that generates models and API clients from JSON Schema and OpenAPI specifications. Prior to 7.12.0, Jane's Reference.php::doResolve passes an attacker-controlled OpenAPI $ref target to file_get_contents without restricting its scheme or resolved local path. When a victim generates code from an attacker-influenced document, an HTTP or HTTPS reference can cause requests to attacker-chosen or internal services, while an absolute or parent-relative path can read local JSON or YAML files and inline the retrieved content into generated output. Exploitation occurs during generation or CI processing and can disclose local files and internal-service responses. This issue is fixed in version 7.12.0.",
+   "score": 7.0,
    "published": "2026-11-18",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-128669",
+   "id": "CVE-2024-10441",
    "platforms": [
-    "php"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "CISA KEV"
    ],
-   "description": "A Session Fixation vulnerability exists in the admin login endpoint (/admin/index.php) of PHPGurukul News Portal Project V4.1. The application fails to regenerate the session identifier (PHPSESSID) upon successful authentication. A remote attacker can exploit this by setting a known session ID in the victim's browser prior to login. Once the victim authenticates, the attacker can reuse the fixed session ID to hijack the victim's authenticated session.",
-   "score": 7.1,
-   "published": "2026-11-18",
+   "software": "DiskStation Manager (DSM)",
+   "title": "Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability",
+   "description": "Synology DSM contains an improper encoding or escaping of output vulnerability in the system plugin daemon in Synology BeeStation OS (BSM) that could allow a remote attacker to execute arbitrary code via unspecified vectors.",
+   "product": "Synology DiskStation Manager (DSM)",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-18",
+   "due": "2026-11-21",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-131854",
+   "id": "CVE-2026-40217",
    "platforms": [
-    "mysql"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "CISA KEV"
    ],
-   "description": "Ettercap through 0.8.5.1 contains a heap out-of-bounds read vulnerability in dissector_mysql() in src/dissectors/ec_mysql.c that copies seed and password bytes without bounds checks. A malicious MySQL server or client can send truncated greeting or login packets to leak adjacent heap memory through hex-encoded output in the interface and log.",
-   "score": 7.1,
-   "published": "2026-11-18",
+   "software": "LiteLLM",
+   "title": "BerriAI LiteLLM Unprotected Alternate Channel Vulnerability",
+   "description": "BerriAI LiteLLM contains an unprotected alternate channel vulnerability that could allow remote attackers to execute arbitrary code via bytecode rewriting at the /guardrails/test_custom_code URI.",
+   "product": "BerriAI LiteLLM",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-18",
+   "due": "2026-12-02",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-130696",
+   "id": "CVE-2026-90817",
    "platforms": [
-    "postgresql"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "CISA KEV"
    ],
-   "description": "NocoDB before 2026.10.1 contains a credential exposure vulnerability in the connection-test endpoint that allows authorized integration users to redirect stored credentials by overriding connection host, port, and user fields. Attackers can point the test at a server they control to capture offline-crackable PostgreSQL md5 or MySQL handshakes and recover the stored database password.",
-   "score": 7.1,
-   "published": "2026-11-18",
+   "software": "Research Electronic Data Capture (REDCap)",
+   "title": "Vanderbilt University Research Electronic Data Capture (REDCap) Code Injection Vulnerability",
+   "description": "Vanderbilt University Research Electronic Data Capture (REDCap) contains a code injection vulnerability which could allow an unauthenticated attacker to execute arbitrary code on the server. An attacker could exploit this via crafted HTTP requests that access an unintended controller route from a public survey context and supply a crafted file-path or stream parameter during data import processing. Exploitation requires knowledge of a valid public survey hash.",
+   "product": "Vanderbilt University Research Electronic Data Capture (REDCap)",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-18",
+   "due": "2026-11-21",
    "date": "2026-11-18"
   },
   {
-   "id": "CVE-2026-130020",
+   "id": "CVE-2026-90436",
    "platforms": [
-    "firefox"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "CISA KEV"
    ],
-   "description": "Privilege escalation due to incorrect boundary conditions in the Graphics: CanvasWebGL component on Android. This vulnerability was fixed in Firefox 160.0.1.",
+   "software": "Axis",
+   "title": "Apache Axis Unsafe Reflection Vulnerability",
+   "description": "Apache Axis contains an unsafe reflection vulnerability that could allow an unauthenticated remote attacker to execute arbitrary code via a crafted SOAP fault message that causes Axis to load and instantiate an attacker-specified class when a suitable class is available on the application classpath. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.",
+   "product": "Apache Axis",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-18",
+   "due": "2026-11-21",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-129448",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Roller",
+   "description": "Deserialization of Untrusted Data in Apache Roller versions 4.0.0 through 6.1.4 allows an unauthenticated remote attacker to execute arbitrary code. The XML-RPC endpoint accepts vendor extension types and deserializes them before authenticating the requester.\n\nThis is the same vulnerability as CVE-2026-82384, which listed only Apache Roller 6.1.5 as affected. This issue is being actively exploited.\n\nUsers are recommended to upgrade to Apache Roller 6.1.6 or later, which disables the extension types and rejects XML-RPC requests when the XML-RPC feature is disabled.\n\nUsers who cannot upgrade right away should set \"enabledForExtensions\" to \"false\" in WEB-INF/web.xml, or remove the \"/roller-services/xmlrpc\" servlet mapping, and restart Roller. Disabling XML-RPC in the administration UI is not enough, because older versions deserialize the request before checking that setting.",
    "score": 9.8,
    "published": "2026-11-17",
    "date": "2026-11-17"
   },
   {
-   "id": "CVE-2026-130910",
+   "id": "CVE-2026-131008",
    "platforms": [
-    "chrome"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Protection mechanism failure in ANGLE in Google Chrome on on Android prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
-   "score": 9.6,
+   "software": "Chrome",
+   "description": "Use after free in GarbageCollection in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to execute arbitrary code inside the sandbox via a crafted HTML page. (Chromium security severity: Critical)",
+   "score": 8.8,
    "published": "2026-11-17",
    "date": "2026-11-17"
   },
   {
-   "id": "CVE-2026-130968",
+   "id": "CVE-2026-131005",
    "platforms": [
-    "chrome"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Use after free in Views in Google Chrome on on Windows prior to 158.0.8127.36 allowed a remote attacker leveraging social engineering to execute arbitrary code outside the sandbox via a crafted Chrome extension. (Chromium security severity: High)",
-   "score": 9.6,
+   "software": "Chrome",
+   "description": "Use after free in DevTools in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to execute arbitrary code inside the sandbox via a crafted HTML page. (Chromium security severity: Low)",
+   "score": 8.8,
    "published": "2026-11-17",
    "date": "2026-11-17"
   },
   {
-   "id": "CVE-2026-130971",
+   "id": "CVE-2026-131004",
    "platforms": [
-    "chrome"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Out of bounds write in ANGLE in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: Medium)",
-   "score": 9.6,
+   "software": "Chrome",
+   "description": "Use after free in FedCM in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
+   "score": 8.3,
    "published": "2026-11-17",
    "date": "2026-11-17"
   },
   {
-   "id": "CVE-2026-130994",
+   "id": "CVE-2026-131003",
    "platforms": [
-    "chrome"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Use after free in WebGL in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
-   "score": 9.6,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-130996",
-   "platforms": [
-    "chrome"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Out of bounds write in ANGLE in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
-   "score": 9.6,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-131025",
-   "platforms": [
-    "chrome"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Out of bounds read in ANGLE in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
-   "score": 9.6,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-131031",
-   "platforms": [
-    "chrome"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Out of bounds write in GPU in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: Critical)",
-   "score": 9.6,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-131043",
-   "platforms": [
-    "chrome"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Use after free in HID in Google Chrome prior to 158.0.8127.36 allowed a remote attacker leveraging social engineering to execute arbitrary code outside the sandbox via a crafted Chrome extension. (Chromium security severity: Medium)",
-   "score": 9.6,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-131054",
-   "platforms": [
-    "chrome"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Out of bounds write in ANGLE in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: Critical)",
-   "score": 9.6,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-131057",
-   "platforms": [
-    "chrome"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Out of bounds read in ANGLE in Google Chrome on on Android prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
-   "score": 9.6,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-130371",
-   "platforms": [
-    "php"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "phpMyFAQ before 4.1.12 and 4.2.0-alpha before 4.2.0-RC.2 contains an authentication bypass vulnerability because the web installer ignores the legacy config/database.php during 3.x upgrades. Unauthenticated attackers can reinstall the site against an attacker-controlled database and create their own administrator account to take over the application.",
-   "score": 9.2,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-114952",
-   "platforms": [
-    "mysql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Vulnerability in the MySQL Server, MySQL Cluster product of Oracle MySQL (component: Client programs).  Supported versions that are affected are MySQL Server: 8.4.0-8.4.13, 9.7.0-9.7.4, 26.10; MySQL Cluster: 8.0.0-8.0.50, 8.4.0-8.4.13, 9.7.0-9.7.4 and  26.10. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise MySQL Server, MySQL Cluster.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all MySQL Server, MySQL Cluster accessible data as well as  unauthorized access to critical data or complete access to all MySQL Server, MySQL Cluster accessible data. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
-   "score": 9.1,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-110782",
-   "platforms": [
-    "php"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "The SimpleSAMLphp SAML2 library is a PHP library for SAML2 related functionality. From 6.2.2 until 6.2.4 and 7.0.0-rc2, HTTPArtifact::receive() in src/Binding/HTTPArtifact.php verifies a signed outer ArtifactResponse but returns an unsigned embedded SAML Response before calling verifyMessageSignature(). The signed path verifies with the artifact issuer's metadata keys without requiring the embedded Response issuer to match that artifact issuer. In a multi-IdP federation, an attacker controlling one trusted IdP can therefore return a validly signed outer ArtifactResponse containing an unsigned Response that claims a different IdP, bypassing the binding's embedded-message authentication. End-to-end impersonation requires a service provider using HTTP-Artifact and a downstream consumer that relies on the binding to authenticate the embedded Response rather than independently requiring a signature. This issue is fixed in versions 6.2.4 and 7.0.0-rc2.",
-   "score": 8.7,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-114938",
-   "platforms": [
-    "java"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: Compiler).  Supported versions that are affected are Oracle Java SE: 8u511b33-perf, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in takeover of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 8.1 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+   "software": "Chrome",
+   "description": "Confused deputy in TabModel in Google Chrome on on Android prior to 158.0.8127.36 allowed a remote attacker leveraging social engineering to bypass web origin policy via UI Interaction. (Chromium security severity: Medium)",
    "score": 8.1,
    "published": "2026-11-17",
    "date": "2026-11-17"
   },
   {
-   "id": "CVE-2026-107493",
+   "id": "CVE-2026-131006",
    "platforms": [
-    "openssl"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Issue summary: When an application passes a stack to\nPEM_X509_INFO_read_bio_ex() to add entries to, and reading fails,\nOpenSSL frees every entry in the stack, both the old ones and any new\nones, but leaves them in the stack.\n\nImpact summary: An application that passes an existing stack to\nPEM_X509_INFO_read_bio_ex() and keeps using it after a failed read may\nuse memory that was already freed. This can cause a crash or, in\nprinciple, memory corruption. Malformed PEM data can make the read fail,\nbut only applications that pass an existing stack are affected, and\nOpenSSL itself does not do this.\n\nCWE: CWE-416: Use After Free\n\nDescription: PEM_X509_INFO_read_bio_ex() reads certificates, CRLs and\nprivate keys from PEM data and adds them to a stack of X509_INFO\nstructures. If the application passes a stack that is not NULL, the\nfunction adds the new entries to it and must leave the entries that are\nalready there unchanged.\n\nIf reading fails, the function frees every entry in the stack. This\nincludes the entries that were there before the call, and the entries\nadded by the call. It does not remove these entries from the stack, so\nthe stack keeps pointers to freed memory. The failure can happen at any\npoint, even before any entry was added. A PEM item with invalid content\nis enough.  This also happens if the stack was empty: entries added\nbefore the failure are freed but stay in the stack.\n\nAn application that then reads or frees the stack will use memory that\nwas already freed. This can crash the application or, in principle,\ncorrupt memory.\n\nOnly applications that pass a stack that is not NULL are affected.\nOpenSSL itself never does this. Its own callers, including the code that\nTLS uses to load CA certificates, always pass NULL. When the stack is\nNULL, the function frees only the entries that it created itself, which\nis safe. We expect that very few applications pass an existing stack. An\nattacker can make the read fail with malformed PEM data, but cannot make\nan application pass an existing stack.\n\nThe same problem affects PEM_X509_INFO_read_bio(), PEM_X509_INFO_read()\nand PEM_X509_INFO_read_ex(), which use the same code. OpenSSL 1.1.1 and\n1.0.2 have only the first two of these functions.\n\nFIPS impact: no\nThe affected code is outside the FIPS module boundary.",
-   "score": 7.7,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-114939",
-   "platforms": [
-    "java"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JGSS).  Supported versions that are affected are Oracle Java SE: 8u511b33, 8u511b33-perf, 11.0.33.0.3, 17.0.21.0.3,  21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability does not apply to Java deployments, typically in servers, that load and run only trusted code (e.g., code installed by an administrator). CVSS 3.1 Base Score 7.4 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N).",
-   "score": 7.4,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-114940",
-   "platforms": [
-    "java"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE).  Supported versions that are affected are Oracle Java SE: 8u511b33, 8u511b33-perf, 11.0.33.0.3, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via TLS to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 7.4 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N).",
-   "score": 7.4,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-114949",
-   "platforms": [
-    "mysql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Vulnerability in the MySQL Server, MySQL Cluster product of Oracle MySQL (component: Server: Replication).  Supported versions that are affected are MySQL Server: 8.4.0-8.4.13, 9.7.0-9.7.4, 26.10; MySQL Cluster: 8.0.0-8.0.50, 8.4.0-8.4.13, 9.7.0-9.7.4 and  26.10. Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Server, MySQL Cluster.  Successful attacks of this vulnerability can result in takeover of MySQL Server, MySQL Cluster. CVSS 3.1 Base Score 7.2 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H).",
-   "score": 7.2,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-114950",
-   "platforms": [
-    "mysql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Vulnerability in the MySQL Server, MySQL Cluster product of Oracle MySQL (component: Server: Optimizer).  Supported versions that are affected are MySQL Server: 8.4.0-8.4.13, 9.7.0-9.7.4, 26.10; MySQL Cluster: 8.0.0-8.0.50, 8.4.0-8.4.13, 9.7.0-9.7.4 and  26.10. Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Server, MySQL Cluster.  Successful attacks of this vulnerability can result in takeover of MySQL Server, MySQL Cluster. CVSS 3.1 Base Score 7.2 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H).",
-   "score": 7.2,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-114951",
-   "platforms": [
-    "mysql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Vulnerability in the MySQL Server, MySQL Cluster product of Oracle MySQL (component: Server: Logging).  Supported versions that are affected are MySQL Server: 8.4.0-8.4.13, 9.7.0-9.7.4, 26.10; MySQL Cluster: 8.0.0-8.0.50, 8.4.0-8.4.13, 9.7.0-9.7.4 and  26.10. Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Server, MySQL Cluster.  Successful attacks of this vulnerability can result in takeover of MySQL Server, MySQL Cluster. CVSS 3.1 Base Score 7.2 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H).",
-   "score": 7.2,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-127428",
-   "platforms": [
-    "mysql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Vulnerability in the MySQL Server, MySQL Cluster product of Oracle MySQL (component: Server: GIS).  Supported versions that are affected are MySQL Server: 8.4.0-8.4.13, 9.7.0-9.7.4, 26.10; MySQL Cluster: 8.0.0-8.0.50, 8.4.0-8.4.13, 9.7.0-9.7.4 and  26.10. Easily exploitable vulnerability allows low privileged attacker with network access via multiple protocols to compromise MySQL Server, MySQL Cluster.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of MySQL Server, MySQL Cluster and  unauthorized read access to a subset of MySQL Server, MySQL Cluster accessible data. CVSS 3.1 Base Score 7.1 (Confidentiality and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H).",
-   "score": 7.1,
-   "published": "2026-11-17",
-   "date": "2026-11-17"
-  },
-  {
-   "id": "CVE-2026-114941",
-   "platforms": [
-    "java"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK product of Oracle Java SE (component: Compiler).  Supported versions that are affected are Oracle Java SE: 21.0.13.0.3, 25.0.5.0.3 and  27.0.1.0.3; Oracle GraalVM for JDK: 21.0.13.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle Java SE, Oracle GraalVM for JDK as well as  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK accessible data and  unauthorized read access to a subset of Oracle Java SE, Oracle GraalVM for JDK accessible data. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 7.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:H).",
+   "software": "Chrome",
+   "description": "Race condition in CredentialProvider in Google Chrome on on Windows prior to 158.0.8127.36 allowed a local attacker to potentially execute arbitrary code outside the sandbox via a local program. (Chromium security severity: Medium)",
    "score": 7.0,
    "published": "2026-11-17",
    "date": "2026-11-17"
   },
   {
-   "id": "CVE-2026-114942",
+   "id": "CVE-2026-115731",
    "platforms": [
-    "java"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "CISA KEV"
    ],
-   "description": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK product of Oracle Java SE (component: Libraries).  Supported versions that are affected are Oracle Java SE: 21.0.13.0.3, 25.0.5.0.3 and  27.0.1.0.3; Oracle GraalVM for JDK: 21.0.13.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle Java SE, Oracle GraalVM for JDK as well as  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK accessible data and  unauthorized read access to a subset of Oracle Java SE, Oracle GraalVM for JDK accessible data. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 7.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:H).",
-   "score": 7.0,
-   "published": "2026-11-17",
+   "software": "Puppet Enterprise",
+   "title": "Perforce Puppet Enterprise Deserialization of Untrusted Data Vulnerability",
+   "description": "Perforce Puppet Enterprise contains a deserialization of untrusted data vulnerability in Puppet’s report-processing code that allows a client with any CA-signed agent certificate to execute arbitrary code on the Puppet Server as the service user by submitting a report containing a crafted rich-data type through a PUT request. If the certificate authority automatically signs requests without strong verification, an unauthenticated network attacker can obtain a valid certificate and exploit the vulnerability.",
+   "product": "Perforce Puppet Enterprise",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-17",
+   "due": "2026-12-01",
    "date": "2026-11-17"
   },
   {
-   "id": "CVE-2026-68905",
+   "id": "CVE-2026-124223",
    "platforms": [
-    "nginx"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Hugo Blog is a tech blog site. In commit 744ca15 and prior, the AI assistant proxy exposes three HTTP endpoints (POST /api/blog-assistant, POST /api/blog-search-embedding, POST /api/blog-search-rerank) without any authentication check. When deployed following the documented Nginx reverse-proxy setup, any unauthenticated remote attacker can send arbitrary requests that the proxy forwards to the upstream LLM/embedding/rerank API using the operator's server-side API key (OPENAI_API_KEY / AI_SEARCH_API_KEY). This enables unlimited quota consumption, cost exhaustion, and potential service unavailability for the operator. At time of publication, there are no publicly available patches.",
-   "score": 8.2,
+   "software": "Sharepoint",
+   "description": "Deserialization of untrusted data in Microsoft Office SharePoint allows an authorized attacker to execute code over a network.",
+   "score": 8.8,
+   "published": "2026-11-16",
+   "date": "2026-11-16"
+  },
+  {
+   "id": "CVE-2026-112182",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "JAVA",
+   "description": "Unauthorization vulnerability in the management of workflow definitions in OpenKM Community Edition. The REST endpoints `registerProcessDefinition` and `runProcessDefinition` require authentication but do not verify roles in the WorkflowService or in lower layers. An attacker with the `ROLE_USER` role can register and execute a process definition containing BeanShell scripts, allowing them to execute Java code and operating system commands with the service’s privileges. In the official Docker image, the process runs as root.",
+   "score": 8.7,
    "published": "2026-11-13",
    "date": "2026-11-13"
   },
   {
-   "id": "CVE-2026-123628",
+   "id": "CVE-2026-126366",
    "platforms": [
-    "java"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "IBM webMethods Integration Server 10.15 and 11.1 could allow a remote attacker to obtain sensitive information due to an exposure of sensitive server-side environment variables and Java runtime details.",
+   "software": "JAVA",
+   "description": "MessagePack for Ruby is an implementation of the MessagePack binary serialization format. Prior to 1.8.7, the Java-platform msgpack gem for JRuby allocated arrays and byte buffers directly from attacker-controlled array32, str32, and bin32 declared sizes before confirming that corresponding elements or bytes were available. A short MessagePack header could therefore trigger a very large allocation or sustained heap growth when an application decoded untrusted input through MessagePack.unpack or MessagePack::Unpacker, potentially exhausting the shared JVM heap. map32 and declared counts at or above 2^31 did not use the affected allocation behavior. This issue is fixed in version 1.8.7.",
    "score": 7.5,
    "published": "2026-11-13",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "CVE-2026-114713",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "UnrealIRCd",
+   "title": "UnrealIRCd Improper Neutralization of Delimiters Vulnerability",
+   "description": "UnrealIRCd UnrealIRCd contains an improper neutralization of delimiters vulnerability that allows any user on a network with two or more linked servers to inject server-to-server commands that are executed with server authority.",
+   "product": "UnrealIRCd UnrealIRCd",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-13",
+   "due": "2026-11-16",
    "date": "2026-11-13"
   },
   {
@@ -492,6 +389,21 @@
    ],
    "description": "Algernon is a small self-contained pure-Go web server. Prior to version 1.17.10, Algernon's URL-prefix authorization gate matches its protected prefixes (/admin, /repo, /data) with case-sensitive strings.HasPrefix, while the exact same raw req.URL.Path is later resolved against the filesystem. On case-insensitive filesystems (Windows NTFS — always; macOS APFS/HFS+ — default), a request for /Admin/secret.lua evades every protected-prefix check, falls through to the public-prefix accept branch, and then resolves on disk to admin/secret.lua. The result is an unauthenticated bypass of the /admin, /repo, and /data authorization boundary, enabling read (and, for Lua files, execution) of protected content. The permission system is active in the default configuration. This issue has been patched in version 1.17.10.",
    "score": 9.4,
+   "published": "2026-11-12",
+   "date": "2026-11-12"
+  },
+  {
+   "id": "CVE-2026-127063",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Screenconnect",
+   "description": "The\nthird-party RMM+ extension for ConnectWise ScreenConnect uses a static API\nsecret by default. The value can be changed by an administrator; however,\nenvironments retaining the default value may allow unauthorized access to\nextension API functionality, including the ability to send commands to managed\nagents. This issue is specific to the third-party extension and does not affect\nthe ScreenConnect server or client.\n\n\n\n\n\nScope: This issue affects the third-party RMM+\nextension for ConnectWise ScreenConnect. Deployments without the extension are\nnot affected. ScreenConnect server or client software are not impacted.",
+   "score": 9.3,
    "published": "2026-11-12",
    "date": "2026-11-12"
   },
@@ -509,158 +421,77 @@
    "date": "2026-11-12"
   },
   {
-   "id": "CVE-2026-116304",
+   "id": "CVE-2026-126823",
    "platforms": [
-    "postgresql"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Use after free in PostgreSQL coordination of anonymous RECORD type identifiers among parallel workers allows a database user to execute arbitrary code as the operating system user running the database, via causing one process to free a shared tuple descriptor while another process retains and later uses its address.  Versions before PostgreSQL 18.7, 17.12, 16.16, 15.20, and 14.25 are affected.",
-   "score": 8.8,
+   "software": "JAVA",
+   "description": "A local user with an ordinary account on the same host can place a file in a shared temporary location that the JDBC driver's native library loading routine will accept and load without verifying its origin. Loading the driver class in a Java application may then run code of that user's choosing inside the application process, which may result in disclosure or alteration of data held by that process or in the process becoming unavailable.",
+   "score": 7.3,
    "published": "2026-11-12",
    "date": "2026-11-12"
   },
   {
-   "id": "CVE-2026-116306",
+   "id": "CVE-2026-123374",
    "platforms": [
-    "postgresql"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Type confusion in PostgreSQL composite-value field assignment allows an object creator to execute arbitrary code as the operating system user running the database, via changing a composite type between deforming and reforming a value.  Versions before PostgreSQL 18.7, 17.12, 16.16, 15.20, and 14.25 are affected.",
-   "score": 8.8,
-   "published": "2026-11-12",
-   "date": "2026-11-12"
-  },
-  {
-   "id": "CVE-2026-116307",
-   "platforms": [
-    "postgresql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Use after free in PostgreSQL plperl allows an object creator to execute arbitrary code as the operating system user running the database, via re-entering plperl and freeing a prepared query while an outer invocation is executing it.  Versions before PostgreSQL 18.7, 17.12, 16.16, 15.20, and 14.25 are affected.",
-   "score": 8.8,
-   "published": "2026-11-12",
-   "date": "2026-11-12"
-  },
-  {
-   "id": "CVE-2026-116309",
-   "platforms": [
-    "postgresql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Type confusion in PostgreSQL plperl may allow an object creator to execute arbitrary code, via blessing a non-hash reference into PostgreSQL::InServer::ARRAY.  We have not confirmed or ruled out a way to control the pointer sufficiently to achieve security impact, but we are proceeding as though that is possible.  Versions before PostgreSQL 18.7, 17.12, 16.16, 15.20, and 14.25 are affected.",
-   "score": 8.8,
-   "published": "2026-11-12",
-   "date": "2026-11-12"
-  },
-  {
-   "id": "CVE-2026-116314",
-   "platforms": [
-    "postgresql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Improper input validation in PostgreSQL pg_restore allows a non-plain archive provider to execute arbitrary code as the operating system user running pg_restore, via a crafted archive.  Note a contrast: crafted archive data may legitimately cause arbitrary SQL to execute at the restore destination, but it does not legitimately confer arbitrary code execution in the pg_restore OS process.  Versions before PostgreSQL 18.7, 17.12, 16.16, 15.20, and 14.25 are affected.",
-   "score": 8.8,
-   "published": "2026-11-12",
-   "date": "2026-11-12"
-  },
-  {
-   "id": "CVE-2026-116315",
-   "platforms": [
-    "postgresql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Heap-based buffer overflow in PostgreSQL tsvector_delete() allows a database user to execute arbitrary code as the operating system user running the database, via a tsvector whose lexeme data uses a nonstandard but valid ordering that requires additional alignment padding in the result.  Versions before PostgreSQL 18.7, 17.12, 16.16, 15.20, and 14.25 are affected.",
-   "score": 8.8,
-   "published": "2026-11-12",
-   "date": "2026-11-12"
-  },
-  {
-   "id": "CVE-2026-116316",
-   "platforms": [
-    "postgresql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Improper protection of alternate path in PostgreSQL security-restricted operations allows an object creator to execute arbitrary SQL as the operation's caller, via a domain, enum, or range type created in pg_temp.  The victim session must later run a query containing an unqualified type name, e.g. \"SELECT '1'::bigint\"; autovacuum and other common security-restricted operation users do not do so, so they are unaffected.  Versions before PostgreSQL 18.7, 17.12, 16.16, 15.20, and 14.25 are affected.",
-   "score": 8.8,
-   "published": "2026-11-12",
-   "date": "2026-11-12"
-  },
-  {
-   "id": "CVE-2026-116317",
-   "platforms": [
-    "postgresql"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Heap-based buffer overflow in PostgreSQL ts_rank_cd() may allow a database user to execute arbitrary code as the operating system user running the database, via an invalid tsvector containing duplicate positions.  Versions before PostgreSQL 18.7, 17.12, 16.16, 15.20, and 14.25 are affected.",
-   "score": 8.8,
-   "published": "2026-11-12",
-   "date": "2026-11-12"
-  },
-  {
-   "id": "CVE-2026-65982",
-   "platforms": [
-    "nginx"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "nginx-http-flv-module is a media streaming server based on nginx-rtmp-module. Prior to version 1.2.14, if a server received an HTTP/1.0 request without a header Host, which was permitted by HTTP core of Nginx, then r->headers_in.host was NULL, nginx-http-flv-module used r->headers_in.host->value to make a pseudo tcUrl, so NULL-pointer dereference happened. This issue has been patched in version 1.2.14.",
-   "score": 8.7,
+   "software": "JAVA",
+   "description": "Deserialization of Untrusted Data vulnerability in Apache Roller. When Roller sends a weblog update ping, its XML-RPC client deserializes Java object data contained in the ping target's response, so a party that controls that response can run code in the Roller server process. This issue affects Apache Roller from 4.0 through 6.1.6. Users are recommended to upgrade to version 6.1.7, which removes the unsafe deserialization.",
+   "score": 9.8,
    "published": "2026-11-11",
    "date": "2026-11-11"
   },
   {
-   "id": "CVE-2026-119618",
+   "id": "CVE-2026-122300",
    "platforms": [
-    "apache"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Concurrent Execution using Shared Resource with Improper Synchronization vulnerability in Apache HTTP Server's mod_http2 in assign_headers() can lead to RCE.\n\nThis issue affects Apache HTTP Server: from 2.4.55 through 2.4.70.\nAffected releases of mod_h2 from GitHub: from 2.0.8 through 2.0.42.",
-   "score": 8.1,
+   "software": "Roller",
+   "description": "Missing Authorization vulnerability in Apache Roller 4.0 through 6.1.6 allows a weblog member with the Limited role to remove or change entries that member may only read, including entries published by other members. The entry editor checked the member's weblog role but not whether that role permits work on the entry.\nUsers are recommended to upgrade to Apache Roller 6.1.7 or later.",
+   "score": 9.1,
    "published": "2026-11-11",
    "date": "2026-11-11"
   },
   {
-   "id": "CVE-2026-106023",
+   "id": "CVE-2026-118411",
    "platforms": [
-    "apache"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "NULL pointer dereference vulnerability in Apache HTTP Server's mod_md during HTTP request processing.\n\n\n\nThis issue affects Apache HTTP Server: from 2.4.30 through 2.4.69.",
-   "score": 7.5,
+   "software": "Roller",
+   "description": "Cross-Site Request Forgery (CSRF) in Apache Roller 5.0.1 through 6.1.6 allows an unauthenticated attacker to create an administrator account if a logged-in Roller administrator opens a link that the attacker controls. The request-token check applied only to POST requests, and administrative actions also accepted GET requests. Users are recommended to upgrade to Apache Roller 6.1.7 or later, which requires POST and a valid token for actions that change data.",
+   "score": 8.8,
    "published": "2026-11-11",
    "date": "2026-11-11"
   },
   {
-   "id": "CVE-2026-126610",
+   "id": "CVE-2026-105153",
    "platforms": [
-    "mysql"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Progressive Robot hMailServer 6.3.4 through 6.3.7, with a MySQL or MariaDB database and TlsMode=verify-full, does not hand the database client the CA file that TlsCaFile names when the file's name contains a character outside ASCII on Linux, or above U+00FF on Windows, which allows an attacker who can intercept the connection to the database server to read and modify the traffic between hMailServer and its database, by presenting, with MariaDB Connector/C 3.4.2 to 3.4.10 as the client, a certificate from any authority, its own included, for any name, and otherwise a certificate for the database server's name issued by any certificate authority in the system's trust store. The server converted the name for the client with the C runtime's conversion in the C locale, which gives an empty string for such a name, and then set no CA file at all, without an error, while certificate verification stayed on, so the client - MariaDB Connector/C, bundled on Windows and the distribution's on Linux - verified the certificate of a database server over the network against the system's trust store instead of the configured CA; Connector/C 3.4.2 to 3.4.10 (bundled on Windows in 6.3.4 to 6.3.6) went further and, with no CA file, took a certificate within its dates whose issuer it could not find, for any name, with neither its chain nor its name checked and no password proof, when the server offered first a sign-in method that hashes the password, which an attacker in the middle chooses (MariaDB's CONC-853, fixed in Connector/C 3.4.11), and Connector/C 3.4 accepted from a MariaDB 11.4 or later server a certificate the store did not vouch for when that server proved it held the account's password; on a connection it treats as local (127.0.0.1, ::1, a Unix socket, a named pipe, and localhost on Windows), Connector/C 3.4.1 and later checked neither the certificate's issuer nor its name, so that a local attacker able to stand in for the database server could present any certificate within its dates of its own making. The settings line of hmailserver --check-database still named the configured file, and the application log said the certificate had been checked. With MariaDB Connector/C 3.4.1 to 3.4.9 as the client - bundled on Windows in 6.3.4 to 6.3.6, and the client of Linux distributions that have not patched it - the missing CA file also met the precondition of CVE-2026-107819, so that a certificate issued for any other name by a trusted authority was enough to obtain the database password. On Linux the file was found only when the server ran on glibc under a locale whose character set holds the name's characters (a UTF-8 locale, or a legacy 8-bit one the system has, in whose bytes the file is then named); with no locale, LC_ALL=C or a locale the system lacks, and on Alpine (musl), the connection failed instead. The configuration is not the default: TlsMode defaults to prefer, which checks no certificate.",
-   "score": 7.4,
+   "software": "Roller",
+   "description": "Improper Restriction of XML External Entity Reference in Apache Roller 4.0 through 6.1.6 allows an authenticated user with no weblog permissions to read files readable by the Roller process and cause the server to issue outbound HTTP requests to attacker-chosen destinations, by submitting a crafted Atom entry to the AtomPub endpoint. The entry body is parsed with a parser configuration that permits external parameter entities and external DTD subsets, and the parse happens before any per-weblog authorization check and before any check of whether the AtomPub feature is enabled, so the endpoint is reachable by any authenticated account on a default installation. Users are recommended to upgrade to Apache Roller 6.1.7 or later, which parses AtomPub entries with a hardened XML configuration and rejects AtomPub requests while the feature is disabled.",
+   "score": 7.7,
    "published": "2026-11-11",
    "date": "2026-11-11"
   },
@@ -691,136 +522,6 @@
    "date": "2026-11-10"
   },
   {
-   "id": "CVE-2026-124853",
-   "platforms": [
-    "firefox"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Sandbox escape due to incorrect boundary conditions in the Graphics: Text component. This vulnerability was fixed in Firefox 160, Firefox ESR 115.45, Firefox ESR 153.7, Thunderbird 160, and Thunderbird 153.7.",
-   "score": 9.6,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
-   "id": "CVE-2026-124855",
-   "platforms": [
-    "firefox"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Sandbox escape in the DOM: Navigation component. This vulnerability was fixed in Firefox 160, Firefox ESR 153.7, Thunderbird 160, and Thunderbird 153.7.",
-   "score": 9.6,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
-   "id": "CVE-2026-124859",
-   "platforms": [
-    "firefox"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Sandbox escape due to incorrect boundary conditions in the Storage: Cache API component. This vulnerability was fixed in Firefox 160, Firefox ESR 115.45, Firefox ESR 153.7, Thunderbird 160, and Thunderbird 153.7.",
-   "score": 9.6,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
-   "id": "CVE-2026-124861",
-   "platforms": [
-    "firefox"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Sandbox escape due to use-after-free in the Audio/Video: cubeb component. This vulnerability was fixed in Firefox 160, Firefox ESR 115.45, Firefox ESR 153.7, Thunderbird 160, and Thunderbird 153.7.",
-   "score": 9.6,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
-   "id": "CVE-2026-124864",
-   "platforms": [
-    "firefox"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Sandbox escape due to use-after-free in the DOM: Service Workers component. This vulnerability was fixed in Firefox 160, Firefox ESR 115.45, Firefox ESR 153.7, Thunderbird 160, and Thunderbird 153.7.",
-   "score": 9.6,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
-   "id": "CVE-2026-124900",
-   "platforms": [
-    "firefox"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Sandbox escape due to use-after-free in the DOM: Service Workers component. This vulnerability was fixed in Firefox 160 and Thunderbird 160.",
-   "score": 9.6,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
-   "id": "CVE-2026-124903",
-   "platforms": [
-    "firefox"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Sandbox escape due to use-after-free in the IPC component. This vulnerability was fixed in Firefox 160, Firefox ESR 115.45, Firefox ESR 153.7, Thunderbird 160, and Thunderbird 153.7.",
-   "score": 9.6,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
-   "id": "CVE-2026-124917",
-   "platforms": [
-    "firefox"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Sandbox escape due to use-after-free in the Widget: Gtk component. This vulnerability was fixed in Firefox 160, Firefox ESR 153.7, Thunderbird 160, and Thunderbird 153.7.",
-   "score": 9.6,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
-   "id": "CVE-2026-124921",
-   "platforms": [
-    "firefox"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Sandbox escape in the Graphics: WebGPU component. This vulnerability was fixed in Firefox 160 and Thunderbird 160.",
-   "score": 9.6,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
-   "id": "CVE-2026-63011",
-   "platforms": [
-    "php"
-   ],
-   "sources": [
-    "NVD"
-   ],
-   "description": "Group-Office is an enterprise customer relationship management and groupware tool. Prior to versions 6.8.167, 25.0.102, and 26.0.27, the Contact/labels JMAP endpoint in GroupOffice accepts a fully attacker-controlled template string (tpl parameter) that is passed without restriction to TemplateParser::parse(). When the template contains an [assign] block whose expression includes a {{...}} variable reference, the engine calls eval() on the expanded expression after running it through a validateExpression() guard. The guard double-quotes unrecognized tokens, but PHP 7+ allows a string enclosed in parentheses to be invoked as a function (\"system\")(\"id\") is valid PHP and calls system(\"id\"). A single authenticated HTTP request is sufficient to execute arbitrary OS commands as the web server user (www-data). This issue has been patched in versions 6.8.167, 25.0.102, and 26.0.27.",
-   "score": 9.4,
-   "published": "2026-11-10",
-   "date": "2026-11-10"
-  },
-  {
    "id": "CVE-2026-120808",
    "platforms": [
     "macos"
@@ -834,49 +535,135 @@
    "date": "2026-11-10"
   },
   {
-   "id": "CVE-2026-125350",
+   "id": "CVE-2026-80095",
    "platforms": [
-    "chrome"
+    "software"
    ],
    "sources": [
-    "CISA KEV",
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "title": "Google Chromium Use-After-Free Vulnerability",
-   "description": "Use after free in XML in Google Chrome prior to 157.0.8103.50 allowed a remote attacker to execute arbitrary code inside the sandbox via a crafted HTML page. (Chromium security severity: High)",
-   "product": "Google Chromium",
-   "kev": true,
-   "ransomware": false,
-   "added": "2026-11-10",
-   "due": "2026-11-24",
+   "software": "Sharepoint",
+   "description": "Improper neutralization of input during web page generation ('cross-site scripting') in Microsoft Office SharePoint allows an authorized attacker to elevate privileges over a network.",
+   "score": 9.0,
+   "published": "2026-11-10",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "CVE-2026-88176",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Sharepoint",
+   "description": "Missing authorization in Microsoft Office SharePoint allows an authorized attacker to elevate privileges over a network.",
    "score": 8.8,
    "published": "2026-11-10",
    "date": "2026-11-10"
   },
   {
-   "id": "CVE-2026-107496",
+   "id": "CVE-2026-123391",
    "platforms": [
-    "openssl"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Issue summary: Encrypting a CMS message to an EC certificate whose group order\nis 1 may cause CMS_encrypt() or CMS_encrypt_ex() to loop indefinitely.\n\nImpact summary: An attacker able to supply the recipient certificate to an\napplication performing CMS encryption can cause that application to loop\nindefinitely, consuming CPU and resulting in Denial of Service.\n\nCWE: CWE-835: Loop with Unreachable Exit Condition ('Infinite Loop')\n\nDescription: CMS_encrypt() and CMS_encrypt_ex() encrypt a message to one or\nmore recipient certificates and, for an EC recipient, generate an ephemeral\nkey in the recipient's group. If the certificate declares a group order of 1,\nrandom scalar generation can only produce zero. The key generation routine\nthen retries without limit while waiting for a nonzero private scalar, so the\ncall never returns.\n\nThe OpenSSL TLS and QUIC implementations do not use this path. An application\nis exposed only if it calls CMS_encrypt() or CMS_encrypt_ex() with a recipient\ncertificate whose EC parameters are attacker-controlled. Certificates with\nnormal EC group orders do not trigger the loop.\n\nOpenSSL 4.0 and later reject unknown explicit EC groups in default builds.\nThese versions are affected only when configured with the\nenable-ec_explicit_curves option.\n\nThe result is a hang that consumes a CPU core until the process is\ninterrupted, a Denial of Service. The severity is Low because the attacker\nmust supply the recipient certificate and the application must choose to\nencrypt to it; ordinary CMS encryption to trusted recipients is unaffected.\n\nThe fix makes EC key generation fail when the group has no valid nonzero\nprivate scalar, instead of retrying indefinitely.\n\nFIPS impact: no\nThe FIPS modules in 4.1, 4.0, 3.5 and 3.0 are not affected. The FIPS provider\ndoes not support arbitrary explicit EC domain parameters, so an order-1 group\nis rejected during key import before the vulnerable key generation path is\nreached.",
-   "score": 7.5,
+   "software": "Sharepoint",
+   "description": "Incorrect authorization in Microsoft Office SharePoint allows an authorized attacker to elevate privileges over a network.",
+   "score": 8.8,
    "published": "2026-11-10",
    "date": "2026-11-10"
   },
   {
-   "id": "CVE-2026-115538",
+   "id": "CVE-2026-123390",
    "platforms": [
-    "docker"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "NVD",
+    "Security.nl"
    ],
-   "description": "Moby's overlay network driver does not restore the iptables rules for encrypted overlay networks after firewalld deletes them. Unlike other Docker Engine networking components, the overlay driver does not handle firewalld reload or start signals over D-Bus. The missing rules cause outgoing VXLAN datagrams to bypass IPsec encryption and remove the protection against incoming cleartext VXLAN traffic. The condition is not logged by dockerd and persists until the encrypted network's last local endpoint is removed and another is added, or dockerd is restarted. Each further firewalld event repeats the condition.",
-   "score": 7.0,
+   "software": "Sharepoint",
+   "description": "Deserialization of untrusted data in Microsoft Office SharePoint allows an authorized attacker to execute code over a network.",
+   "score": 8.8,
    "published": "2026-11-10",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "CVE-2026-124194",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Office",
+   "title": "Microsoft Office Outlook Missing User Interaction for Potentially Unsafe Action Vulnerability",
+   "description": "Microsoft Office Outlook contains a missing user interaction for potentially unsafe action vulnerability that allows an unauthorized attacker to perform spoofing over a network.",
+   "product": "Microsoft Office",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-10",
+   "due": "2026-11-24",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "CVE-2026-111793",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Webtop Media Transcoder",
+   "title": "Openwave Messaging Limited Webtop Media Transcoder Incorrect Resource Transfer Between Spheres Vulnerability",
+   "description": "Openwave Messaging Limited Webtop Media Transcoder contains an incorrect resource transfer between spheres vulnerability that may allow an authenticated user to process and convert unintended document types if bypassing the Webmail experience.",
+   "product": "Openwave Messaging Limited Webtop Media Transcoder",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-10",
+   "due": "2026-11-24",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "CVE-2026-20320",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "BroadWorks",
+   "title": "Cisco BroadWorks Improper Restriction of XML External Entity Reference Vulnerability",
+   "description": "Cisco BroadWorks contains an improper restriction of XML external entity reference vulnerability that could allow an unauthenticated, remote attacker to read sensitive configuration information on an affected system.",
+   "product": "Cisco BroadWorks",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-10",
+   "due": "2026-11-24",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "CVE-2026-116606",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Barracuda Email Security Gateway (ESG)",
+   "title": "Barracuda Networks Email Security Gateway (ESG) Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+   "description": "Barracuda Networks Email Security Gateway (ESG) contains an authentication bypass using an alternate path or channel that could allow an unauthenticated remote attacker to invoke a configuration-import function and restore a crafted, compatible backup archive, resulting in unauthorized modification of the appliance’s global configuration. This vulnerability can be chained with CVE-2026-111560.",
+   "product": "Barracuda Networks Barracuda Email Security Gateway (ESG)",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-10",
+   "due": "2026-11-13",
    "date": "2026-11-10"
   },
   {
@@ -893,76 +680,166 @@
    "date": "2026-11-09"
   },
   {
-   "id": "CVE-2026-123158",
+   "id": "CVE-2026-102895",
    "platforms": [
-    "openssh"
+    "software"
    ],
    "sources": [
-    "CISA KEV",
-    "NVD"
+    "CISA KEV"
    ],
-   "title": "OpenBSD OpenSSH Unexpected Status Code or Return Value Vulnerability",
-   "description": "sshd in OpenSSH before 10.6p2 on Linux, when musl libc is used without PAM, lacks a workaround for a password authentication bypass (related to misinterpretation of whether a string is intended to be a password hash). For some configurations of accounts, any password between 256 and 1024 characters succeeds. An example of a platform using musl libc without PAM is Alpine Linux.",
-   "product": "OpenBSD OpenSSH",
+   "software": "GPUStack",
+   "title": "GPUStack Improper Authentication Vulnerability",
+   "description": "GPUStack contains an improper authentication vulnerability which could allow unauthenticated administrative access, including user and model changes, persistent administrator API-key creation, disclosure of worker and cloud-provider secrets, and code execution through POST /v2/inference-backends/from-yaml.",
+   "product": "GPUStack GPUStack",
    "kev": true,
    "ransomware": false,
    "added": "2026-11-09",
    "due": "2026-11-12",
-   "score": 8.1,
-   "published": "2026-11-05",
    "date": "2026-11-09"
   },
   {
-   "id": "CVE-2026-73857",
+   "id": "CVE-2026-116779",
    "platforms": [
-    "nginx"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "CISA KEV"
    ],
-   "description": "ModSecurity is an open source, cross platform web application firewall (WAF) engine for Apache, IIS and Nginx. From 3.0.15 until 3.0.17, XML request body processing with SecParseXmlIntoArgs set to On or OnlyArgs can leave XMLNodes::parsing_ctx_arg uninitialized in the SAX end-element callback. A single crafted unauthenticated HTTP request can make a worker dereference the pointer, resulting in a constant-value write to an attacker-controlled address. The resulting memory corruption can terminate the worker and may disclose memory or redirect execution. Earlier 3.0.x releases and ModSecurity 2.x do not use the affected path. This issue is fixed in version 3.0.17.",
-   "score": 7.5,
-   "published": "2026-11-09",
+   "software": "FreeSwitch",
+   "title": "SignalWire FreeSwitch Code Injection Vulnerability",
+   "description": "SignalWire FreeSwitch contains a code injection vulnerability that permits configuration and credential disclosure, arbitrary call control, and command execution.",
+   "product": "SignalWire FreeSwitch",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-09",
+   "due": "2026-11-12",
    "date": "2026-11-09"
   },
   {
-   "id": "CVE-2026-104269",
+   "id": "CVE-2026-123218",
    "platforms": [
-    "nginx"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "CISA KEV"
    ],
-   "description": "ModSecurity is an open source, cross platform web application firewall (WAF) engine for Apache, IIS and Nginx. From 3.0.0 until 3.0.17, ModSecurity's multipart parser does not apply the RFC 2231 filename* parameter precedence used by common Go, Python, Node.js, and Java application parsers. A Content-Disposition header can provide a benign filename parameter for ModSecurity and a different encoded filename* value that the backend prefers, causing MULTIPART_FILENAME rules and the application to make security decisions on different names. Applications that use the backend-selected name for storage, extension checks, or content-type inference can therefore receive a filename that bypassed WAF inspection. PHP's native multipart parser is not affected by this discrepancy. This issue is fixed in version 3.0.17.",
-   "score": 8.6,
-   "published": "2026-11-05",
-   "date": "2026-11-05"
+   "software": "Aspera Faspex",
+   "title": "IBM Aspera Faspex Incorrect Authorization Vulnerability",
+   "description": "IBM Aspera Faspex contains an incorrect authorization vulnerability that could allow an authenticated user to craft a specific message to bypass authorization, causing privilege escalations.",
+   "product": "IBM Aspera Faspex",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-09",
+   "due": "2026-11-12",
+   "date": "2026-11-09"
   },
   {
-   "id": "CVE-2026-102523",
+   "id": "CVE-2026-19868",
    "platforms": [
-    "mysql"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "CISA KEV"
    ],
-   "description": "MariaDB server is a community developed fork of MySQL server. From 10.11.1 until 10.11.19, 11.4.13, 11.8.9, 12.3.3, and 13.0.2, ALTER TABLE ... CONVERT ... PARTITION does not apply filename encoding to user-specified partition names before using them in filesystem path construction. An authenticated database user can use a partition name requiring filename escaping to make the conversion operate on table files the user is not authorized to access, allowing unauthorized table reads or modifications. This issue is fixed in versions 10.11.19, 11.4.13, 11.8.9, 12.3.3, and 13.0.2.",
-   "score": 8.0,
-   "published": "2026-11-05",
-   "date": "2026-11-05"
+   "software": "SonicOS SSLVPN",
+   "title": "SonicWall SonicOS SSLVPN Use of Single-factor Authentication Vulnerability",
+   "description": "SonicWall SonicOS SSLVPN contains a use of single-factor authentication vulnerability that may allow a user with valid credentials for an alternate authentication method to bypass SAML authentication controls. Successful exploitation may also bypass SAML-enforced multi-factor authentication (MFA).",
+   "product": "SonicWall SonicOS SSLVPN",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-06",
+   "due": "2026-11-20",
+   "date": "2026-11-06"
   },
   {
-   "id": "CVE-2026-82916",
+   "id": "CVE-2026-119977",
    "platforms": [
-    "java"
+    "software"
    ],
    "sources": [
-    "NVD"
+    "CISA KEV"
    ],
-   "description": "Missing Authorization in XmlDsDump in Apache OFBiz 24.09 before 24.09.08 on all platforms allows a remote authenticated attacker holding only the webtools base permissions (OFBTOOLS_VIEW, WEBTOOLS_VIEW) — explicitly not the ENTITY_MAINT permission the export feature declares and visibly refuses to render for — to export the contents of any database entity, including UserLogin with its currentPassword hashes, to any filesystem path the OFBiz process can write, including a web-served docroot, and to create arbitrary directories or truncate arbitrary existing files at those paths, because the XmlDsDump screen action writes the requested entity data via new FileOutputStream on unvalidated outpath and filename request parameters before the screen's ENTITY_MAINT permission check runs, unlike the equivalent Java service entityExportAll, which enforces both a permission check and a file-path allow-list. Users are recommended to upgrade to version 24.09.08, which fixes this issue.",
-   "score": 7.1,
-   "published": "2026-11-05",
-   "date": "2026-11-05"
+   "software": "WordPress Core",
+   "title": "WordPress WordPress Core Time-of-check Time-of-use (TOCTOU) Race Condition Vulnerability",
+   "description": "WordPress WordPress Core contains a time-of-check time-of-use (TOCTOU) race condition vulnerability that could allow unauthenticated attackers to execute code on the server during the upgrade window. This is due to predictable, web-accessible staging paths used during full-package core upgrades.",
+   "product": "WordPress WordPress Core",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-03",
+   "due": "2026-11-06",
+   "date": "2026-11-03"
+  },
+  {
+   "id": "CVE-2026-118527",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Connect Secure",
+   "title": "Ivanti Connect Secure Generation of Predictable Numbers or Identifiers Vulnerability",
+   "description": "Ivanti Connect Secure contains a generation of predictable numbers or identifiers vulnerability that allows a remote authenticated attacker to upload files with attacker-controlled content to a known location on disk. This vulnerability can be chained with CVE-2026-104935 and CVE-2026-111357.",
+   "product": "Ivanti Connect Secure",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-30",
+   "due": "2026-11-13",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "CVE-2026-111357",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Connect Secure",
+   "title": "Ivanti Connect Secure Missing Authentication for Critical Function Vulnerability",
+   "description": "Ivanti Connect Secure contains a missing authentication for critical function vulnerability that could allow a local authenticated attacker to escalate their privileges. This vulnerability can be chained with CVE-2026-104935 and CVE-2026-118527.",
+   "product": "Ivanti Connect Secure",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-30",
+   "due": "2026-11-02",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "CVE-2026-97229",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Community Edition and Enterprise Edition",
+   "title": "GitLab Community Edition and Enterprise Edition Integer Overflow or Wraparound Vulnerability",
+   "description": "GitLab Community Edition and Enterprise Edition contain a integer overflow or wraparound vulnerability that could allow an unauthenticated user to execute arbitrary code on the GitLab server via a specially crafted regular expression in a CI/CD configuration, due to insufficient regular expression validation.",
+   "product": "GitLab Community Edition and Enterprise Edition",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-29",
+   "due": "2026-11-01",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "CVE-2026-76418",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Secure Firewall ASA Software and Cisco Secure FTD Software",
+   "title": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software Unchecked Return Value to NULL Pointer Dereference Vulnerability",
+   "description": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software contains an unchecked return value to NULL pointer dereference vulnerability that could allow an unauthenticated, remote attacker to cause the device to reload unexpectedly, resulting in a denial of service (DoS) condition.",
+   "product": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-29",
+   "due": "2026-11-01",
+   "date": "2026-10-29"
   },
   {
    "id": "CVE-2026-46300",
@@ -980,6 +857,60 @@
    "added": "2026-10-28",
    "due": "2026-10-31",
    "date": "2026-10-28"
+  },
+  {
+   "id": "CVE-2026-41709",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "VMware ESX",
+   "title": "Broadcom VMWare ESX Insufficient Logging Vulnerability",
+   "description": "Broadcom VMWare ESX contains an insufficient logging vulnerability that could allow a malicious actor with admin access to perform certain operations without being logged.",
+   "product": "Broadcom VMware ESX",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-28",
+   "due": "2026-11-11",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "CVE-2026-48356",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Commerce and Magento",
+   "title": "Adobe Commerce and Magento Unrestricted Upload of File with Dangerous Type Vulnerability",
+   "description": "Adobe Commerce and Magento contain an unrestricted upload of file with dangerous type vulnerability that could result in arbitrary code execution in the context of the current user, potentially gaining elevated access or control over the victim's account or session.",
+   "product": "Adobe Commerce and Magento",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-27",
+   "due": "2026-11-10",
+   "date": "2026-10-27"
+  },
+  {
+   "id": "CVE-2026-111497",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Brotli",
+   "title": "Google Brotli Unchecked Return Value Vulnerability",
+   "description": "Google Brotli contains an unchecked return value vulnerability that allows a remote unauthenticated attacker to corrupt adjacent decoder state memory, disclose sensitive memory contents, cause a denial of service, or potentially execute arbitrary code using a crafted Brotli-compressed stream.",
+   "product": "Google Brotli",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-27",
+   "due": "2026-11-10",
+   "date": "2026-10-27"
   },
   {
    "id": "CVE-2026-112690",
@@ -1008,38 +939,238 @@
    "date": "2026-10-26"
   },
   {
-   "id": "CVE-2026-109618",
+   "id": "CVE-2026-114625",
    "platforms": [
-    "php"
+    "software"
    ],
    "sources": [
     "CISA KEV"
    ],
-   "title": "PHP Memory Corruption Vulnerability",
-   "description": "PHP contains an out-of-memory corruption vulnerability that allows for unauthenticated remote code execution.",
-   "product": "PHP Group PHP",
+   "software": "VeloCloud Orchestrator",
+   "title": "Arista VeloCloud Orchestrator SQL Injection Vulnerability",
+   "description": "Arista VeloCloud Orchestrator on-prem contains a SQL injection vulnerability that may allow a remote attacker to access privileged internal functionality and impact the VCO host. Successful exploitation may compromise the confidentiality, integrity, and availability of the orchestrator and data managed by the orchestrator.",
+   "product": "Arista VeloCloud Orchestrator",
    "kev": true,
    "ransomware": false,
-   "added": "2026-10-26",
-   "due": "2026-10-29",
-   "date": "2026-10-26"
+   "added": "2026-10-23",
+   "due": "2026-10-26",
+   "date": "2026-10-23"
   },
   {
-   "id": "CVE-2026-109619",
+   "id": "CVE-2026-110447",
    "platforms": [
-    "php"
+    "software"
    ],
    "sources": [
     "CISA KEV"
    ],
-   "title": "PHP Stale Internal Request-State Vulnerability",
-   "description": "PHP contains a stale internal request-state vulnerability that allows for unauthenticated remote code execution.",
-   "product": "PHP Group PHP",
+   "software": "Collabora Online – Built-in CODE Server",
+   "title": "Collabora Online – Built-in CODE Server OS Command Injection Vulnerability",
+   "description": "Collabora Collabora Online – Built-in CODE Server when used within the NextCloud platform contains an OS command injection vulnerability that allows for remote code execution when the CODE server isn't running.",
+   "product": "Collabora Collabora Online – Built-in CODE Server",
    "kev": true,
    "ransomware": false,
-   "added": "2026-10-26",
-   "due": "2026-10-29",
-   "date": "2026-10-26"
+   "added": "2026-10-23",
+   "due": "2026-10-26",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "CVE-2026-106931",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "SiteGuard Server Edition",
+   "title": "EG Secure Solutions SiteGuard Server Edition OS Command Injection Vulnerability",
+   "description": "EG Secure Solutions SiteGuard Server Edition contains an OS command injection vulnerability which may allow an attacker to execute arbitrary OS commands with root or SYSTEM privileges on the system running the affected product.",
+   "product": "EG Secure Solutions SiteGuard Server Edition",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-20",
+   "due": "2026-10-23",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "CVE-2026-96656",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Media Server",
+   "title": "Plex Media Server External Control of File Name or Path Vulnerability",
+   "description": "Plex Media Server contains an external control of file name or path vulnerability which can allow an admin user to write arbitrary files that may be executed on load. This vulnerability can be chained with CVE-2026-96652, CVE-2026-96654, and CVE-2026-96655.",
+   "product": "Plex Media Server",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-20",
+   "due": "2026-10-23",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "CVE-2026-96655",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Media Server",
+   "title": "Plex Media Server Server-Side Request Forgery (SSRF) Vulnerability",
+   "description": "Plex Media Server contains a server-side request forgery (SSRF) vulnerability that could allow an authenticated user to request arbitrary internal or external addresses via the '/video/:/transcode/universal' path parameter. This vulnerability can be chained with CVE-2026-96652, CVE-2026-96654, and CVE-2026-96656.",
+   "product": "Plex Media Server",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-20",
+   "due": "2026-11-03",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "CVE-2026-96654",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Media Server",
+   "title": "Plex Media Server Improper Neutralization of Encoded URI Schemes in a Web Page Vulnerability",
+   "description": "Plex Media Server contains an improper neutralization of encoded URI schemes in a web page vulnerability that could allow an attacker to call other plugins' functions and supply their own parameters. This vulnerability can be chained with CVE-2026-96652, CVE-2026-96655, and CVE-2026-96656.",
+   "product": "Plex Media Server",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-20",
+   "due": "2026-10-23",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "CVE-2026-96652",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Media Server",
+   "title": "Plex Media Server Server-Side Request Forgery (SSRF) Vulnerability",
+   "description": "Plex Media Server contains a server-side request forgery (SSRF) vulnerability which could allow an attacker using any X-Plex-Token value to include a full URL in the 'protocol' parameter and force the Plex server to POST to the attacker's chosen destination. This vulnerability can be chained with CVE-2026-96654, CVE-2026-96655, and CVE-2026-96656.",
+   "product": "Plex Media Server",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-20",
+   "due": "2026-11-03",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "CVE-2026-110936",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Software Center",
+   "title": "Siemens Software Center Uncontrolled Search Path Element Vulnerability",
+   "description": "Siemens Software Center contains an uncontrolled search path element vulnerability that could allow an authenticated local attacker to place a specially crafted DLL in a directory that the application searches, leading to arbitrary code execution with the privileges of the affected application.",
+   "product": "Siemens Software Center",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-20",
+   "due": "2026-11-03",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "CVE-2026-102764",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Remote Support",
+   "title": "BeyondTrust Remote Support Authentication Bypass by Spoofing Vulnerability",
+   "description": "BeyondTrust Remote Support contains an authentication bypass by spoofing vulnerability that could allow a remote attacker to perform file operations on the appliance.",
+   "product": "BeyondTrust Remote Support",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-16",
+   "due": "2026-10-19",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "CVE-2026-105134",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "AhsayCBS",
+   "title": "Ahsay AhsayCBS Command Injection Vulnerability",
+   "description": "Ahsay AhsayCBS contains a command injection vulnerability that could allow a remote attacker to execute operating system commands via manipulation of the random parameter in the Replication Receiver component’s /rps/api/json/UpdateReceivers.do endpoint. This vulnerability can be chained with CVE-2026-105133.",
+   "product": "Ahsay AhsayCBS",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-14",
+   "due": "2026-10-17",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "CVE-2026-76519",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Secure Email Gateway",
+   "title": "Cisco Secure Email Gateway Relative Path Traversal Vulnerability",
+   "description": "Cisco Secure Email Gateway contains a relative path traversal vulnerability that could allow an unauthenticated, remote attacker to write arbitrary files on the underlying operating system.",
+   "product": "Cisco Secure Email Gateway",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-14",
+   "due": "2026-10-17",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "CVE-2026-105133",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "AhsayCBS",
+   "title": "Ahsay AhsayCBS Improper Authentication Vulnerability",
+   "description": "Ahsay AhsayCBS contains an improper authentication vulnerability that could allow a remote attacker to bypass authentication via manipulation of the random parameter in the API component’s checkSysPwd function. This vulnerability can be chained with CVE-2026-105134.",
+   "product": "Ahsay AhsayCBS",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-14",
+   "due": "2026-10-17",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "CVE-2026-0322",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "PAN-OS",
+   "title": "Palo Alto Networks PAN-OS Code Injection Vulnerability",
+   "description": "Palo Alto Networks PAN-OS contains a code injection vulnerability that could allow an authenticated attacker with network access to execute arbitrary code with root privileges on the firewall.",
+   "product": "Palo Alto Networks PAN-OS",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-14",
+   "due": "2026-10-17",
+   "date": "2026-10-14"
   },
   {
    "id": "CVE-2026-96951",
@@ -1057,6 +1188,366 @@
    "added": "2026-10-13",
    "due": "2026-10-16",
    "date": "2026-10-13"
+  },
+  {
+   "id": "CVE-2026-104935",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Connect Secure",
+   "title": "Ivanti Connect Secure Authentication Bypass by Spoofing Vulnerability",
+   "description": "Ivanti Connect Secure contains an authentication bypass by spoofing vulnerability that allows a remote unauthenticated attacker to execute arbitrary commands.",
+   "product": "Ivanti Connect Secure",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-13",
+   "due": "2026-10-16",
+   "date": "2026-10-13"
+  },
+  {
+   "id": "CVE-2015-5477",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "BIND",
+   "title": "ISC BIND Data Processing Errors Vulnerability",
+   "description": "ISC BIND contains a data processing errors vulnerability that could allow remote attackers to cause a denial of service via TKEY queries.",
+   "product": "ISC BIND",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-08",
+   "due": "2026-10-11",
+   "date": "2026-10-08"
+  },
+  {
+   "id": "CVE-2016-3081",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Struts",
+   "title": "Apache Struts Command Injection Vulnerability",
+   "description": "Apache Struts contains a command injection vulnerability that could allow remote attackers to execute arbitrary code via method:prefix when Dynamic Method Invocation is enabled.",
+   "product": "Apache Struts",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-08",
+   "due": "2026-10-11",
+   "date": "2026-10-08"
+  },
+  {
+   "id": "CVE-2023-22894",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Strapi",
+   "title": "Strapi Cleartext Storage of Sensitive Information Vulnerability",
+   "description": "Strapi contains a cleartext storage of sensitive information vulnerability that could allow attackers with access to the admin panel to discover sensitive user details via the query filter. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version. This vulnerability can be chained with CVE-2023-22621 to achieve remote code execution.",
+   "product": "Strapi Strapi",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-08",
+   "due": "2026-10-11",
+   "date": "2026-10-08"
+  },
+  {
+   "id": "CVE-2021-3199",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Docs",
+   "title": "ONLYOFFICE Docs Server Path Traversal Vulnerability",
+   "description": "ONLYOFFICE Docs contains a path traversal vulnerability that can occur when JWT is used, via a /.. sequence in an image upload parameter and could allow for remote code execution.",
+   "product": "ONLYOFFICE Docs",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-08",
+   "due": "2026-10-11",
+   "date": "2026-10-08"
+  },
+  {
+   "id": "CVE-2015-3306",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "ProFTPD",
+   "title": "ProFTPD Improper Access Control Vulnerability",
+   "description": "ProFTPD contains an improper access control vulnerability that could allow remote attackers to read and write to arbitrary files via the site cpfr and site cpto commands.",
+   "product": "ProFTPD ProFTPD",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-08",
+   "due": "2026-10-11",
+   "date": "2026-10-08"
+  },
+  {
+   "id": "CVE-2026-88779",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "NetScaler",
+   "title": "Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
+   "description": "Citrix NetScaler ADC (formerly Citrix ADC) and Citrix NetScaler Gateway (formerly Citrix Gateway) contain an improper restriction of operations within the bounds of a memory buffer vulnerability that could allow for a denial of service.",
+   "product": "Citrix NetScaler",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-04",
+   "due": "2026-10-07",
+   "date": "2026-10-04"
+  },
+  {
+   "id": "CVE-2026-102490",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Zammad",
+   "title": "Zammad GmbH Zammad Improper Privilege Management Vulnerability",
+   "description": "Zammad GmbH Zammad contains an improper privilege management vulnerability that can allow the local zammad user to escalate privileges to root. This vulnerability can be chained with CVE-2026-102489.",
+   "product": "Zammad GmbH Zammad",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-02",
+   "due": "2026-10-05",
+   "date": "2026-10-02"
+  },
+  {
+   "id": "CVE-2026-102489",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Zammad",
+   "title": "Zammad GmbH Zammad Session Fixation Vulnerability",
+   "description": "Zammad GmbH Zammad contains a session fixation vulnerability that can lead to remote code execution as the zammad user. This vulnerability can be chained with CVE-2026-102490.",
+   "product": "Zammad GmbH Zammad",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-02",
+   "due": "2026-10-05",
+   "date": "2026-10-02"
+  },
+  {
+   "id": "CVE-2026-104286",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "FortiMail",
+   "title": "Fortinet FortiMail Path Traversal Vulnerability",
+   "description": "Fortinet FortiMail contains a path traversal and an improper neutralization of NULL byte or NULL character vulnerability that may allow an unauthenticated attacker to write arbitrary files on the underlying system via crafted HTTP or HTTPS requests.",
+   "product": "Fortinet FortiMail",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-01",
+   "due": "2026-10-04",
+   "date": "2026-10-01"
+  },
+  {
+   "id": "CVE-2026-76504",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Catalyst SD-WAN Manager",
+   "title": "Cisco Catalyst SD-WAN Manager Hex Encoding Vulnerability",
+   "description": "Cisco Catalyst SD-WAN Manager contains a hex encoding vulnerability that could allow an unauthenticated, remote attacker to access an affected system with privileges of the admin user due to improper handling of URI encoding in an HTTP request.",
+   "product": "Cisco Catalyst SD-WAN Manager",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-30",
+   "due": "2026-10-03",
+   "date": "2026-09-30"
+  },
+  {
+   "id": "CVE-2026-88772",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "NetScaler",
+   "title": "Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
+   "description": "Citrix NetScaler ADC and NetScaler Gateway contain an improper restriction of operations within the bounds of a memory buffer vulnerability that could allow for remote code execution or denial of service",
+   "product": "Citrix NetScaler",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-27",
+   "due": "2026-09-30",
+   "date": "2026-09-27"
+  },
+  {
+   "id": "CVE-2026-88771",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "NetScaler",
+   "title": "Citrix NetScaler Improper Input Validation Vulnerability",
+   "description": "Citrix NetScaler ADC and NetScaler Gateway contain an improper input validation vulnerability that could allow an unauthenticated attacker to execute arbitrary commands.",
+   "product": "Citrix NetScaler",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-27",
+   "due": "2026-09-30",
+   "date": "2026-09-27"
+  },
+  {
+   "id": "CVE-2026-67279",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "RouterOS",
+   "title": "Mikrotik RouterOS Improper Enforcement of Behavioral Workflow Vulnerability",
+   "description": "Mikrotik RouterOS contains an improper enforcement of behavioral workflow vulnerability that could allow an unauthenticated client to open a session channel and send an exec request. This vulnerability can be chained to achieve unauthenticated exploitation of CVE-2026-86060.",
+   "product": "MikroTik RouterOS",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-25",
+   "due": "2026-09-28",
+   "date": "2026-09-25"
+  },
+  {
+   "id": "CVE-2026-65660",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "SharePoint",
+   "title": "Microsoft SharePoint Code Injection Vulnerability",
+   "description": "Microsoft SharePoint contains a code injection vulnerability which could allow an authorized attacker to execute code over a network.",
+   "product": "Microsoft SharePoint",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-25",
+   "due": "2026-09-28",
+   "date": "2026-09-25"
+  },
+  {
+   "id": "CVE-2026-87902",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Core",
+   "title": "WordPress Core Remote File Inclusion Vulnerability",
+   "description": "WordPress Core contains a remote file inclusion vulnerability which could allow an unauthenticated attacker to make page-template resolution include a chosen readable local `.php` file outside the active theme directories, leading to remote code execution.",
+   "product": "WordPress Core",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-25",
+   "due": "2026-09-28",
+   "date": "2026-09-25"
+  },
+  {
+   "id": "CVE-2026-71362",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Commerce and Magento",
+   "title": "Adobe Commerce and Magento Incorrect Authorization Vulnerability",
+   "description": "Adobe Commerce and Magento contains an incorrect authorization vulnerability that could allow an attacker to leverage this vulnerability to gain elevated access to sensitive resources without any user interaction.",
+   "product": "Adobe Commerce and Magento",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-24",
+   "due": "2026-09-27",
+   "date": "2026-09-24"
+  },
+  {
+   "id": "CVE-2026-93952",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "VeloCloud Orchestrator",
+   "title": "Arista VeloCloud Orchestrator Improper Input Validation Vulnerability",
+   "description": "Arista VeloCloud Orchestrator (VCO) on-prem contains an improper input validation vulnerability that may allow a remote attacker to access privileged internal functionality and impact the VCO host. Successful exploitation may compromise the confidentiality, integrity, and availability of the orchestrator and data managed by the orchestrator.",
+   "product": "Arista VeloCloud Orchestrator",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-22",
+   "due": "2026-09-25",
+   "date": "2026-09-22"
+  },
+  {
+   "id": "CVE-2026-94127",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "BIG-IP APM",
+   "title": "F5 BIG-IP APM Heap-based Buffer Overflow Vulnerability",
+   "description": "F5 BIG-IP APM contains a heap-based buffer overflow vulnerability when access policy and an OAuth profile are configured on a virtual server. This vulnerability could allow an unauthenticated attacker to perform remote code execution.",
+   "product": "F5 BIG-IP APM",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-22",
+   "due": "2026-09-25",
+   "date": "2026-09-22"
+  },
+  {
+   "id": "CVE-2026-7273",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "GS1900 Series Switches",
+   "title": "Zyxel GS1900 Series Switches Stack-Based Buffer Overflow Vulnerability",
+   "description": "Zyxel GS1900 series switches contain a stack-based buffer overflow vulnerability in the CGI program which could allow a LAN-based, unauthenticated attacker to exploit the flaw and potentially execute OS commands via a crafted HTTP request.",
+   "product": "Zyxel GS1900 Series Switches",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-21",
+   "due": "2026-09-24",
+   "date": "2026-09-21"
   },
   {
    "id": "CVE-2025-39964",
@@ -1110,20 +1601,219 @@
    "date": "2026-09-18"
   },
   {
-   "id": "CVE-2026-87491",
+   "id": "CVE-2026-58704",
    "platforms": [
-    "chrome"
+    "software"
    ],
    "sources": [
     "CISA KEV"
    ],
-   "title": "Google Chromium V8 Out of Bounds Write Vulnerability",
-   "description": "Google Chromium V8 contains an out of bounds write vulnerability that allows a remote attacker to execute arbitrary code inside the sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
-   "product": "Google Chromium V8",
+   "software": "Pixel",
+   "title": "Google Pixel Improper Authorization Vulnerability",
+   "description": "Google Pixel devices contain an improper authorization vulnerability in the cellular modem. A logic error may allow an attacker to bypass permission checks and escalate privileges.",
+   "product": "Google Pixel",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-16",
+   "due": "2026-09-19",
+   "date": "2026-09-16"
+  },
+  {
+   "id": "CVE-2026-76460",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Identity Services Engine",
+   "title": "Cisco Identity Services Engine Incorrect Use of Privileged APIs Vulnerability",
+   "description": "Cisco Identity Services Engine (ISE) and Cisco ISE Passive Identity Connector (ISE-PIC) contain an incorrect use of privileged APIs vulnerability that could allow an unauthenticated, remote attacker to gain unauthorized access to the affected device by bypassing the web-based management interface.",
+   "product": "Cisco Identity Services Engine",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-16",
+   "due": "2026-09-19",
+   "date": "2026-09-16"
+  },
+  {
+   "id": "CVE-2026-87886",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Backup",
+   "title": "Acronis Backup Incorrect Default Permissions Vulnerability",
+   "description": "Acronis Backup plugin for cPanel & WHM and extension for Plesk contains an incorrect default permissions vulnerability that could allow for privilege escalation.",
+   "product": "Acronis Backup",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-16",
+   "due": "2026-09-19",
+   "date": "2026-09-16"
+  },
+  {
+   "id": "CVE-2026-76461",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Secure Email Gateway",
+   "title": "Cisco Secure Email Gateway SQL Injection Vulnerability",
+   "description": "Cisco AsyncOS software for Cisco Secure Email Gateway (SEG) contains a SQL injection vulnerability that could allow an unauthenticated, remote attacker to execute arbitrary commands with root privileges on the underlying operating system.",
+   "product": "Cisco Secure Email Gateway",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-14",
+   "due": "2026-09-17",
+   "date": "2026-09-14"
+  },
+  {
+   "id": "CVE-2026-84869",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "ScreenConnect",
+   "title": "ConnectWise ScreenConnect Improper Privilege Management and Missing Authorization Vulnerability",
+   "description": "ConnectWise ScreenConnect contains both an improper privilege management and missing authorization vulnerability that may allow an attacker to transfer and execute files through an active remote session without authorization or host confirmation.",
+   "product": "ConnectWise ScreenConnect",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-11",
+   "due": "2026-09-14",
+   "date": "2026-09-11"
+  },
+  {
+   "id": "CVE-2026-42016",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Artifactory",
+   "title": "JFrog Artifactory Incorrect Authorization Vulnerability",
+   "description": "JFrog Artifactory contains an incorrect authorization vulnerability that leads to a privilege escalation attack due to a validation check of the token signature/issuer and not the token’s scope.",
+   "product": "JFrog Artifactory",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-11",
+   "due": "2026-09-25",
+   "date": "2026-09-11"
+  },
+  {
+   "id": "CVE-2026-42018",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Artifactory",
+   "title": "JFrog Artifactory Improper Authentication Vulnerability",
+   "description": "JFrog Artifactory contains an improper authentication vulnerability that could return an internal anonymous-user token to an unauthenticated caller when anonymous access is disabled, potentially exposing sensitive resources.",
+   "product": "JFrog Artifactory",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-11",
+   "due": "2026-09-25",
+   "date": "2026-09-11"
+  },
+  {
+   "id": "CVE-2026-85706",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Community Edition and Enterprise Edition",
+   "title": "GitLab Community Edition and Enterprise Edition Path Traversal Vulnerability",
+   "description": "GitLab Community Edition and Enterprise Edition contains a path traversal vulnerability that allows an unauthenticated user to read arbitrary files due to an improper path confinement and missing authentication enforcement in the repository commits API.",
+   "product": "GitLab Community Edition and Enterprise Edition",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-11",
+   "due": "2026-09-14",
+   "date": "2026-09-11"
+  },
+  {
+   "id": "CVE-2026-86060",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "RouterOS",
+   "title": "MikroTik RouterOS Improper Neutralization of Argument Delimiters in a Command Vulnerability",
+   "description": "MikroTik RouterOS contains an improper neutralization of argument delimiters in a command vulnerability which allows an attacker to change the trusted RouterOS policy mask, leading to privilege escalation.",
+   "product": "MikroTik RouterOS",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-10",
+   "due": "2026-09-13",
+   "date": "2026-09-10"
+  },
+  {
+   "id": "CVE-2026-67277",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "RouterOS",
+   "title": "MikroTik RouterOS Missing Authentication for Critical Function Vulnerability",
+   "description": "MikroTik RouterOS contains a missing authentication for critical function vulnerability which allows kernel memory disclosure and denial of service in the btest service.",
+   "product": "MikroTik RouterOS",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-10",
+   "due": "2026-09-13",
+   "date": "2026-09-10"
+  },
+  {
+   "id": "CVE-2026-19490",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "NetScaler",
+   "title": "Citrix NetScaler Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+   "description": "Citrix NetScaler ADC and NetScaler Gateway contain an authentication-bypass vulnerability involving an alternate path or channel. When the NetScaler appliance is configured as an AAA virtual server or as a Gateway (SSL VPN, ICA Proxy, CVPN, or RDP Proxy), an unauthenticated remote threat actor may be able to bypass authentication.",
+   "product": "Citrix NetScaler",
    "kev": true,
    "ransomware": false,
    "added": "2026-09-09",
-   "due": "2026-09-23",
+   "due": "2026-09-12",
+   "date": "2026-09-09"
+  },
+  {
+   "id": "CVE-2026-20079",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Secure Firewall Management Center (FMC) and Security Cloud Control (SCC) Firewall Management",
+   "title": "Cisco Firewall Management Center Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+   "description": "Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management contain an authentication Bypass using an alternate path or channel vulnerability that could allow an unauthenticated, remote attacker to bypass authentication and execute script files on an affected device to obtain root access to the underlying operating system.",
+   "product": "Cisco Secure Firewall Management Center (FMC) and Security Cloud Control (SCC) Firewall Management",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-09",
+   "due": "2026-09-12",
    "date": "2026-09-09"
   },
   {
@@ -1161,21 +1851,202 @@
    "date": "2026-09-08"
   },
   {
-   "id": "CVE-2026-85046",
+   "id": "CVE-2026-75650",
    "platforms": [
-    "chrome"
+    "software"
    ],
    "sources": [
     "CISA KEV"
    ],
-   "title": "Google Chromium V8 Type Confusion Vulnerability",
-   "description": "Google Chromium V8 contains a type confusion vulnerability that allows a remote attacker to execute arbitrary code inside the sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
-   "product": "Google Chromium V8",
+   "software": "Commerce and Magento",
+   "title": "Adobe Commerce and Magento Improper Neutralization of Special Elements Used in a Template Engine Vulnerability",
+   "description": "Adobe Commerce and Magento Open Source contain an improper neutralization of special elements used in a template engine vulnerability that could allow an attacker to execute arbitrary code.",
+   "product": "Adobe Commerce and Magento",
    "kev": true,
    "ransomware": false,
-   "added": "2026-09-04",
-   "due": "2026-09-18",
-   "date": "2026-09-04"
+   "added": "2026-09-08",
+   "due": "2026-09-11",
+   "date": "2026-09-08"
+  },
+  {
+   "id": "CVE-2026-86218",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "N-central",
+   "title": "N-able N-central Static Code Injection Vulnerability",
+   "description": "N-able N-central contains a static code injection vulnerability that could allow for pre-authentication remote code execution.",
+   "product": "N-able N-central",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-08",
+   "due": "2026-09-11",
+   "date": "2026-09-08"
+  },
+  {
+   "id": "CVE-2026-59822",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "LiteLLM",
+   "title": "BerriAI LiteLLM Improper Authentication Vulnerability",
+   "description": "BerriAI LiteLLM contains an improper authentication vulnerability in the MCP Streamable HTTP endpoint that could allow an unauthenticated attacker to establish an authenticated MCP session using an arbitrary Bearer token.",
+   "product": "BerriAI LiteLLM",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-02",
+   "due": "2026-09-16",
+   "date": "2026-09-02"
+  },
+  {
+   "id": "CVE-2026-48710",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Starlette",
+   "title": "Kludex Starlette HTTP Request/Response Smuggling Vulnerability",
+   "description": "Kludex Starlette contains a HTTP request/response smuggling vulnerability that could allow attackers to inject paths into the host part, prepending the actual path leading to issues such as authentication bypass when the authentication depends on the reconstructed URL’s path. This vulnerability could be chaned with CVE-2026-42271.",
+   "product": "Kludex Starlette",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-02",
+   "due": "2026-09-16",
+   "date": "2026-09-02"
+  },
+  {
+   "id": "CVE-2026-49869",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Kestra OSS",
+   "title": "Kestra OSS OS Command Injection Vulnerability",
+   "description": "Kestra OSS contains an OS command injection vulnerability that could allow an unauthenticated remote attacker to create and execute arbitrary workflows without credentials.",
+   "product": "Kestra Kestra OSS",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-02",
+   "due": "2026-09-05",
+   "date": "2026-09-02"
+  },
+  {
+   "id": "CVE-2026-82329",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Artifactory",
+   "title": "JFrog Artifactory Improper Authentication Vulnerability",
+   "description": "JFrog Artifactory contains an improper authentication vulnerability that under default configuration can allow an unauthenticated attacker with network access to obtain administrative privileges.",
+   "product": "JFrog Artifactory",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-02",
+   "due": "2026-09-05",
+   "date": "2026-09-02"
+  },
+  {
+   "id": "CVE-2026-9586",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Switchvox",
+   "title": "Sangoma Switchvox SQL Injection Vulnerability",
+   "description": "Sangoma Switchvox contains a SQL injection vulnerability which allows an unauthenticated remote attacker to execute arbitrary SQL statements against the backend PostgreSQL database using a single crafted request, including database operations and remote code execution.",
+   "product": "Sangoma Switchvox",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-02",
+   "due": "2026-09-05",
+   "date": "2026-09-02"
+  },
+  {
+   "id": "CVE-2026-83548",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "SMA1000 Appliances",
+   "title": "SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability",
+   "description": "SonicWall SMA1000 Appliances contains a server-side request forgery vulnerability that could allow a remote unauthenticated attacker to gain unauthorized access to sensitive functionality and perform unauthorized operations.",
+   "product": "SonicWall SMA1000 Appliances",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-02",
+   "due": "2026-09-05",
+   "date": "2026-09-02"
+  },
+  {
+   "id": "CVE-2026-83549",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "SMA1000 Appliances",
+   "title": "SonicWall SMA1000 Appliances OS Command Injection Vulnerability",
+   "description": "SonicWall SMA1000 Appliances contains an OS command injection vulnerability that could enable a remote authenticated attacker as administrator to execute arbitrary OS commands, resulting in remote code execution.",
+   "product": "SonicWall SMA1000 Appliances",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-02",
+   "due": "2026-09-05",
+   "date": "2026-09-02"
+  },
+  {
+   "id": "CVE-2026-82078",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "NG/MF",
+   "title": "PaperCut NG/MF Unsafe Reflection Vulnerability",
+   "description": "PaperCut NG/MF contains an unsafe reflection vulnerability that allows an attacker to manipulate system configuration parameters and execute arbitrary Java bytecode residing on the application classpath under the security context of the PaperCut server process. This vulnerability can be chained with CVE-2026-81578.",
+   "product": "PaperCut NG/MF",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-31",
+   "due": "2026-09-14",
+   "date": "2026-08-31"
+  },
+  {
+   "id": "CVE-2026-81578",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "NG/MF",
+   "title": "PaperCut NG/MF Missing Authentication for Critical Function Vulnerability",
+   "description": "PaperCut NG/MF contains a missing authentication for critical function vulnerability which allows an unauthenticated remote attacker to modify certain system configurations. This vulnerability can be chained with CVE-2026-82078.",
+   "product": "PaperCut NG/MF",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-31",
+   "due": "2026-09-14",
+   "date": "2026-08-31"
   },
   {
    "id": "CVE-2026-53362",
@@ -1192,6 +2063,42 @@
    "ransomware": false,
    "added": "2026-08-27",
    "due": "2026-08-30",
+   "date": "2026-08-27"
+  },
+  {
+   "id": "CVE-2023-49105",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "ownCloud",
+   "title": "ownCloud Improper Authentication Vulnerability",
+   "description": "ownCloud contains an improper authentication vulnerability that allows an attacker to access, modify, or delete any file without authentication if the username of a victim is known, and the victim has no signing-key configured.",
+   "product": "ownCloud ownCloud",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-27",
+   "due": "2026-08-30",
+   "date": "2026-08-27"
+  },
+  {
+   "id": "CVE-2026-66384",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Artifactory",
+   "title": "JFrog Artifactory Improper Limitation of a Pathname to a Restricted Directory Vulnerability",
+   "description": "JFrog Artifactory contains an improper limitation of a pathname to a restricted directory vulnerability. This can allow an authenticated user to write data outside the intended Docker cache path under specific remote-repository conditions.",
+   "product": "JFrog Artifactory",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-27",
+   "due": "2026-09-10",
    "date": "2026-08-27"
   },
   {
@@ -1212,21 +2119,130 @@
    "date": "2026-08-26"
   },
   {
-   "id": "CVE-2026-21962",
+   "id": "CVE-2021-23758",
    "platforms": [
-    "apache"
+    "software"
    ],
    "sources": [
     "CISA KEV"
    ],
-   "title": "Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in Improper Access Control Vulnerability",
-   "description": "Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in contain an improper access control vulnerability that can result in unauthorized creation, deletion or modification access to critical data as well as unauthorized access to critical data or complete access to all Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in accessible data.",
-   "product": "Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in",
+   "software": "Ajax.NET Professional",
+   "title": "Ajax.NET Professional Deserialization of Untrusted Data Vulnerability",
+   "description": "Ajax.NET Professional (AjaxPro) contains a deserialization of untrusted data vulnerability that could allow for remote code execution via arbitrary .NET classes. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.",
+   "product": "Ajax.NET Professional Ajax.NET Professional",
    "kev": true,
    "ransomware": false,
-   "added": "2026-08-24",
-   "due": "2026-08-27",
-   "date": "2026-08-24"
+   "added": "2026-08-26",
+   "due": "2026-09-09",
+   "date": "2026-08-26"
+  },
+  {
+   "id": "CVE-2015-3246",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Libuser",
+   "title": "Red Hat Libuser Race Condition Vulnerability",
+   "description": "Red Hat libuser contains a race condition vulnerability that allows authenticated local users to corrupt the /etc/passwd file to cause a denial of service or privilege escalation.",
+   "product": "Red Hat Libuser",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-26",
+   "due": "2026-09-09",
+   "date": "2026-08-26"
+  },
+  {
+   "id": "CVE-2015-5287",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Automatic Bug Reporting Tool",
+   "title": "Red Hat Automatic Bug Reporting Tool Privilege Escalation Vulnerability",
+   "description": "Red Hat Automatic Bug Reporting Tool (ABRT) contains a privilege escalation vulnerability that could allow local users with certain permissions to gain privileges via a symlink attack on a file with a predictable name. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.",
+   "product": "Red Hat Automatic Bug Reporting Tool",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-26",
+   "due": "2026-09-09",
+   "date": "2026-08-26"
+  },
+  {
+   "id": "CVE-2026-8452",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "NetScaler ADC and NetScaler Gateway",
+   "title": "Citrix NetScaler ADC and NetScaler Gateway Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
+   "description": "Citrix NetScaler ADC and NetScaler Gateway contain an improper restriction of operations within the bounds of a memory buffer vulnerability which could lead to denial of service.",
+   "product": "Citrix NetScaler ADC and NetScaler Gateway",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-26",
+   "due": "2026-08-29",
+   "date": "2026-08-26"
+  },
+  {
+   "id": "CVE-2019-1068",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "SQL Server",
+   "title": "Microsoft SQL Server Remote Code Execution Vulnerability",
+   "description": "Microsoft SQL Server contains a remote code execution vulnerability that could allow an attacker to execute code in the context of the SQL Server Database Engine service account.",
+   "product": "Microsoft SQL Server",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-26",
+   "due": "2026-08-29",
+   "date": "2026-08-26"
+  },
+  {
+   "id": "CVE-2026-60004",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Gitea",
+   "title": "Gitea Code Injection Vulnerability",
+   "description": "Gitea contains a code injection vulnerability that allows an attacker with repository write access to send a malicious patch to the diffpatch API endpoint to plant an executable Git hook and run shell commands as the Gitea service account.",
+   "product": "Gitea Gitea",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-25",
+   "due": "2026-08-28",
+   "date": "2026-08-25"
+  },
+  {
+   "id": "CVE-2026-73570",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Zimbra Collaboration Suite (ZCS)",
+   "title": "Zimbra Collaboration Suite (ZCS) OS Command Injection Vulnerability",
+   "description": "Zimbra Collaboration Suite (ZCS) contains an OS command injection vulnerability which could allow an unauthenticated attacker to send specially crafted SMTP requests that may result in execution of arbitrary operating system commands as the Zimbra user.",
+   "product": "Synacor Zimbra Collaboration Suite (ZCS)",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-21",
+   "due": "2026-08-24",
+   "date": "2026-08-21"
   }
  ]
 }

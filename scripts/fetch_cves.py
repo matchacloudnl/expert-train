@@ -79,9 +79,10 @@ def kev_platform(vendor, product):
         return "macos"
     if "linux" in p or "linux" in v:
         return "linux"
-    return "software"  # every other exploited product is shown under the Software tab
+    return None if product.lower() in ("multiple products", "") else "software"  # every other exploited product is shown under the Software tab
 
 
+NOISE = {"XSS", "Multiple Products", "Microsoft"}
 STOP = set("""
 het een van voor met die dat wordt zijn niet door ook meer naar over bij kan nog als aan maar uit dan tot
 nederland nederlandse nederlandstalige europese europa duitse franse britse amerikaanse russische chinese
@@ -89,7 +90,7 @@ ncsc security hackers hacker onderzoekers onderzoeker aanvallers criminelen bedr
 kwetsbaarheid kwetsbaarheden beveiligingsupdate beveiligingsupdates updates update lek lekt misbruik
 cyberaanval ransomware malware phishing maandag dinsdag woensdag donderdag vrijdag zaterdag zondag
 januari februari maart april mei juni juli augustus september oktober november december
-the and for with this that from have new fbi cisa ddos origin scattered spider
+xss sql rce dos csrf ssrf lfi the and for with this that from have new fbi cisa ddos origin scattered spider
 """.split())
 TECH_WORDS = re.compile(r"kwetsbaar|lek\|lekt|beveiligingsupdate|zero.?day|misbruik|patch|update|exploit|aanval|bug|cve-", re.I)
 CVE_RE = re.compile(r"CVE-\d{4}-\d{4,7}", re.I)
@@ -140,7 +141,9 @@ def main():
     # keep previous entries
     if OUT.exists():
         for e in json.loads(OUT.read_text(encoding="utf-8")).get("cves", []):
-            entries[e["id"]] = e
+            # drop entries from the old fixed software list (platform php, nginx, ...)
+            if set(e["platforms"]) <= {"windows", "macos", "linux", "software"} and e.get("software") not in NOISE:
+                entries[e["id"]] = e
 
     # --- CISA KEV ---
     print("Fetching CISA KEV")
