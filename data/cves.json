@@ -1,6 +1,126 @@
 {
- "updated": "2026-11-19T09:48:48Z",
+ "updated": "2026-11-19T19:00:28Z",
  "cves": [
+  {
+   "id": "CVE-2026-116440",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "NAS",
+   "description": "Dell PowerStore SDNAS contains a buffer overflow vulnerability that could allow an unauthenticated remote attacker to cause a denial of service or potential code execution on the NAS node.",
+   "score": 9.8,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-116439",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "NAS",
+   "description": "Dell PowerStore SDNAS contains a path traversal vulnerability that could allow an unauthenticated attacker to read, modify, or delete arbitrary files on the NAS node.",
+   "score": 9.8,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-129289",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Apache",
+   "description": "PHP-FPM request smuggling through an unread HTTP request body.\n\nPHP does not discard the unread part of an HTTP request body at request shutdown when the application has opened php://input without reading it to the end. When the front end reuses backend connections, which is not the default in nginx or Apache (for example nginx with fastcgi_keep_conn on, or Apache mod_proxy_fcgi with enablereuse=on), PHP-FPM can parse the leftover bytes as a new FastCGI request. An unauthenticated remote attacker can use a single crafted multipart/form-data request to forge a backend request with chosen parameters such as SCRIPT_FILENAME, REMOTE_ADDR and PHP_ADMIN_VALUE, which can lead to execution of attacker-controlled PHP code. With LSAPI, subsequent requests on the connection can be disrupted.\n\nThis issue affects PHP versions 8.2.* before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "score": 9.2,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-129182",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Apache",
+   "description": "Use-after-free via repopulation of last_fatal_error_backtrace global after shutdown.\n\nA fatal error raised while modified INI settings are restored during request shutdown can repopulate the stored fatal error backtrace after the executor has been cleaned up. The request memory is then freed, and a diagnostic emitted before executor initialization in a later request handled by the same PHP-FPM or mod_php worker can access the stale backtrace. The shutdown error requires per-path configuration of max_memory_limit, or of zlib.output_compression together with output_handler (which .user.ini can also set). The early diagnostic requires Apache per-directory configuration or, for PHP-FPM, a PHP_VALUE or PHP_ADMIN_VALUE parameter sent by the front end. This can cause memory corruption and worker crashes, and may allow remote code execution.\n\nThis issue affects PHP versions 8.5.* before 8.5.13.",
+   "score": 9.2,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-129496",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Apache",
+   "description": "Timezone cache use-after-free can lead to remote code execution.\n\nIn non-thread-safe builds, a diagnostic written to a file-based error_log during module startup, for example for an invalid date.timezone value or a session configuration warning, causes the timezone cache to be allocated in startup memory that is freed while a reference to it is kept. A diagnostic raised early in the first request of a worker, such as the max_input_vars warning, then accesses the freed cache. On such a deployment an unauthenticated remote attacker can crash PHP-FPM, Apache mod_php or CGI workers with a crafted request. Arbitrary code execution may be possible and has been demonstrated with known memory addresses.\n\nThis issue affects PHP versions 8.2.* before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "score": 9.2,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-111509",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "NAS",
+   "description": "Dell PowerStore SDNAS contains a cryptographically weak PRNG vulnerability that could allow a network attacker to decrypt or tamper with NAS SSH/SFTP sessions.",
+   "score": 9.1,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-120753",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Nginx",
+   "description": "In Eclipse Ditto versions 1.1.0 to 3.9.8, when pre-authentication is enabled, the gateway service accepts the pre-authenticated subject not only from the `x-ditto-pre-authenticated` HTTP header set by a trusted reverse proxy, but also from an undocumented `x-ditto-pre-authenticated` URL query parameter that a client can set. A reverse proxy that only overwrites the header therefore does not stop clients from supplying their own subject. With the default configuration of the Ditto Helm chart (`global.jwtOnly: false`, which implicitly enables pre-authentication), the bundled nginx skips HTTP Basic authentication for any request with an `Authorization: Bearer` header and forwards it without the pre-authentication header. An unauthenticated remote attacker can send an invalid Bearer token together with the query parameter to authenticate as any chosen policy subject. Pre-authentication succeeds before the JWT is validated, so the attacker can read and modify Things and Policies with that subject's permissions. As a mitigation, disable pre-authentication in the gateway (`ENABLE_PRE_AUTHENTICATION=false`) or, when using the Helm chart, configure `global.jwtOnly: true`.",
+   "score": 9.1,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-129291",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "PHP",
+   "description": "PHP-FPM epoll use-after-free can lead to local privilege escalation.\n\nWhen catch_workers_output is enabled and the epoll event backend is used, the PHP-FPM master can close a worker's output pipe in fpm_child_close() without removing the associated event, and the delayed cleanup can free the worker record while its epoll registration is still active. A later event is then dispatched through a pointer into freed memory. A local attacker who can execute PHP code in an FPM worker can crash the master or execute code with its privileges, commonly root. catch_workers_output is disabled by default but enabled in the official PHP-FPM Docker images.\n\nThis issue affects PHP versions from 8.2.7 before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "score": 8.8,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
   {
    "id": "CVE-2026-132748",
    "platforms": [
@@ -13,6 +133,21 @@
    "software": "PHP",
    "description": "Vtiger CRM through 8.4.0 contains a PHP code injection vulnerability that allows authenticated administrators to inject code via the updatedFields parameter into config.inc.php. Attackers can supply a crafted HELPDESK_SUPPORT_EMAIL_ID value that passes email validation but closes the PHP string literal to execute arbitrary operating system commands.",
    "score": 8.6,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-128064",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "PHP",
+   "description": "Mixed-case HTTPS and FTPS URLs can expose data in plaintext.\n\nThe HTTP and FTP stream wrappers recognise URL schemes case-insensitively, but enable TLS only when the scheme contains a lowercase \"s\" at a fixed position. A URL such as HTTPS:// or FTPS:// passed to file_get_contents(), fopen() or other stream functions, or received as an HTTP redirect target, is therefore handled over unencrypted HTTP or FTP. An attacker able to observe the network traffic can read data the application expected TLS to protect, including credentials, request bodies and transferred files.\n\nThis issue affects PHP versions 8.2.* before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "score": 8.2,
    "published": "2026-11-19",
    "date": "2026-11-19"
   },
@@ -32,6 +167,21 @@
    "date": "2026-11-19"
   },
   {
+   "id": "CVE-2026-128090",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "PHP",
+   "description": "PHAR OpenSSL signature bypass via algorithm downgrade.\n\nThe Phar extension selects the signature verification method from the signature type stored in the archive, and only the OpenSSL types consult the separate .pubkey file holding the trusted public key. An attacker who can modify an OpenSSL-signed Phar archive, but not its public key file, can switch the signature type to a keyless hash such as SHA-256 with a recomputed digest, so the altered archive passes verification even with phar.require_hash enabled. An application that loads the archive may then execute attacker-controlled PHP code. Native, tar-based and zip-based phars are affected.\n\nThis issue affects PHP versions 8.2.* before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "score": 7.7,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
    "id": "CVE-2026-128851",
    "platforms": [
     "software"
@@ -42,6 +192,21 @@
    ],
    "software": "Apache",
    "description": "The Probono Form Basic WordPress plugin before 1.3.3 does not validate the real type of files uploaded through its public form, trusting the client-declared MIME type instead, which could allow unauthenticated attackers to upload PHP files to a public directory and execute them before they are deleted, on servers that do not honour the Probono Form Basic WordPress plugin before 1.3.3's Apache-only access restriction.",
+   "score": 9.8,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-116449",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "NAS",
+   "description": "Dell PowerStore SDNAS contains an OS Command Injection vulnerability that could allow an attacker with internal network access to execute arbitrary commands as root on the NAS node.",
    "score": 9.8,
    "published": "2026-11-18",
    "date": "2026-11-18"
@@ -92,6 +257,81 @@
    "date": "2026-11-18"
   },
   {
+   "id": "CVE-2012-20007",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "MODE",
+   "description": "ThinkPHP 2.0 through 2.2 and 3.0 Lite mode contains an eval injection vulnerability in the Dispatcher PATH_INFO parsing, which uses preg_replace with the /e modifier and a double-quoted replacement. Unauthenticated attackers can send crafted requests to index.php with a malicious 's' parameter containing PHP expressions to execute arbitrary code on the server. Exploitation evidence was first observed by the Shadowserver Foundation on 2023-10-14.",
+   "score": 9.3,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-123634",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Nginx",
+   "description": "This issue occurs when NGINX Plus or NGINX Open Source is configured as a proxy, the proxied server name includes variables, and a Server Side Includes (SSI) or mirror directive sends a subrequest to a location that resolves the same server name. Under these conditions, a specially crafted HTTP request may cause a use-after-free condition in a worker process. An attacker may also be able to execute code if Address Space Layout Randomization (ASLR) is disabled or the attacker can bypass ASLR.\n\nImpact: \nAn attacker could leverage this vulnerability to crash the NGINX worker process, corrupt its memory, or perform remote code execution (RCE)\n\n\n\nNote: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
+   "score": 9.2,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-123633",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Nginx",
+   "description": "When NGINX Plus or NGINX Open Source is configured to use HTTP/2 for client connections and proxy client requests to a backend, a specially crafted request can result in use-after-free in the worker process, if this process is running low on worker_connections. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.\n\n\n\n\nImpact:\n\n\n\nThis vulnerability may allow remote attackers to cause a denial-of-service (DoS) on the NGINX system or may allow a code execution. There is no control plane exposure; this is a data plane issue only.\n\n\n\nNote: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
+   "score": 9.2,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-123007",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Nginx",
+   "description": "This issue affects NGINX Plus or NGINX Open Source configurations that use HTTP/2. When NGINX processes undisclosed traffic, the flow control window can exceed the allowed threshold, potentially resulting in a heap buffer overflow typically followed by an NGINX worker segmentation fault. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.\n\nImpact: An attacker could leverage this vulnerability to crash the NGINX worker process, corrupt its memory, or potentially execute code remotely. There is no control plane exposure; this is a data plane issue only.\n\n\n\nNote: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
+   "score": 9.2,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-99312",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "MODE",
+   "description": "In the Linux kernel, the following vulnerability has been resolved:\n\nKVM: x86: Unconditionally reset MMU context when emulating INIT\n\nForce an MMU reset when emulating an INIT even if paging was already\ndisabled, as the MMU page role includes guest_mode (L2), i.e. an INIT while\nL2 is running with CR0.PG=0 will result in KVM running L1 with a stale MMU\ncontext.\n\nAlternatively, the reset could be scoped strictly to paging being enabled\nor L2 being active, but SMM is also encoded in the page role.  Even though\nit _should_ be impossible for the vCPU to be INIT'd while SMM is active,\nthere's zero value in not handling SMM.  At that point, the only scenario\nwhere KVM _doesn't_ need to reset the MMU context is on an INIT with the\nvCPU running in Real Mode or Unpaged Protect Mode, and while INIT in those\nmodes is somewhat common, it's far from a hot path and re-initializing the\nMMU is not expensive, especially when the role isn't changing (KVM elides\nmost of the re-configuration in that case).\n\nNote, like the Fixes commit, this bug only affects nested SVM as INIT is an\nunconditional intercept on VMX, i.e. it's impossible to emulate INIT while\nL2 is active.\n\nTemporarily keep the guest TLB flush when CR0.PG is being cleared even\nthough it is fully redundant with the flush that is emitted on all INIT\nevents (KVM itself only does RESET when a vCPU is being created, i.e. when\nCR0.PG must be '0').",
+   "score": 8.8,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
    "id": "CVE-2026-61583",
    "platforms": [
     "software"
@@ -103,6 +343,66 @@
    "software": "Apache",
    "description": "Chamilo LMS is an open-source learning management system. Prior to 1.11.40, main/dropbox/dropbox_functions.inc.php accepts a literal .htaccess filename in the course dropbox and stores it in a directory served by Apache, where the file can alter handler behavior under the required AllowOverride All configuration. Any authenticated course participant can upload .htaccess and then upload a PHP payload disguised as a .gif, resulting in code execution as the web-server user when the dropbox tool is enabled. This can expose or modify the Chamilo installation, course content, and database credentials. This issue is fixed in version 1.11.40.",
    "score": 8.7,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-132121",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "MODE",
+   "description": "Supergateway 2.4.0 through 4.2.2 contains a cross-site WebSocket hijacking vulnerability in stdio-to-WebSocket mode that allows malicious web pages to connect by bypassing missing Origin header validation. Attackers can open the /message WebSocket from a victim's browser, even against localhost-bound gateways, to initialize an MCP session and invoke wrapped stdio MCP server tools with victim privileges.",
+   "score": 8.6,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-130008",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "MODE",
+   "description": "sqlite-mcp is a Model Context Protocol server for SQLite. Prior to 0.1.2, the default read-only mode can be bypassed through execute_query, which accepts a leading SELECT while the SQLite driver executes trailing statements, and through describe_table, which interpolates the caller-controlled table_name into PRAGMA table_info. Either path can issue ATTACH DATABASE, which opens an attached file read-write despite mode=ro and can make the protected database writable, read other SQLite database files, or create a SQLite-format file at a path writable by the server process. Existing non-empty files that are not SQLite databases are refused and left unchanged. The server has no built-in authentication and listens on all interfaces at :8080 by default, so any client that can reach the port can invoke these tools unless an authenticating proxy is in place. This issue is fixed in version 0.1.2.",
+   "score": 8.2,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-116442",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "NAS",
+   "description": "Dell PowerStore SDNAS contains an authentication-bypass-by-replay vulnerability in the NAS NDMP service that could allow a network attacker to gain backup and restore control of the appliance.",
+   "score": 8.1,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-130007",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "MODE",
+   "description": "k8s-mcp-server manages Kubernetes clusters through the Model Context Protocol. Prior to 1.1.0, SERVER_MODE defaults to SSE, with the listener on 0.0.0.0:8080, but main.go creates the SSE server without an authentication option or context function. The GET /sse handler creates a sessionId that is only a correlation value, and the POST /message handler accepts a loadable sessionId without an authorization or Origin check before dispatching tools/call; consequently, any client able to reach the port can enumerate and invoke registered Kubernetes tools without credentials. Read-only mode is disabled by default, leaving write-capable Kubernetes tools available to run with the server's configured cluster privileges. This issue is fixed in version 1.1.0.",
+   "score": 7.9,
    "published": "2026-11-18",
    "date": "2026-11-18"
   },
@@ -317,6 +617,45 @@
    "date": "2026-11-17"
   },
   {
+   "id": "CVE-2026-99304",
+   "platforms": [
+    "linux"
+   ],
+   "sources": [
+    "NVD"
+   ],
+   "description": "In the Linux kernel, the following vulnerability has been resolved:\n\nceph: fix integer overflow in the snap trace bounds check\n\nceph_update_snap_trace() bounds the two encoded snapid arrays that follow a\nstruct ceph_mds_snap_realm with sizeof(u64) * (num_snaps +\nnum_prior_parent_snaps).  Both counts come straight off the wire as __le32,\nso the addition is evaluated in unsigned int and wraps before sizeof(u64)\npromotes it to size_t: an MDS sending num_snaps = 1 and\nnum_prior_parent_snaps = 0xffffffff makes the sum zero and the check\ndegenerates to ceph_decode_need(&p, e, 0, bad), which always passes.\ndup_array() then reads num_snaps * 8 bytes past the end of the message\nfront, which ceph_msg_new2() allocates at exactly front_len bytes.  An\nunsolicited CEPH_MSG_CLIENT_SNAP reaches this from a malicious or\ncompromised MDS with no client-side action, as do the snaptraces carried in\nan MDS reply and in a cap import.\n\nCompute the length with size_add()/size_mul() so it saturates at SIZE_MAX\ninstead of wrapping, in the style fs/ceph/mdsmap.c already uses for\nnum_export_targets.\n\n  BUG: KASAN: slab-out-of-bounds in dup_array (include/linux/unaligned.h:28 fs/ceph/snap.c:500)\n  Read of size 8 at addr ffff8880102a16c8 by task kworker/1:2/129\n  Workqueue: ceph-msgr ceph_con_workfn\n  Call Trace:\n   dump_stack_lvl (lib/dump_stack.c:94 lib/dump_stack.c:120)\n   print_report (mm/kasan/report.c:378 mm/kasan/report.c:482)\n   kasan_report (mm/kasan/report.c:595)\n   dup_array (include/linux/unaligned.h:28 fs/ceph/snap.c:500)\n   ceph_update_snap_trace (fs/ceph/snap.c:836)\n   ceph_handle_snap (fs/ceph/snap.c:1155)\n   mds_dispatch (fs/ceph/mds_client.c:7234)\n   ceph_con_process_message (net/ceph/messenger.c:1424)\n   ceph_con_v1_try_read (net/ceph/messenger_v1.c:1430)\n   ceph_con_workfn (net/ceph/messenger.c:1576)\n   process_one_work (kernel/workqueue.c:3396)\n   worker_thread (kernel/workqueue.c:3479 kernel/workqueue.c:3560)\n   kthread (kernel/kthread.c:436)\n   ret_from_fork (arch/x86/kernel/process.c:158)\n   ret_from_fork_asm (arch/x86/entry/entry_64.S:245)\n  ...\n  The buggy address is located 0 bytes to the right of\n   allocated 72-byte region [ffff8880102a1680, ffff8880102a16c8)",
+   "score": 9.8,
+   "published": "2026-11-16",
+   "date": "2026-11-16"
+  },
+  {
+   "id": "CVE-2026-99306",
+   "platforms": [
+    "linux"
+   ],
+   "sources": [
+    "NVD"
+   ],
+   "description": "In the Linux kernel, the following vulnerability has been resolved:\n\nceph: reject mdsmaps that claim more than CEPH_MAX_MDS ranks\n\ncheck_new_map() sizes its export-target bitmap from CEPH_MAX_MDS but walks\nit with newmap->possible_max_rank, which comes straight off the wire:\nceph_mdsmap_decode() sets it to max(m_num_active_mds, m_max_mds), then\noverwrites it with the size of the \"in\" set.  Neither is bounded by\nCEPH_MAX_MDS, only by m_info allocating, so a monitor announcing more ranks\nthan the bitmap holds makes test_bit() read past the end of targets[].  The\nclear_bit() loop above indexes the same bitmap, though it is additionally\nbounded by mdsc->max_sessions.  The map arrives on the monitor connection,\nwhich is unauthenticated in legacy msgr mode.\n\nCEPH_MAX_MDS is a protocol constant from src/mds/mdstypes.h, and the\nreserved inode ranges in super.h are laid out one rank apart over that\nspan, so a map claiming more ranks is corrupt.  Reject it where the rank\nspace is established rather than letting the count reach check_new_map().\n\n  BUG: KASAN: stack-out-of-bounds in check_new_map (fs/ceph/mds_client.c:5968)\n  Read of size 8 at addr ffffc90000ac7798 by task kworker/1:2/127\n  Workqueue: ceph-msgr ceph_con_workfn\n  Call Trace:\n   <TASK>\n   dump_stack_lvl (lib/dump_stack.c:94 lib/dump_stack.c:120)\n   print_report (mm/kasan/report.c:378 mm/kasan/report.c:482)\n   kasan_report (mm/kasan/report.c:595)\n   kasan_check_range (mm/kasan/generic.c:186 mm/kasan/generic.c:200)\n   check_new_map (fs/ceph/mds_client.c:5968)\n   ceph_mdsc_handle_mdsmap (fs/ceph/mds_client.c:7060)\n   extra_mon_dispatch (fs/ceph/super.c:802)\n   mon_dispatch (net/ceph/mon_client.c:1483)\n   ceph_con_process_message (net/ceph/messenger.c:1424)\n   ceph_con_v1_try_read (net/ceph/messenger_v1.c:1430)\n   ceph_con_workfn (net/ceph/messenger.c:1576)\n   process_one_work (kernel/workqueue.c:3396)\n   worker_thread (kernel/workqueue.c:3479 kernel/workqueue.c:3560)\n   kthread (kernel/kthread.c:436)\n   ret_from_fork (arch/x86/kernel/process.c:158)\n   ret_from_fork_asm (arch/x86/entry/entry_64.S:245)\n   </TASK>\n  The buggy address belongs to stack of task kworker/1:2/127\n   and is located at offset 288 in frame:\n   check_new_map (fs/ceph/mds_client.c:5846)\n  This frame has 1 object:\n   [32, 288) 'targets'",
+   "score": 9.8,
+   "published": "2026-11-16",
+   "date": "2026-11-16"
+  },
+  {
+   "id": "CVE-2026-99310",
+   "platforms": [
+    "linux"
+   ],
+   "sources": [
+    "NVD"
+   ],
+   "description": "In the Linux kernel, the following vulnerability has been resolved:\n\nnfsd: hold cl_lock in client_has_openowners()\n\nclient_has_openowners() walks clp->cl_openowners and reads so_stateids\nwithout clp->cl_lock. nfs4_put_stateowner() unhashes that openowner under\ncl_lock and then frees it, so a concurrent EXCHANGE_ID with mismatched\ncreds can use-after-free the nfs4_openowner.\n\nBUG: KASAN: slab-use-after-free in client_has_state+0x10a/0x140\n  fs/nfsd/nfs4state.c:3718 client_has_openowners()\n  nfsd4_exchange_id\n  nfsd4_proc_compound\n  nfsd_dispatch\n  svc_process\n\nTake clp->cl_lock while client_has_openowners() walks the openowner\nlist.",
+   "score": 9.8,
+   "published": "2026-11-16",
+   "date": "2026-11-16"
+  },
+  {
    "id": "CVE-2026-124223",
    "platforms": [
     "software"
@@ -347,6 +686,36 @@
    "date": "2026-11-13"
   },
   {
+   "id": "CVE-2025-43874",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "EDGE",
+   "description": ": Improper Neutralization of Special Elements used in an OS Command vulnerability in Johnson Controls iSTAR Ultra, Johnson Controls iSTAR Ultra SE, Johnson Controls iSTAR Ultra G2, Johnson Controls iSTAR Ultra G2 SE, and Johnson Controls iSTAR Edge G2 allows : OS Command Injection.\n\nThis issue affects iSTAR Ultra: before 6.9.2.CU02; iSTAR Ultra SE: before 6.9.2.CU02; iSTAR Ultra G2: before 6.9.2.CU02; iSTAR Ultra G2 SE: before 6.9.2.CU02; iSTAR Edge G2: before 6.9.2.CU02.",
+   "score": 8.7,
+   "published": "2026-11-13",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "CVE-2025-53697",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "EDGE",
+   "description": "Use of default credentials vulnerability in Johnson Controls iSTAR Ultra, Johnson Controls iSTAR Ultra SE, Johnson Controls iSTAR Ultra G2, Johnson Controls iSTAR Ultra G2 SE, and Johnson Controls iSTAR Edge G2 allows CAPEC‑560: Use of Default Credentials.\n\nThis issue affects iSTAR Ultra: before 2.9.2.CU02; iSTAR Ultra SE: before 6.9.2.CU02; iSTAR Ultra G2: before 6.9.2.CU02; iSTAR Ultra G2 SE: before 6.9.2.CU02; iSTAR Edge G2: before 6.9.2.CU02.",
+   "score": 8.4,
+   "published": "2026-11-13",
+   "date": "2026-11-13"
+  },
+  {
    "id": "CVE-2026-126366",
    "platforms": [
     "software"
@@ -358,6 +727,36 @@
    "software": "JAVA",
    "description": "MessagePack for Ruby is an implementation of the MessagePack binary serialization format. Prior to 1.8.7, the Java-platform msgpack gem for JRuby allocated arrays and byte buffers directly from attacker-controlled array32, str32, and bin32 declared sizes before confirming that corresponding elements or bytes were available. A short MessagePack header could therefore trigger a very large allocation or sustained heap growth when an application decoded untrusted input through MessagePack.unpack or MessagePack::Unpacker, potentially exhausting the shared JVM heap. map32 and declared counts at or above 2^31 did not use the affected allocation behavior. This issue is fixed in version 1.8.7.",
    "score": 7.5,
+   "published": "2026-11-13",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "CVE-2026-123628",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "JAVA",
+   "description": "IBM webMethods Integration Server 10.15 and 11.1 could allow a remote attacker to obtain sensitive information due to an exposure of sensitive server-side environment variables and Java runtime details.",
+   "score": 7.5,
+   "published": "2026-11-13",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "CVE-2025-53699",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "EDGE",
+   "description": "Missing protection mechanism for alternate hardware interface vulnerability in Johnson Controls iSTAR Ultra, Johnson Controls iSTAR Ultra SE, Johnson Controls iSTAR Ultra G2, Johnson Controls iSTAR Ultra G2 SE, and Johnson Controls iSTAR Edge G2 allows CAPEC‑554: Functionality Bypass.\n\nThis issue affects iSTAR Ultra: before 6.9.2.CU02; iSTAR Ultra SE: before 6.9.2.CU02; iSTAR Ultra G2: before 6.9.2.CU02; iSTAR Ultra G2 SE: before 6.9.2.CU02; iSTAR Edge G2: before 6.9.2.CU02.",
+   "score": 7.0,
    "published": "2026-11-13",
    "date": "2026-11-13"
   },
@@ -667,6 +1066,24 @@
    "date": "2026-11-10"
   },
   {
+   "id": "CVE-2026-125350",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Chromium",
+   "title": "Google Chromium Use-After-Free Vulnerability",
+   "description": "Google Chromium contains a use-after-free vulnerability in the XML component that could allow a remote attacker to execute arbitrary code inside the sandbox via a specially crafted webpage. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "product": "Google Chromium",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-10",
+   "due": "2026-11-24",
+   "date": "2026-11-10"
+  },
+  {
    "id": "CVE-2026-115338",
    "platforms": [
     "windows"
@@ -732,6 +1149,39 @@
    "added": "2026-11-09",
    "due": "2026-11-12",
    "date": "2026-11-09"
+  },
+  {
+   "id": "CVE-2026-123158",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "OpenSSH",
+   "title": "OpenBSD OpenSSH Unexpected Status Code or Return Value Vulnerability",
+   "description": "OpenBSD OpenSSH on Linux contains an unexpected status code or return value vulnerability that could allow for authentication bypass.",
+   "product": "OpenBSD OpenSSH",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-11-09",
+   "due": "2026-11-12",
+   "date": "2026-11-09"
+  },
+  {
+   "id": "CVE-2026-80302",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "EDGE",
+   "description": "Insufficient isolation in the Avast sandbox file virtualization layer on Windows allows a local, low-privileged attacker executing inside the sandbox to write arbitrary files outside sandbox containment and execute code on the host.\n\n\n\nThe sandbox virtualizes file system operations by intercepting write requests to protected system directories. However, the virtualization implementation fails to properly validate write targets in certain edge cases, allowing writes to bypass the virtualization redirection and reach the actual host file system in protected locations.\n\n\n\nAn attacker can exploit this to overwrite executable files, system libraries, or startup configurations with arbitrary content, leading to code execution with host privileges on subsequent system operations or reboot.",
+   "score": 8.8,
+   "published": "2026-11-06",
+   "date": "2026-11-06"
   },
   {
    "id": "CVE-2026-19868",
@@ -936,6 +1386,42 @@
    "description": "This issue was addressed by removing the vulnerable code. This issue is fixed in Safari 27.2, iOS 27.2 and iPadOS 27.2, macOS Golden Gate 27.2, visionOS 27.2. A remote attacker may be able to break out of Web Content sandbox.",
    "score": 10.0,
    "published": "2026-10-26",
+   "date": "2026-10-26"
+  },
+  {
+   "id": "CVE-2026-109618",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "PHP",
+   "title": "PHP Memory Corruption Vulnerability",
+   "description": "PHP contains an out-of-memory corruption vulnerability that allows for unauthenticated remote code execution.",
+   "product": "PHP Group PHP",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-26",
+   "due": "2026-10-29",
+   "date": "2026-10-26"
+  },
+  {
+   "id": "CVE-2026-109619",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "PHP",
+   "title": "PHP Stale Internal Request-State Vulnerability",
+   "description": "PHP contains a stale internal request-state vulnerability that allows for unauthenticated remote code execution.",
+   "product": "PHP Group PHP",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-10-26",
+   "due": "2026-10-29",
    "date": "2026-10-26"
   },
   {
@@ -1817,6 +2303,24 @@
    "date": "2026-09-09"
   },
   {
+   "id": "CVE-2026-87491",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Chromium V8",
+   "title": "Google Chromium V8 Out of Bounds Write Vulnerability",
+   "description": "Google Chromium V8 contains an out of bounds write vulnerability that allows a remote attacker to execute arbitrary code inside the sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "product": "Google Chromium V8",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-09",
+   "due": "2026-09-23",
+   "date": "2026-09-09"
+  },
+  {
    "id": "CVE-2026-81963",
    "platforms": [
     "windows"
@@ -1885,6 +2389,24 @@
    "added": "2026-09-08",
    "due": "2026-09-11",
    "date": "2026-09-08"
+  },
+  {
+   "id": "CVE-2026-85046",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "Chromium V8",
+   "title": "Google Chromium V8 Type Confusion Vulnerability",
+   "description": "Google Chromium V8 contains a type confusion vulnerability that allows a remote attacker to execute arbitrary code inside the sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera.",
+   "product": "Google Chromium V8",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-09-04",
+   "due": "2026-09-18",
+   "date": "2026-09-04"
   },
   {
    "id": "CVE-2026-59822",
@@ -2225,6 +2747,24 @@
    "added": "2026-08-25",
    "due": "2026-08-28",
    "date": "2026-08-25"
+  },
+  {
+   "id": "CVE-2026-21962",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "CISA KEV"
+   ],
+   "software": "HTTP Server and Oracle Weblogic Server Proxy Plug-in",
+   "title": "Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in Improper Access Control Vulnerability",
+   "description": "Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in contain an improper access control vulnerability that can result in unauthorized creation, deletion or modification access to critical data as well as unauthorized access to critical data or complete access to all Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in accessible data.",
+   "product": "Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in",
+   "kev": true,
+   "ransomware": false,
+   "added": "2026-08-24",
+   "due": "2026-08-27",
+   "date": "2026-08-24"
   },
   {
    "id": "CVE-2026-73570",
