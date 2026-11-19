@@ -30,7 +30,7 @@ function render() {
     if (c.kev) head.appendChild(el('span', 'badge badge-kev', 'Exploited'));
     if (c.ransomware) head.appendChild(el('span', 'badge badge-kev', 'Ransomware'));
     if (c.score != null) head.appendChild(el('span', 'badge badge-score', 'CVSS ' + c.score));
-    c.platforms.forEach((p) => head.appendChild(el('span', 'badge', LABEL[p] || p)));
+    c.platforms.forEach((p) => head.appendChild(el('span', 'badge', (p === 'software' && c.software) || LABEL[p] || p)));
     head.appendChild(el('span', 'cve-date', c.date));
     card.appendChild(head);
     if (c.title) card.appendChild(el('strong', 'cve-title', c.title));

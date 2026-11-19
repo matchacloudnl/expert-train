@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Fetch impactful CVEs for Windows, macOS, Linux, nginx and Java and write data/cves.json.
+"""Fetch impactful CVEs and write data/cves.json. Runs hourly via GitHub Actions.
 
 Sources (no API key needed):
-  * CISA Known Exploited Vulnerabilities (KEV): CVEs that are exploited in the wild.
-  * NVD API 2.0: newly published CVEs with a CRITICAL CVSS v3 rating.
+  * CISA Known Exploited Vulnerabilities (KEV): every CVE that is exploited in the wild.
+  * NVD API 2.0: CRITICAL CVEs for Windows, macOS and Linux.
+  * Security.nl headlines: the software that is in the news is detected automatically
+    (product names and CVE numbers in the headlines) and looked up in the NVD.
+    Nobody has to maintain a list of software.
 
 Existing entries are kept for KEEP_DAYS days so the page builds up a history.
 """
@@ -13,11 +16,10 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
+from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from software import EXCLUDE, SOFTWARE  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "cves.json"
 KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
@@ -38,14 +40,15 @@ NVD_PLATFORMS = {
 # the newest ones. This keyword search covers the last KEYWORD_DAYS days instead.
 # platform -> (search keywords, regex the description must match, minimum CVSS score)
 KEYWORD_DAYS = 14
-MAX_PER_SOFTWARE = 10  # newest NVD-only CVEs kept per software (CISA KEV entries are always kept)
+NEWS_URL = "https://www.security.nl/rss/headlines.xml"
+NEWS_MIN_SCORE = 7.0   # CVSS needed for a CVE found via the news
+NEWS_MAX_TERMS = 20    # product names looked up per run (NVD rate limit)
+NEWS_MAX_PER_TERM = 5  # newest CVEs kept per product name
 KEYWORDS = {
     "windows": (["windows"], r"microsoft windows|windows (server|\d+|kernel)", 9.0),
     "macos": (["macos"], r"\bmac ?os\b", 9.0),
     "linux": (["linux kernel"], r"linux kernel", 9.0),
 }
-for _name, _cfg in SOFTWARE.items():
-    KEYWORDS[_name] = (_cfg["search"], _cfg["pattern"], _cfg["min"])
 
 
 def best_score(cve):
@@ -76,11 +79,46 @@ def kev_platform(vendor, product):
         return "macos"
     if "linux" in p or "linux" in v:
         return "linux"
-    text = f"{v} {p}"
-    for name, cfg in SOFTWARE.items():
-        if re.search(cfg["kev"], text):
-            return name
-    return None
+    return "software"  # every other exploited product is shown under the Software tab
+
+
+STOP = set("""
+het een van voor met die dat wordt zijn niet door ook meer naar over bij kan nog als aan maar uit dan tot
+nederland nederlandse nederlandstalige europese europa duitse franse britse amerikaanse russische chinese
+ncsc security hackers hacker onderzoekers onderzoeker aanvallers criminelen bedrijven bedrijf gebruikers
+kwetsbaarheid kwetsbaarheden beveiligingsupdate beveiligingsupdates updates update lek lekt misbruik
+cyberaanval ransomware malware phishing maandag dinsdag woensdag donderdag vrijdag zaterdag zondag
+januari februari maart april mei juni juli augustus september oktober november december
+the and for with this that from have new fbi cisa ddos origin scattered spider
+""".split())
+TECH_WORDS = re.compile(r"kwetsbaar|lek\|lekt|beveiligingsupdate|zero.?day|misbruik|patch|update|exploit|aanval|bug|cve-", re.I)
+CVE_RE = re.compile(r"CVE-\d{4}-\d{4,7}", re.I)
+
+
+def news_items():
+    req = urllib.request.Request(NEWS_URL, headers={"User-Agent": "Mozilla/5.0 cve-feed-script"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        root = ET.fromstring(r.read())
+    return [((i.findtext("title") or ""), (i.findtext("description") or "")) for i in root.iter("item")]
+
+
+def news_terms(items):
+    """Product names (and CVE ids) that the security headlines are talking about."""
+    counts, cves = Counter(), set()
+    for title, desc in items:
+        text = f"{title} {desc}"
+        cves.update(c.upper() for c in CVE_RE.findall(text))
+        if not TECH_WORDS.search(text):
+            continue
+        for n, tok in enumerate(re.findall(r"[A-Za-z][A-Za-z0-9.+#]*", title)):
+            tok = tok.strip(".-")
+            low = tok.lower()
+            if len(tok) < 3 or low in STOP:
+                continue
+            shouty = tok.isupper() or bool(re.search(r"\d", tok)) or bool(re.search(r"[a-z][A-Z]", tok))
+            if shouty or (tok[0].isupper() and n > 0):
+                counts[low] += 1
+    return [w for w, _ in counts.most_common(NEWS_MAX_TERMS)], sorted(cves)
 
 
 def merge(entries, cve_id, **fields):
@@ -102,9 +140,7 @@ def main():
     # keep previous entries
     if OUT.exists():
         for e in json.loads(OUT.read_text(encoding="utf-8")).get("cves", []):
-            # software entries are rebuilt every run so changed filters take effect
-            if set(e["platforms"]) & set(NVD_PLATFORMS):
-                entries[e["id"]] = e
+            entries[e["id"]] = e
 
     # --- CISA KEV ---
     print("Fetching CISA KEV")
@@ -117,6 +153,7 @@ def main():
         merge(
             entries, v["cveID"],
             platforms=[plat], sources=["CISA KEV"],
+            software=v.get("product") if plat == "software" else None,
             title=v.get("vulnerabilityName"),
             description=v.get("shortDescription"),
             product=f'{v.get("vendorProject")} {v.get("product")}',
@@ -181,8 +218,6 @@ def main():
                     score = best_score(c)
                     if score is None or score < min_score or not re.search(pattern, desc, re.I):
                         continue
-                    if plat in SOFTWARE and EXCLUDE.search(desc):
-                        continue
                     merge(
                         entries, c["id"],
                         platforms=[plat], sources=["NVD"],
@@ -195,12 +230,38 @@ def main():
                 time.sleep(7)
             time.sleep(7)
 
-    # --- cap NVD-only entries per software so busy products do not flood the page ---
-    for plat in SOFTWARE:
-        extra = [e for e in entries.values() if e["platforms"] == [plat] and not e.get("kev")]
-        extra.sort(key=lambda e: (e.get("published", ""), e.get("score") or 0), reverse=True)
-        for e in extra[MAX_PER_SOFTWARE:]:
-            del entries[e["id"]]
+    # --- software in the news (Security.nl): detected automatically ---
+    try:
+        terms, news_cves = news_terms(news_items())
+    except Exception as e:  # noqa: BLE001
+        print("Security.nl unavailable:", e, file=sys.stderr)
+        terms, news_cves = [], []
+    print("News terms:", terms, "CVEs:", news_cves)
+    for cid in news_cves:
+        data = get_json(f"{NVD_URL}?" + urllib.parse.urlencode({"cveId": cid}))
+        time.sleep(7)
+        for item in data.get("vulnerabilities", []):
+            c = item["cve"]
+            desc = next((d["value"] for d in c.get("descriptions", []) if d["lang"] == "en"), "")
+            merge(entries, c["id"], platforms=["software"], sources=["NVD", "Security.nl"],
+                  description=desc, score=best_score(c), published=c.get("published", "")[:10])
+    for term in terms:
+        print("News search for", term)
+        data = get_json(f"{NVD_URL}?" + urllib.parse.urlencode({
+            "keywordSearch": term, "pubStartDate": kstart, "pubEndDate": end, "resultsPerPage": 200}))
+        time.sleep(7)
+        found = []
+        for item in data.get("vulnerabilities", []):
+            c = item["cve"]
+            desc = next((d["value"] for d in c.get("descriptions", []) if d["lang"] == "en"), "")
+            score = best_score(c)
+            if score is None or score < NEWS_MIN_SCORE or not re.search(r"\b" + re.escape(term) + r"\b", desc, re.I):
+                continue
+            found.append((c.get("published", ""), c["id"], desc, score))
+        for published, cid, desc, score in sorted(found, reverse=True)[:NEWS_MAX_PER_TERM]:
+            merge(entries, cid, platforms=["software"], sources=["NVD", "Security.nl"],
+                  software=term.upper() if len(term) <= 4 else term.capitalize(),
+                  description=desc, score=score, published=published[:10])
 
     # --- prune, sort, write ---
     keep_from = (now - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")
@@ -212,6 +273,13 @@ def main():
             cves.append(e)
     cves.sort(key=lambda e: (e["date"], e.get("score") or 0), reverse=True)
 
+    if OUT.exists():
+        try:
+            if json.loads(OUT.read_text(encoding="utf-8")).get("cves") == cves:
+                print("No changes")
+                return
+        except ValueError:
+            pass
     out = {"updated": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "cves": cves}
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
