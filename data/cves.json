@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T19:00:28Z",
+ "updated": "2026-11-20T01:18:19Z",
  "cves": [
   {
    "id": "CVE-2026-116440",
@@ -32,6 +32,36 @@
    "date": "2026-11-19"
   },
   {
+   "id": "CVE-2026-87977",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "EDGE",
+   "description": "IBM Guardium Data Protection 12.2 is vulnerable to SQL injection in the edge-controller component. An unauthenticated remote attacker could exploit this vulnerability to access or modify sensitive database information.",
+   "score": 9.8,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-84236",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Sharepoint",
+   "description": "IBM Guardium Data Protection 12.2 is vulnerable to insecure deserialization in the SharePoint Tap MulticastTransceiver component. An unauthenticated remote attacker could exploit this vulnerability to execute arbitrary code on the affected system.",
+   "score": 9.8,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
    "id": "CVE-2026-129289",
    "platforms": [
     "software"
@@ -41,7 +71,7 @@
     "Security.nl"
    ],
    "software": "Apache",
-   "description": "PHP-FPM request smuggling through an unread HTTP request body.\n\nPHP does not discard the unread part of an HTTP request body at request shutdown when the application has opened php://input without reading it to the end. When the front end reuses backend connections, which is not the default in nginx or Apache (for example nginx with fastcgi_keep_conn on, or Apache mod_proxy_fcgi with enablereuse=on), PHP-FPM can parse the leftover bytes as a new FastCGI request. An unauthenticated remote attacker can use a single crafted multipart/form-data request to forge a backend request with chosen parameters such as SCRIPT_FILENAME, REMOTE_ADDR and PHP_ADMIN_VALUE, which can lead to execution of attacker-controlled PHP code. With LSAPI, subsequent requests on the connection can be disrupted.\n\nThis issue affects PHP versions 8.2.* before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "description": "PHP-FPM request smuggling through an unread HTTP request body.\n\nPHP does not discard the unread part of an HTTP request body at request shutdown when the application has opened php://input without reading it to the end. When the front end reuses backend connections, which is not the default in nginx or Apache (for example nginx with fastcgi_keep_conn on, or Apache mod_proxy_fcgi with enablereuse=on), PHP-FPM can parse the leftover bytes as a new FastCGI request. An unauthenticated remote attacker can use a single crafted multipart/form-data request to forge a backend request with chosen parameters such as SCRIPT_FILENAME, REMOTE_ADDR and PHP_ADMIN_VALUE, which can lead to execution of attacker-controlled PHP code. With LSAPI, subsequent requests on the connection can be disrupted.\n\nThis issue affects PHP versions before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
    "score": 9.2,
    "published": "2026-11-19",
    "date": "2026-11-19"
@@ -71,7 +101,37 @@
     "Security.nl"
    ],
    "software": "Apache",
-   "description": "Timezone cache use-after-free can lead to remote code execution.\n\nIn non-thread-safe builds, a diagnostic written to a file-based error_log during module startup, for example for an invalid date.timezone value or a session configuration warning, causes the timezone cache to be allocated in startup memory that is freed while a reference to it is kept. A diagnostic raised early in the first request of a worker, such as the max_input_vars warning, then accesses the freed cache. On such a deployment an unauthenticated remote attacker can crash PHP-FPM, Apache mod_php or CGI workers with a crafted request. Arbitrary code execution may be possible and has been demonstrated with known memory addresses.\n\nThis issue affects PHP versions 8.2.* before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "description": "Timezone cache use-after-free can lead to remote code execution.\n\nIn non-thread-safe builds, a diagnostic written to a file-based error_log during module startup, for example for an invalid date.timezone value or a session configuration warning, causes the timezone cache to be allocated in startup memory that is freed while a reference to it is kept. A diagnostic raised early in the first request of a worker, such as the max_input_vars warning, then accesses the freed cache. On such a deployment an unauthenticated remote attacker can crash PHP-FPM, Apache mod_php or CGI workers with a crafted request. Arbitrary code execution may be possible and has been demonstrated with known memory addresses.\n\nThis issue affects PHP versions before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "score": 9.2,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-129481",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "PHP",
+   "description": "Use-after-free after interrupted session shutdown.\n\nThe session extension records the filename of the executing script when a session starts. If a fatal error occurs in an application callback while the session variables are destroyed at shutdown, such as stream_close() of a user-defined stream wrapper, the pointer is retained after the request memory is freed, and a later request handled by the same worker can free the stale string. An attacker who can trigger such a failing cleanup may crash the worker or corrupt memory; code execution has not been demonstrated. This requires the filename to be allocated in request memory, for example when the script is not cached by OPcache.\n\nThis issue affects PHP versions 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "score": 9.2,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-129474",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "PHP",
+   "description": "Use-after-free in magic method backtraces can lead to remote code execution.\n\nWhen collecting the arguments of a method call handled by __call() or __callStatic() for a backtrace, PHP can read stale values that may refer to freed memory. If a fatal error such as exceeding memory_limit occurs while an application enters such a call, with fatal_error_backtraces enabled (the default) and zend.exception_ignore_args disabled, a remote attacker who controls enough request data to influence memory allocation may cause memory corruption, crash the PHP worker or, with knowledge of memory addresses, execute arbitrary code. php.ini-production enables zend.exception_ignore_args, which prevents this.\n\nThis issue affects PHP versions 8.5.* before 8.5.13.",
    "score": 9.2,
    "published": "2026-11-19",
    "date": "2026-11-19"
@@ -107,6 +167,21 @@
    "date": "2026-11-19"
   },
   {
+   "id": "CVE-2026-82339",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Sharepoint",
+   "description": "IBM Guardium Data Protection 12.2 is vulnerable to missing authentication in the SharePoint S-TAP RelayService, allowing an unauthenticated network attacker to inject forged audit events and access the active monitoring policy.",
+   "score": 9.1,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
    "id": "CVE-2026-129291",
    "platforms": [
     "software"
@@ -116,7 +191,7 @@
     "Security.nl"
    ],
    "software": "PHP",
-   "description": "PHP-FPM epoll use-after-free can lead to local privilege escalation.\n\nWhen catch_workers_output is enabled and the epoll event backend is used, the PHP-FPM master can close a worker's output pipe in fpm_child_close() without removing the associated event, and the delayed cleanup can free the worker record while its epoll registration is still active. A later event is then dispatched through a pointer into freed memory. A local attacker who can execute PHP code in an FPM worker can crash the master or execute code with its privileges, commonly root. catch_workers_output is disabled by default but enabled in the official PHP-FPM Docker images.\n\nThis issue affects PHP versions from 8.2.7 before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
+   "description": "PHP-FPM epoll use-after-free can lead to local privilege escalation.\n\nWhen catch_workers_output is enabled and the epoll event backend is used, the PHP-FPM master can close a worker's output pipe in fpm_child_close() without removing the associated event, and the delayed cleanup can free the worker record while its epoll registration is still active. A later event is then dispatched through a pointer into freed memory. A local attacker who can execute PHP code in an FPM worker can crash the master or execute code with its privileges, commonly root. catch_workers_output is disabled by default but enabled in the official PHP-FPM Docker images.\n\nThis issue affects PHP versions from 8.1.20 through 8.1.34, from 8.2.7 before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
    "score": 8.8,
    "published": "2026-11-19",
    "date": "2026-11-19"
@@ -152,6 +227,21 @@
    "date": "2026-11-19"
   },
   {
+   "id": "CVE-2026-127064",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "Apache",
+   "description": "@fastify/reply-from is a Fastify plugin that forwards requests to an upstream HTTP server. In versions before 12.8.4, its buildURL function rejects parent-directory path segments by an exact string match, so a segment that carries a semicolon path parameter, such as a dot-dot segment followed by a semicolon and an optional parameter, is not equal to the plain dot-dot form and passes the traversal check, and the WHATWG URL parser keeps it as an ordinary segment so the base-prefix containment check also passes. Backends that strip semicolon path parameters before resolving dot-segments, such as Apache Tomcat, Jetty, WildFly, and Spring Boot, turn the segment back into a parent-directory reference and resolve it, so an unauthenticated client can escape the intended upstream prefix and reach internal paths such as admin or internal API endpoints, including with state-changing methods. Deployments that proxy to Node.js, nginx, or Express upstreams are not affected. The issue is fixed in @fastify/reply-from 12.8.4, and users should upgrade to 12.8.4 or later.",
+   "score": 8.2,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
    "id": "CVE-2026-109555",
    "platforms": [
     "software"
@@ -178,6 +268,36 @@
    "software": "PHP",
    "description": "PHAR OpenSSL signature bypass via algorithm downgrade.\n\nThe Phar extension selects the signature verification method from the signature type stored in the archive, and only the OpenSSL types consult the separate .pubkey file holding the trusted public key. An attacker who can modify an OpenSSL-signed Phar archive, but not its public key file, can switch the signature type to a keyless hash such as SHA-256 with a recomputed digest, so the altered archive passes verification even with phar.require_hash enabled. An application that loads the archive may then execute attacker-controlled PHP code. Native, tar-based and zip-based phars are affected.\n\nThis issue affects PHP versions 8.2.* before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.",
    "score": 7.7,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-132747",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "MODE",
+   "description": "Vtiger CRM through 8.4.0 contains an SQL injection vulnerability that allows authenticated users with export access to inject SQL through unvalidated selected_ids values in ExportData.php. Attackers can send a UNION SELECT payload in selected_ids[] to the ExportSelectedRecords mode and read password hashes and access keys from the exported CSV.",
+   "score": 7.1,
+   "published": "2026-11-19",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "CVE-2026-132745",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "MODE",
+   "description": "Vtiger CRM through 8.4.0 contains a blind SQL injection vulnerability that allows authenticated non-administrative users to inject SQL through the k (does not contain) comparator in list view search_params. Attackers can send crafted search_params to the ListAjax getRecordsCount mode, breaking out of the unescaped NOT LIKE clause to extract database contents via boolean or time-based techniques.",
+   "score": 7.1,
    "published": "2026-11-19",
    "date": "2026-11-19"
   },
@@ -362,6 +482,21 @@
    "date": "2026-11-18"
   },
   {
+   "id": "CVE-2026-129315",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "MODE",
+   "description": "Dokploy is a free, self-hostable Platform as a Service (PaaS). In 0.31.0 and earlier, the hosted installer and manual installation instructions set /etc/dokploy to mode 0777, allowing a local non-root user on a shared host to replace root-owned schedule or Traefik configuration directories. Dokploy subsequently consumes those paths as trusted configuration and can execute substituted scheduled-task scripts as root, resulting in local privilege escalation.",
+   "score": 8.5,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
    "id": "CVE-2026-130008",
    "platforms": [
     "software"
@@ -372,6 +507,21 @@
    ],
    "software": "MODE",
    "description": "sqlite-mcp is a Model Context Protocol server for SQLite. Prior to 0.1.2, the default read-only mode can be bypassed through execute_query, which accepts a leading SELECT while the SQLite driver executes trailing statements, and through describe_table, which interpolates the caller-controlled table_name into PRAGMA table_info. Either path can issue ATTACH DATABASE, which opens an attached file read-write despite mode=ro and can make the protected database writable, read other SQLite database files, or create a SQLite-format file at a path writable by the server process. Existing non-empty files that are not SQLite databases are refused and left unchanged. The server has no built-in authentication and listens on all interfaces at :8080 by default, so any client that can reach the port can invoke these tools unless an authenticating proxy is in place. This issue is fixed in version 0.1.2.",
+   "score": 8.2,
+   "published": "2026-11-18",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "CVE-2026-76100",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "MODE",
+   "description": "OwnPay is a self-hosted open-source payment gateway automation platform. In 0.2.0 and earlier, modules/gateways/alipay/AlipayGateway.php fails open when an Alipay callback lacks a signature or the merchant has no configured public key because verify(array $callbackData, array $credentials) falls back to an undefined mode credential that defaults to test mode, while verifyWebhook() returns true unconditionally. An unauthenticated request to POST /webhook/{gateway} can provide a pending order reference and matching amount, pass both verification gates without a valid payment signature, and cause the order and corresponding payment-received ledger entries to be marked completed. No fixed version is available as of this review.",
    "score": 8.2,
    "published": "2026-11-18",
    "date": "2026-11-18"
@@ -671,6 +821,66 @@
    "date": "2026-11-16"
   },
   {
+   "id": "CVE-2026-129266",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "JAVA",
+   "description": "External control of a file path in Amazon Deep Java Library (DJL) versions 0.7.0 through 0.38.0 might allow a remote unauthenticated third party to read arbitrary files that the library process can access. To do this, the third party supplies a crafted model archive.\n\n\n\nTo remediate this issue, users should upgrade to version 0.39.0 or later.",
+   "score": 8.7,
+   "published": "2026-11-16",
+   "date": "2026-11-16"
+  },
+  {
+   "id": "CVE-2026-104920",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "JAVA",
+   "description": "LibreOffice Calc can link a cell range to an external data source, and the link is saved in the document. A Java database driver for such a link is loaded from a class path. Opening a crafted document could still load a Java database driver from a location outside the local machine and run its code, by a route that the fix for CVE-2026-63277 did not cover. In fixed versions an entry in a Java class path has to be a file URL that names a file on the local machine.",
+   "score": 8.5,
+   "published": "2026-11-16",
+   "date": "2026-11-16"
+  },
+  {
+   "id": "CVE-2026-104692",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "JAVA",
+   "description": "LibreOffice bundles the HSQLDB database engine, which can be used through the generic JDBC database driver as well as through the support for embedded databases. HSQLDB lets SQL statements call Java methods, limited to the classes that are permitted. When HSQLDB was used through the generic JDBC driver this limit did not apply, so SQL in a crafted document could call any Java method and run code. In fixed versions SQL can call only the built-in functions of HSQLDB, whichever way the database is reached.",
+   "score": 8.5,
+   "published": "2026-11-16",
+   "date": "2026-11-16"
+  },
+  {
+   "id": "CVE-2026-104007",
+   "platforms": [
+    "software"
+   ],
+   "sources": [
+    "NVD",
+    "Security.nl"
+   ],
+   "software": "JAVA",
+   "description": "LibreOffice can connect to databases through JDBC drivers written in Java. A spreadsheet can use a database as the source of a pivot table, and the database document that describes the connection names the driver to use. The location the driver was loaded from was taken from the database document itself, so a crafted document could make LibreOffice load and run Java code that the document supplied when it was opened. This is a different route to the problem fixed for CVE-2026-63277. In fixed versions the driver location is taken only from the driver configuration of the user, and a pivot table whose source is a database document named by a URL connects only once the user allows links to be updated.",
+   "score": 8.5,
+   "published": "2026-11-16",
+   "date": "2026-11-16"
+  },
+  {
    "id": "CVE-2026-112182",
    "platforms": [
     "software"
@@ -843,7 +1053,7 @@
     "NVD",
     "Security.nl"
    ],
-   "software": "JAVA",
+   "software": "Roller",
    "description": "Deserialization of Untrusted Data vulnerability in Apache Roller. When Roller sends a weblog update ping, its XML-RPC client deserializes Java object data contained in the ping target's response, so a party that controls that response can run code in the Roller server process. This issue affects Apache Roller from 4.0 through 6.1.6. Users are recommended to upgrade to version 6.1.7, which removes the unsafe deserialization.",
    "score": 9.8,
    "published": "2026-11-11",
@@ -2765,24 +2975,6 @@
    "added": "2026-08-24",
    "due": "2026-08-27",
    "date": "2026-08-24"
-  },
-  {
-   "id": "CVE-2026-73570",
-   "platforms": [
-    "software"
-   ],
-   "sources": [
-    "CISA KEV"
-   ],
-   "software": "Zimbra Collaboration Suite (ZCS)",
-   "title": "Zimbra Collaboration Suite (ZCS) OS Command Injection Vulnerability",
-   "description": "Zimbra Collaboration Suite (ZCS) contains an OS command injection vulnerability which could allow an unauthenticated attacker to send specially crafted SMTP requests that may result in execution of arbitrary operating system commands as the Zimbra user.",
-   "product": "Synacor Zimbra Collaboration Suite (ZCS)",
-   "kev": true,
-   "ransomware": false,
-   "added": "2026-08-21",
-   "due": "2026-08-24",
-   "date": "2026-08-21"
   }
  ]
 }
